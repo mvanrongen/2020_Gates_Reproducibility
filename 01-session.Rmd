@@ -1,0 +1,156 @@
+---
+title: Getting Started
+author: Martin van Rongen
+---
+```{r, echo=FALSE, purl=FALSE, message = FALSE}
+source("setup.R")
+```
+
+<br/>
+
+Starting with a challenge
+
+> ### Challenge 1 - pipes
+>
+>Subset the `surveys_complete` data to keep only the `species_id`, `weight`, `hindfoot_length`, `year` and `sex` columns and the animals collected on and after 1995.  Then plot a scatter plot of `weight` (x-axis) against `hindfoot_length` (y-axis) using this transformed dataset.
+>Do all the above using pipes, without creating any variables.
+>
+>```{r, answer=TRUE, eval=TRUE}
+>mtcars %>%
+>  # Select columns
+>  select(disp, mpg) %>%
+>  # Plot transformed data
+>  ggplot(mapping = aes(x = mpg, y = disp)) +
+>    geom_point()
+>```
+
+## What is RStudio?
+[RStudio](https://rstudio.com) is currently a very popular Integrated Development Environment (IDE) for working with R.  An IDE is an application used by software developers that faciliates programming by offering source code editing, building and debugging tools all integarated into one application.  To function correctly, RStudio needs R and therefore both need to be installed on your computer.
+
+The RStudio Desktop open-source product is free under the
+[Affero General Public License (AGPL) v3](https://www.gnu.org/licenses/agpl-3.0.en.html).  [Other versions of RStudio](https://www.rstudio.com/products/rstudio/) are also available.
+
+We will use RStudio IDE to write code, navigate the files on our computer,
+inspect the variables we are going to create, and visualize the plots we will
+generate. RStudio can also be used for other things (*e.g.,* version control,
+developing packages, writing Shiny apps) that we will not cover during the
+workshop.
+
+![RStudio interface screenshot. Clockwise from top left: Source, Environment/History, Files/Plots/Packages/Help/Viewer, Console.](img/rstudio-screenshot.png)
+
+RStudio is divided into 4 "Panes": the **Source** for your scripts and documents
+(top-left, in the default layout), your **Environment/History** (top-right),
+your **Files/Plots/Packages/Help/Viewer** (bottom-right), and 
+the R **Console** (bottom-left). The placement of these
+panes and their content can be customized (see menu, Tools -> Global Options ->
+Pane Layout). 
+
+One of the advantages of using RStudio is that all the information
+you need to write code is available in a single window. Additionally, with many
+shortcuts, autocompletion, and highlighting for the major file types you use
+while developing in R, RStudio will make typing easier and less error-prone.
+
+<br/>
+
+## Create an R Project
+
+Before starting to write code in RStudio, we need to create an R Project.  The idea behind an R project is  to have a workspace where you can keep all the files and settings associated with the project together.  In that way, next time you open the R Project it would be easier to resume work.  
+
+To create an "R Project":
+
+1. Start RStudio.
+2. Under the `File` menu, click on `New Project`. Choose `New Directory`, then
+  `New Project`.
+3. Enter a name for this new folder (or "directory"), and choose a convenient
+  location for it. This will be your **working directory** for the rest of the
+  day (*e.g.,* `~/my-first-project`).
+4. Click on `Create Project`.
+5. (Optional) Set Preferences to 'Never' save workspace in RStudio.
+
+RStudio's default preferences generally work well, but saving a workspace to
+`.RData` can be cumbersome, especially if you are working with larger datasets as this would save all the data that is loaded into R into the `.RData` file.  
+To turn that off, go to `Tools` --> `Global Options` and select the 'Never' option
+for `Save workspace to .RData' on exit.`
+
+![Set 'Save workspace to .RData on exit' to 'Never'](img/rstudio-preferences.png)
+
+<br/>
+
+### Working directory
+
+Whenever we are working on a project, it is good practice to keep a set of related data, analyses, and text self-contained in a single folder, called the **working directory**. All of the
+scripts within this folder can then use **relative paths** to files in the working directory that indicate where inside the project a file is located (as opposed to **absolute paths**, which
+point to where a file is on a specific computer). Working this way makes it
+a lot easier to move your project around on your computer and share it with
+others without worrying about whether or not the underlying scripts will still work.  
+
+> **Absolute vs Relative paths examples**
+> 
+> **Relative path**: data/dataset1.txt
+>
+> **Absolute path**: C:/Users/User1/Documents/R/my-first-project/**data/dataset1.txt**
+
+Using RStudio projects makes it easy to organise your files in the project and ensures that your working directory is set properly.  RStudio shows your current working directory at the top of your window:
+
+```{r, results='markup', echo=FALSE, purl=FALSE, out.width='50%', fig.align='center'}
+knitr::include_graphics("img/rstudio-workingdir.png")
+```
+
+Another way to check your working directory is by typing `getwd()` in the console pane. If for some
+reason your working directory is not what it should be, you can change it in the
+RStudio interface by navigating in the file browser where your working directory
+should be, and clicking on the blue gear icon "More", and select "Set As Working
+Directory". Alternatively you can use `setwd("/path/to/working/directory")` to
+reset your working directory (not recommended). However, your scripts should not include this line
+because it will fail on someone else's computer.
+
+Using a consistent folder structure across your projects will help keep things
+organized, and will also make it easy to find things in the future. This
+can be especially helpful when you have multiple projects. In general, you may
+create directories (folders) for **scripts**, **data**, and **documents**.
+
+ - **`data/`** Use this folder to store your raw data and intermediate
+   datasets you may create for the need of a particular analysis. For the sake
+   of transparency and [provenance](https://en.wikipedia.org/wiki/Provenance),
+   you should *always* keep a copy of your raw data accessible and do as much
+   of your data cleanup and preprocessing programmatically (*i.e.,* with scripts,
+   rather than manually). Separating raw data from processed data
+   is also a good idea. For example, you could have files
+   `data/raw/survey.plot1.txt` and `data/raw/survey.plot2.txt` kept separate from
+   a `data_output/survey.csv` file generated by the
+   `scripts/01.preprocess.survey.R` script.
+ - **`documents/`** This would be a place to keep documentation and other text documents
+ - **`scripts/`** This would be the location to keep your R scripts for
+   different analyses or plotting.
+
+You may want additional directories or subdirectories depending on your project
+needs, but these should form the backbone of your working directory.
+
+![Example of a working directory structure.](img/working-directory-structure.png)
+
+
+For this workshop, we will need a `data/` folder to store our raw data, and we
+will use `data_output/` for when we learn how to export data as CSV files, and
+`fig_output/` folder for the figures that we will save.
+
+* Under the `Files` tab on the right of the screen, click on `New Folder` and
+  create a folder named `data` within your newly created working directory
+  (e.g., `~/my-first-project/data`). Repeat these operations to create a `data_output/` and a
+  `fig_output` folders.
+
+We are going to keep the script in the root of our working directory because we
+are only going to use one file and it will make things easier.
+
+Your working directory should now look like this:
+
+```{r, results='markup',fig.cap="How it should look like at the beginning of this lesson", echo=FALSE, purl=FALSE, out.width='50%', fig.align='center'}
+knitr::include_graphics("img/workingdir-files.png")
+```
+
+The working directory is an important concept to understand. It is the place
+from where R will be looking for and saving the files. When you write code for
+your project, it should refer to files in relation to the root of your working
+directory and only need files within this structure.
+
+<br/>
+

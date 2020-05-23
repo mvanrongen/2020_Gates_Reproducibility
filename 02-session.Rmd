@@ -1,0 +1,13 @@
+---
+title: "Introduction to R"
+author: "Martin van Rongen & Alexia Cardona"
+---
+
+
+```{r, echo = FALSE, purl = FALSE, message = FALSE}
+source("setup.R")
+```
+
+<br/>
+
+
