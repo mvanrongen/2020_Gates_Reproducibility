@@ -109,6 +109,8 @@ When publishing your research journals will usually require a link to all the da
 knitr::include_graphics("img/data_availability_apollo.png")
 ```
 
+There are plenty more repositories to choose from and the main things to keep in mind are accessibility and stability. Can people access your data freely and are the data likely be in the same place in 10 years time? 
+
 ## Data exploration workflow
 
 Some might have completed the [Introduction to R for Biologists](https://www.training.cam.ac.uk/bioinformatics/event/3338957) course at the University. If so, you will have come across the concept of data exploration workflow.

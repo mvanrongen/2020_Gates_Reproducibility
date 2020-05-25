@@ -1,6 +1,6 @@
 ---
-title: RMarkdown
-author: Martin van Rongen & Alexia Cardona
+title: R Markdown
+author: Martin van Rongen & Alexia Cardona[^1]
 bibliography: references.bib
 link-citations: yes
 output:
@@ -11,6 +11,8 @@ output:
     toc_depth: 3
 ---
 
+[^1]: These materials have been adapted from [Reproducible research in R](https://cambiotraining.github.io/reproducibility-training/rmarkdown.html), which has been developed by Alexia Cardona.
+
 ```{r, echo = FALSE, purl = FALSE, message = FALSE}
 source("setup.R")
 ```
@@ -18,6 +20,8 @@ source("setup.R")
 <br/>
 
 # R Markdown
+
+[R Markdown](https://rmarkdown.rstudio.com) is integrated in RStudio and enables you to create documents, reports, presentations and dashboards. This in turn helps you to communicate your research better than using scripts alone. It does this because it supports extensive text formatting and easy code integration. That in turns enables you to walk a reader through an analysis much more easily than you would be able to do using comments in a script.
 
 An R Markdown file is made up of 3 basic components:
 
@@ -29,7 +33,7 @@ Here we will assume that the output of our report is an `.html` file. HTML files
 
 R Markdown can also be used to generate PDFs, Microsoft Word or Latex documents, among other things.
 
-## Rmarkdown header
+## R Markdown header
 
 The markdown document starts with an optional header in YAML (_YAML Ain't Markup Language_) format known as the YAML metadata.  In the example below the `title`, `author` and `date` are specified in the header. Other options can be specified in the header such as table of content which we will look at later on in the course.  
 
@@ -114,17 +118,17 @@ To create a link to a webpage use `[text of link](https://www.gapminder.org)`.  
 
 #### Footnotes
 
-To indicate a footnote use`[^1]` and, for example, indicate another one as`[^2]` and then specify the wordings of the footnotes as:
+To indicate a footnote use`[^2]` and, for example, indicate another one as`[^3]` (I already used `[^1]`!) and then specify the wordings of the footnotes as:
 
-`[^1]: This is the first footnote.`  
-`[^2]: This is the second footnote.`
+`[^2]: This is a footnote.`  
+`[^3]: Another footnote.`
 
 You do not need to put footnotes at the end of the document for them to be rendered there.  This example is rendered as follows:  
 
-To indicate a footnote use[^1] and, for example, indicate another one as[^2] and then specify the wordings of the footnotes as:
+To indicate a footnote use[^2] and, for example, indicate another one as[^3] and then specify the wordings of the footnotes as:
 
-[^1]: This is the first footnote.  
-[^2]: This is the second footnote.
+[^2]: This is a footnote.  
+[^3]: Another footnote.
 
 \  
 
@@ -139,7 +143,6 @@ To indicate a footnote use[^1] and, for example, indicate another one as[^2] and
 >5. Add a link to the [https://www.gapminder.org](https://www.gapminder.org) website (or any other website).
 >6. Use `knit` to render an html document and see if it looks like you expected.
 >
-
 
 ### Lists
 
@@ -230,7 +233,8 @@ This will be rendered as:
 \  
 
 ### Inserting images
-To insert an image use the following syntax: `![Figure caption](path to image)`.  Example:
+
+To insert an image use the following syntax: `![Figure caption](path/to/image)`.  Example:
 
 `![R Logo](img/Rlogo.png)`
 
@@ -302,7 +306,6 @@ print(x)
 ```
 ~~~
 
-
 This will be rendered as:
 ```
 print("Hello world")
@@ -365,7 +368,6 @@ To add the bibliography at the end of the report add a References heading at the
 
 See [references](#refs) at the end of the report.
 
-
 See https://rmarkdown.rstudio.com/authoring_bibliographies_and_citations.html for more information.  
 
 \  
@@ -374,11 +376,13 @@ See https://rmarkdown.rstudio.com/authoring_bibliographies_and_citations.html fo
 
 So far we have not used any R code and all the code we used so far is in Markdown.  As the name suggests, Rmarkdown files contain markdown and R.  Rmarkdown files have a `.Rmd` extention.  Using R in a markdown document makes sense if we integrate our analysis in our report. Some operations that we might need to do are; loading our dataset, performing some operations on the dataset and displaying results, either in a table or in a plot.  We will be doing all this in the following sections.
 
-If you would like to insert R code inside the notebook you will have to insert it inside an R code chunk to be able to execute it.  To do this either click on the `Insert` button at the top of the Source panel in RStudio:
+If you would like to insert R code inside the notebook you will have to insert it inside an R code chunk to be able to execute it.  To do this click on the `Insert` button at the top of the Source panel in RStudio:
 
 ```{r, results='markup', echo=FALSE, purl=FALSE, out.width='150px', fig.align='center'}
 knitr::include_graphics("img/insert_r_chunk.png")
 ```
+
+Or use the associated shortcut (Mac `Cmd + Option + I`, Windows `Ctrl + Alt + I`).
 
 This creates an **R code chunk** as follows:
 

@@ -490,7 +490,8 @@ div.tocify {
 <li>the <strong><code>data</code></strong> folder contains a <code>raw</code> and <code>processed</code> sub-folder. This is often a good idea, because you want to make sure you never overwrite your original, raw data. Any analyses can always be repeated (save your script!) and the output of them can go into the <code>processed</code> data folder.</li>
 <li>the <strong><code>documents</code></strong> folder contains documents that are relevant to the project.</li>
 <li>the <strong><code>figures</code></strong> folder can contain sub-folders to separate quick exploratory plots and publication-quaility figures.</li>
-<li>a <strong><code>scripts</code></strong> folder contains all the scripts used in the analyses. It often helps to order them and name them consistently, such as <code>01-read_data.R</code>, <code>02-clean_data.R</code>, <code>03-exploratory_analysis.R</code> etc. It’ll save you a lot of headache when trying to find things back in the future!</li>
+<li>the <strong><code>notebooks</code></strong> folder can contain your R Markdown files in which you explore your data in detail.</li>
+<li>a <strong><code>scripts</code></strong> folder contains all the scripts used in the final analyses. It often helps to order them and name them consistently, such as <code>01-read_data.R</code>, <code>02-clean_data.R</code>, <code>03-exploratory_analysis.R</code> etc. It’ll save you a lot of headache when trying to find things back in the future!</li>
 </ul>
 <p>The working directory also contains a file named <code>2020_example.Rproj</code>. This is a file that is created by RStudio and when you open that it automatically opens RStudio in a new session and sets the working directory to where this <code>Rproj</code> file is located. Useful! To create your own R project, go to <code>File -&gt; New Project</code>.</p>
 <blockquote>
@@ -509,6 +510,7 @@ div.tocify {
 <p>These repositories keep your data available and provide a fixed, unique URL to your data that you can use within your scripts.</p>
 <p>When publishing your research journals will usually require a link to all the data. If you’re a researcher at Cambridge University you can use <a href="https://www.repository.cam.ac.uk">Apollo</a>. This is the University’s online repository and takes all kind of types of data, enabling you to keep all your data in one place.</p>
 <p><img src="img/data_availability_apollo.png" width="75%" style="display: block; margin: auto;" /></p>
+<p>There are plenty more repositories to choose from and the main things to keep in mind are accessibility and stability. Can people access your data freely and are the data likely be in the same place in 10 years time?</p>
 </div>
 <div id="data-exploration-workflow" class="section level2">
 <h2>Data exploration workflow</h2>

@@ -12,7 +12,7 @@
 <meta name="author" content="Martin van Rongen &amp; Alexia Cardona" />
 
 
-<title>RMarkdown</title>
+<title>R Markdown</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -436,8 +436,8 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">RMarkdown</h1>
-<h4 class="author">Martin van Rongen &amp; Alexia Cardona</h4>
+<h1 class="title toc-ignore">R Markdown</h1>
+<h4 class="author">Martin van Rongen &amp; Alexia Cardona<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></h4>
 
 </div>
 
@@ -445,6 +445,7 @@ div.tocify {
 <p><br/></p>
 <div id="r-markdown" class="section level1">
 <h1>R Markdown</h1>
+<p><a href="https://rmarkdown.rstudio.com">R Markdown</a> is integrated in RStudio and enables you to create documents, reports, presentations and dashboards. This in turn helps you to communicate your research better than using scripts alone. It does this because it supports extensive text formatting and easy code integration. That in turns enables you to walk a reader through an analysis much more easily than you would be able to do using comments in a script.</p>
 <p>An R Markdown file is made up of 3 basic components:</p>
 <ul>
 <li>header</li>
@@ -453,8 +454,8 @@ div.tocify {
 </ul>
 <p>Here we will assume that the output of our report is an <code>.html</code> file. HTML files are files for web pages. This means that the report that we will generate can be easily deployed on the web.</p>
 <p>R Markdown can also be used to generate PDFs, Microsoft Word or Latex documents, among other things.</p>
-<div id="rmarkdown-header" class="section level2">
-<h2>Rmarkdown header</h2>
+<div id="r-markdown-header" class="section level2">
+<h2>R Markdown header</h2>
 <p>The markdown document starts with an optional header in YAML (<em>YAML Ain’t Markup Language</em>) format known as the YAML metadata. In the example below the <code>title</code>, <code>author</code> and <code>date</code> are specified in the header. Other options can be specified in the header such as table of content which we will look at later on in the course.</p>
 <pre><code>---
 title: &quot;Reproducible Research using R&quot;
@@ -520,11 +521,11 @@ To <del>strikethrough</del> text use <code>~~double tilde~~</code>.</p>
 </div>
 <div id="footnotes" class="section level4">
 <h4>Footnotes</h4>
-<p>To indicate a footnote use<code>[^1]</code> and, for example, indicate another one as<code>[^2]</code> and then specify the wordings of the footnotes as:</p>
-<p><code>[^1]: This is the first footnote.</code><br />
-<code>[^2]: This is the second footnote.</code></p>
+<p>To indicate a footnote use<code>[^2]</code> and, for example, indicate another one as<code>[^3]</code> (I already used <code>[^1]</code>!) and then specify the wordings of the footnotes as:</p>
+<p><code>[^2]: This is a footnote.</code><br />
+<code>[^3]: Another footnote.</code></p>
 <p>You do not need to put footnotes at the end of the document for them to be rendered there. This example is rendered as follows:</p>
-<p>To indicate a footnote use<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> and, for example, indicate another one as<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a> and then specify the wordings of the footnotes as:</p>
+<p>To indicate a footnote use<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a> and, for example, indicate another one as<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a> and then specify the wordings of the footnotes as:</p>
 <p> </p>
 <blockquote>
 <h3 id="challenge">Challenge</h3>
@@ -626,7 +627,7 @@ To <del>strikethrough</del> text use <code>~~double tilde~~</code>.</p>
 </div>
 <div id="inserting-images" class="section level3">
 <h3>Inserting images</h3>
-<p>To insert an image use the following syntax: <code>![Figure caption](path to image)</code>. Example:</p>
+<p>To insert an image use the following syntax: <code>![Figure caption](path/to/image)</code>. Example:</p>
 <p><code>![R Logo](img/Rlogo.png)</code></p>
 <p>Will be rendered as:</p>
 <div class="figure">
@@ -754,8 +755,9 @@ link-citations: yes
 <div id="r-code-chunks" class="section level2">
 <h2>R code chunks</h2>
 <p>So far we have not used any R code and all the code we used so far is in Markdown. As the name suggests, Rmarkdown files contain markdown and R. Rmarkdown files have a <code>.Rmd</code> extention. Using R in a markdown document makes sense if we integrate our analysis in our report. Some operations that we might need to do are; loading our dataset, performing some operations on the dataset and displaying results, either in a table or in a plot. We will be doing all this in the following sections.</p>
-<p>If you would like to insert R code inside the notebook you will have to insert it inside an R code chunk to be able to execute it. To do this either click on the <code>Insert</code> button at the top of the Source panel in RStudio:</p>
+<p>If you would like to insert R code inside the notebook you will have to insert it inside an R code chunk to be able to execute it. To do this click on the <code>Insert</code> button at the top of the Source panel in RStudio:</p>
 <p><img src="img/insert_r_chunk.png" width="150px" style="display: block; margin: auto;" /></p>
+<p>Or use the associated shortcut (Mac <code>Cmd + Option + I</code>, Windows <code>Ctrl + Alt + I</code>).</p>
 <p>This creates an <strong>R code chunk</strong> as follows:</p>
 <p><img src="img/r_chunk.png" width="749" style="display: block; margin: auto;" /></p>
 <p>Alternatively, you can type the r code chunk. The R code should be placed in between the triple backticks. Note that on the right hand side of the R code chunk there is a green “play” button that will run the R code chunk if pressed. By default, when the Rmarkdown document is knitted, the R code will be executed and the R code chunk is displayed before the executed code.</p>
@@ -852,8 +854,9 @@ link-citations: yes
 <div class="footnotes">
 <hr />
 <ol>
-<li id="fn1"><p>This is the first footnote.<a href="#fnref1" class="footnote-back">↩</a></p></li>
-<li id="fn2"><p>This is the second footnote.<a href="#fnref2" class="footnote-back">↩</a></p></li>
+<li id="fn1"><p>These materials have been adapted from <a href="https://cambiotraining.github.io/reproducibility-training/rmarkdown.html">Reproducible research in R</a>, which has been developed by Alexia Cardona.<a href="#fnref1" class="footnote-back">↩</a></p></li>
+<li id="fn2"><p>This is a footnote.<a href="#fnref2" class="footnote-back">↩</a></p></li>
+<li id="fn3"><p>Another footnote.<a href="#fnref3" class="footnote-back">↩</a></p></li>
 </ol>
 </div>
 
