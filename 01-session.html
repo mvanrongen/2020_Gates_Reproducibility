@@ -534,92 +534,73 @@ div.tocify {
 
 
 <p><br/></p>
-<p>Starting with a challenge</p>
-<blockquote>
-<h3 id="challenge-1---pipes">Challenge 1 - pipes</h3>
-<p>Subset the <code>surveys_complete</code> data to keep only the <code>species_id</code>, <code>weight</code>, <code>hindfoot_length</code>, <code>year</code> and <code>sex</code> columns and the animals collected on and after 1995. Then plot a scatter plot of <code>weight</code> (x-axis) against <code>hindfoot_length</code> (y-axis) using this transformed dataset. Do all the above using pipes, without creating any variables.</p>
-<div class="accordion">
-<h3 class="toc-ignore">
-Answer
-</h3>
-<div style="background: #fff;">
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1">mtcars <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="st"> </span><span class="co"># Select columns</span></a>
-<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="st"> </span><span class="kw">select</span>(disp, mpg) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb1-4" data-line-number="4"><span class="st"> </span><span class="co"># Plot transformed data</span></a>
-<a class="sourceLine" id="cb1-5" data-line-number="5"><span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> mpg, <span class="dt">y =</span> disp)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb1-6" data-line-number="6"><span class="st">   </span><span class="kw">geom_point</span>()</a></code></pre></div>
-<img src="img/reproducibility-unnamed-chunk-2-1.png" width="672" />
+<div id="gettingstarted" class="section level1">
+<h1>Getting started</h1>
+<div id="r" class="section level2">
+<h2>R</h2>
+<p><img src="img/Rlogo.png" width="10%" style="display: block; margin: auto auto auto 0;" /></p>
+<p>R is a statistical programming language widely used in the data science field.</p>
+<p><strong>R provides a record of your analysis</strong></p>
+<p>R uses scripts to record which steps you take during your analysis. Although this might initially take longer to learn than pointing and clicking your way through some other software, it makes it much easier to go back to your analysis in the future and re-do or adjust it, if needed. An added benefit is that it enables you to make comments as to <em>why</em> you’ve done certain steps in your analysis.</p>
+<p><strong>Reproducibility</strong></p>
+<p>It’s the latest buzz-word in science and for good reason! Using R to record every step of your analysis and linking this to the original raw data that you used to do the analysis allows people to reproduce your work. This may very well be your future self!</p>
+<p>This kind of record also enables other people to decide for themselves if the choices you’ve made in the analysis are reasonable and allows them (and yourself) to spot any mistakes.</p>
+<p>For those of you who work in academia there is an added advantage. An increasing number of journals and funding bodies now require you to deposit your raw data and the analysis that led to your conclusions. Knowing how to use R can really be a benefit here.</p>
+<p>Even news agencies, such as the <a href="https://github.com/BBC-Data-Unit">BBC Shared Data Unit</a> now make the underlying analysis of many of their news items available, many of which are performed in R. With the onset of “fake news”, more and more people are expecting transparency!</p>
 </div>
-</div>
-</blockquote>
-<div id="what-is-rstudio" class="section level2">
-<h2>What is RStudio?</h2>
-<p><a href="https://rstudio.com">RStudio</a> is currently a very popular Integrated Development Environment (IDE) for working with R. An IDE is an application used by software developers that faciliates programming by offering source code editing, building and debugging tools all integarated into one application. To function correctly, RStudio needs R and therefore both need to be installed on your computer.</p>
-<p>The RStudio Desktop open-source product is free under the <a href="https://www.gnu.org/licenses/agpl-3.0.en.html">Affero General Public License (AGPL) v3</a>. <a href="https://www.rstudio.com/products/rstudio/">Other versions of RStudio</a> are also available.</p>
-<p>We will use RStudio IDE to write code, navigate the files on our computer, inspect the variables we are going to create, and visualize the plots we will generate. RStudio can also be used for other things (<em>e.g.,</em> version control, developing packages, writing Shiny apps) that we will not cover during the workshop.</p>
-<div class="figure">
-<img src="img/rstudio-screenshot.png" alt="RStudio interface screenshot. Clockwise from top left: Source, Environment/History, Files/Plots/Packages/Help/Viewer, Console." />
-<p class="caption">RStudio interface screenshot. Clockwise from top left: Source, Environment/History, Files/Plots/Packages/Help/Viewer, Console.</p>
-</div>
-<p>RStudio is divided into 4 “Panes”: the <strong>Source</strong> for your scripts and documents (top-left, in the default layout), your <strong>Environment/History</strong> (top-right), your <strong>Files/Plots/Packages/Help/Viewer</strong> (bottom-right), and the R <strong>Console</strong> (bottom-left). The placement of these panes and their content can be customized (see menu, Tools -&gt; Global Options -&gt; Pane Layout).</p>
-<p>One of the advantages of using RStudio is that all the information you need to write code is available in a single window. Additionally, with many shortcuts, autocompletion, and highlighting for the major file types you use while developing in R, RStudio will make typing easier and less error-prone.</p>
-<p><br/></p>
-</div>
-<div id="create-an-r-project" class="section level2">
-<h2>Create an R Project</h2>
-<p>Before starting to write code in RStudio, we need to create an R Project. The idea behind an R project is to have a workspace where you can keep all the files and settings associated with the project together. In that way, next time you open the R Project it would be easier to resume work.</p>
-<p>To create an “R Project”:</p>
+<div id="rstudio" class="section level2">
+<h2>RStudio</h2>
+<p>When opening RStudio you’re greeted with the following screen (note that this may look different on your computer, depending on your operating system and colour scheme):</p>
+<p><img src="img/rstudio_on_start.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>There are three panels visible at this stage, clock-wise:</p>
 <ol style="list-style-type: decimal">
-<li>Start RStudio.</li>
-<li>Under the <code>File</code> menu, click on <code>New Project</code>. Choose <code>New Directory</code>, then <code>New Project</code>.</li>
-<li>Enter a name for this new folder (or “directory”), and choose a convenient location for it. This will be your <strong>working directory</strong> for the rest of the day (<em>e.g.,</em> <code>~/my-first-project</code>).</li>
-<li>Click on <code>Create Project</code>.</li>
-<li>(Optional) Set Preferences to ‘Never’ save workspace in RStudio.</li>
+<li><strong>Console</strong>. The console can be used to execute code in directly.</li>
+<li><strong>Environment</strong>. This displays all the data that is loaded into R’s memory.</li>
+<li><strong>Files/Plots/Packages/Help/Viewer</strong>. These tabs show the Files in your directory, any Plots you have created, Packages that are installed, a Help function and a Viewer pane that can be used for local web content.</li>
 </ol>
-<p>RStudio’s default preferences generally work well, but saving a workspace to <code>.RData</code> can be cumbersome, especially if you are working with larger datasets as this would save all the data that is loaded into R into the <code>.RData</code> file.<br />
-To turn that off, go to <code>Tools</code> –&gt; <code>Global Options</code> and select the ‘Never’ option for <code>Save workspace to .RData' on exit.</code></p>
-<div class="figure">
-<img src="img/rstudio-preferences.png" alt="Set ‘Save workspace to .RData on exit’ to ‘Never’" />
-<p class="caption">Set ‘Save workspace to .RData on exit’ to ‘Never’</p>
+<p>A bit more about the console. Although it can be useful to execute code directly (in the case of one-off actions, such as the installation of packages) you will want to save your code most of the time so you can share it or refer back to it later. In that case it’s good to start a <strong>script</strong> to write the code in.</p>
+<p>To start a new script go to <code>File -&gt; New File -&gt; R Script</code>. Your new screen will look something like this, with a new panel appearing in the top right corner:</p>
+<p><img src="img/rstudio_all_panels.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
-<p><br/></p>
+<div id="directories" class="section level2">
+<h2>Directories</h2>
 <div id="working-directory" class="section level3">
 <h3>Working directory</h3>
-<p>Whenever we are working on a project, it is good practice to keep a set of related data, analyses, and text self-contained in a single folder, called the <strong>working directory</strong>. All of the scripts within this folder can then use <strong>relative paths</strong> to files in the working directory that indicate where inside the project a file is located (as opposed to <strong>absolute paths</strong>, which point to where a file is on a specific computer). Working this way makes it a lot easier to move your project around on your computer and share it with others without worrying about whether or not the underlying scripts will still work.</p>
+<p>You might have noticed that the bottom right panel contains five different tabs, one of which is called <code>Files</code>. In our example it shows the current <strong>working directory</strong>. The concept of a working directory is very important one. When we’re working on a project, it is good practice to keep all the data, scripts, images and any other files contained in a single folder. This single folder we call the working directory and it allows us to use <strong>relative paths</strong> in scripts as opposed to <strong>absolute paths</strong>.</p>
 <blockquote>
-<p><strong>Absolute vs Relative paths examples</strong></p>
-<p><strong>Relative path</strong>: data/dataset1.txt</p>
-<p><strong>Absolute path</strong>: C:/Users/User1/Documents/R/my-first-project/<strong>data/dataset1.txt</strong></p>
+<p><strong>Relative path</strong>: data/raw/gapminder.csv</p>
+<p><strong>Absolute path</strong>: C:/Users/Admin/Documents/R/Projects/2020_example/<strong>data/raw/gapminder.csv</strong></p>
 </blockquote>
-<p>Using RStudio projects makes it easy to organise your files in the project and ensures that your working directory is set properly. RStudio shows your current working directory at the top of your window:</p>
-<p><img src="img/rstudio-workingdir.png" width="50%" style="display: block; margin: auto;" /></p>
-<p>Another way to check your working directory is by typing <code>getwd()</code> in the console pane. If for some reason your working directory is not what it should be, you can change it in the RStudio interface by navigating in the file browser where your working directory should be, and clicking on the blue gear icon “More”, and select “Set As Working Directory”. Alternatively you can use <code>setwd(&quot;/path/to/working/directory&quot;)</code> to reset your working directory (not recommended). However, your scripts should not include this line because it will fail on someone else’s computer.</p>
-<p>Using a consistent folder structure across your projects will help keep things organized, and will also make it easy to find things in the future. This can be especially helpful when you have multiple projects. In general, you may create directories (folders) for <strong>scripts</strong>, <strong>data</strong>, and <strong>documents</strong>.</p>
-<ul>
-<li><strong><code>data/</code></strong> Use this folder to store your raw data and intermediate datasets you may create for the need of a particular analysis. For the sake of transparency and <a href="https://en.wikipedia.org/wiki/Provenance">provenance</a>, you should <em>always</em> keep a copy of your raw data accessible and do as much of your data cleanup and preprocessing programmatically (<em>i.e.,</em> with scripts, rather than manually). Separating raw data from processed data is also a good idea. For example, you could have files <code>data/raw/survey.plot1.txt</code> and <code>data/raw/survey.plot2.txt</code> kept separate from a <code>data_output/survey.csv</code> file generated by the <code>scripts/01.preprocess.survey.R</code> script.</li>
-<li><strong><code>documents/</code></strong> This would be a place to keep documentation and other text documents</li>
-<li><strong><code>scripts/</code></strong> This would be the location to keep your R scripts for different analyses or plotting.</li>
-</ul>
-<p>You may want additional directories or subdirectories depending on your project needs, but these should form the backbone of your working directory.</p>
-<div class="figure">
-<img src="img/working-directory-structure.png" alt="Example of a working directory structure." />
-<p class="caption">Example of a working directory structure.</p>
+<p>The beauty of using relative paths is that you can move the working directory folder to any location you like and all the references and links in the scripts will continue to work. Hard coding absolute paths is always a bad idea because it makes it much harder to share your code because it is all linked to a specific directory on <em>your</em> computer.</p>
 </div>
-<p>For this workshop, we will need a <code>data/</code> folder to store our raw data, and we will use <code>data_output/</code> for when we learn how to export data as CSV files, and <code>fig_output/</code> folder for the figures that we will save.</p>
+<div id="directory-structure" class="section level3">
+<h3>Directory structure</h3>
+<p>Apart from using a working directory it also pays off to think about how to organise your files within it. In this example the working directory is called <code>2020_example</code> and it contains several other directories to organise our files:</p>
+<p><img src="img/working_directory.png" width="100%" style="display: block; margin: auto;" /></p>
 <ul>
-<li>Under the <code>Files</code> tab on the right of the screen, click on <code>New Folder</code> and create a folder named <code>data</code> within your newly created working directory (e.g., <code>~/my-first-project/data</code>). Repeat these operations to create a <code>data_output/</code> and a <code>fig_output</code> folders.</li>
+<li>the <strong><code>data</code></strong> folder contains a <code>raw</code> and <code>processed</code> sub-folder. This is often a good idea, because you want to make sure you never overwrite your original, raw data. Any analyses can always be repeated (save your script!) and the output of them can go into the <code>processed</code> data folder.</li>
+<li>the <strong><code>documents</code></strong> folder contains documents that are relevant to the project.</li>
+<li>the <strong><code>figures</code></strong> folder can contain sub-folders to separate quick exploratory plots and publication-quaility figures.</li>
+<li>a <strong><code>scripts</code></strong> folder contains all the scripts used in the analyses. It often helps to order them and name them consistently, such as <code>01-read_data.R</code>, <code>02-clean_data.R</code>, <code>03-exploratory_analysis.R</code> etc. It’ll save you a lot of headache when trying to find things back in the future!</li>
 </ul>
-<p>We are going to keep the script in the root of our working directory because we are only going to use one file and it will make things easier.</p>
-<p>Your working directory should now look like this:</p>
-<div class="figure" style="text-align: center">
-<img src="img/workingdir-files.png" alt="How it should look like at the beginning of this lesson" width="50%" />
-<p class="caption">
-How it should look like at the beginning of this lesson
-</p>
+<p>The working directory also contains a file named <code>2020_example.Rproj</code>. This is a file that is created by RStudio and when you open that it automatically opens RStudio in a new session and sets the working directory to where this <code>Rproj</code> file is located. Useful! To create your own R project, go to <code>File -&gt; New Project</code>.</p>
+<blockquote>
+<p><strong>Note</strong>: You can <strong>create new directories</strong> by clicking on the <code>New Folder</code> button or by creating them directly in your file browser.</p>
+<p>It is good practice to <strong>avoid any spaces</strong> in your directory names because these names can create issues when used in code. Instead, you can use the underscore.</p>
+<p>R is also case-sensitive, so <strong>be consistent in your use of uppercase and lowercase</strong>. I personally use lowercase exclusively because it’s one less thing to think about!</p>
+</blockquote>
 </div>
-<p>The working directory is an important concept to understand. It is the place from where R will be looking for and saving the files. When you write code for your project, it should refer to files in relation to the root of your working directory and only need files within this structure.</p>
-<p><br/></p>
+</div>
+<div id="getting-help" class="section level2">
+<h2>Getting help</h2>
+<p>R has a built-in Help function. There is a tab in the lower-right pane with a search bar. You would use this, for example, if you want to find out more about a specific function (more on them later).</p>
+<p>Below shows an example where we’re looking at the help page of the <code>select</code> function:</p>
+<p><img src="img/help_example.png" width="50%" style="display: block; margin: auto;" /></p>
+<p>Although the information might not always make sense, especially when you’re just starting to use R, it can help point you in the right direction. The first line here states <code>select{dplyr}</code>, which means we are looking at the help for the <code>select</code> function from the <code>dplyr</code> package.</p>
+<p>There is usually a description, usage and arguments section which help you decide what to input into the function. Most help pages have a working example at the bottom of the page and this can be extremely useful to decode how something works!</p>
+<p>Another way of accessing the help is typing it into the console. Let’s say we want to know more about the <code>round()</code> function, then we can type:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1">?round</a></code></pre></div>
+<p>Finally, one of the most effective ways to find help is to use a Google search. For example, search for “how to use round function in R” will give you lots of relevant information. The same strategy works really well if you get an error message. Just copy it into a Google search and usually something useful comes up!</p>
 </div>
 </div>
 
