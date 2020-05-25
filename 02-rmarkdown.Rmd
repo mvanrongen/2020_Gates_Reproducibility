@@ -129,9 +129,9 @@ To indicate a footnote use[^1] and, for example, indicate another one as[^2] and
 
 \  
 
-> ### Challenge: create a R Markdown document
+> ### Challenge
 >
->Do the following:
+>Try the following:
 >
 >1. Create an `R Project` if you haven't done so already
 >2. Start a new `R Markdown` file and save it in the appropriate subfolder (e.g. `notebooks`)
