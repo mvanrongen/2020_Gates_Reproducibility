@@ -1,6 +1,6 @@
 ---
-title: "Introduction to R"
-author: "Martin van Rongen & Alexia Cardona"
+title: Version control and GitHub
+author: Martin van Rongen
 ---
 
 

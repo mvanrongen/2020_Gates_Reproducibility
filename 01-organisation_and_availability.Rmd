@@ -1,5 +1,5 @@
 ---
-title: Getting Started
+title: Data organisation and availability
 author: Martin van Rongen
 ---
 ```{r, echo=FALSE, purl=FALSE, message = FALSE}
@@ -78,7 +78,8 @@ knitr::include_graphics("img/working_directory.png")
 - the **`data`** folder contains a `raw` and `processed` sub-folder. This is often a good idea, because you want to make sure you never overwrite your original, raw data. Any analyses can always be repeated (save your script!) and the output of them can go into the `processed` data folder.
 - the **`documents`** folder contains documents that are relevant to the project.
 - the **`figures`** folder can contain sub-folders to separate quick exploratory plots and publication-quaility figures.
-- a **`scripts`** folder contains all the scripts used in the analyses. It often helps to order them and name them consistently, such as `01-read_data.R`, `02-clean_data.R`, `03-exploratory_analysis.R` etc. It'll save you a lot of headache when trying to find things back in the future!
+- the **`notebooks`** folder can contain your R Markdown files in which you explore your data in detail.
+- a **`scripts`** folder contains all the scripts used in the final analyses. It often helps to order them and name them consistently, such as `01-read_data.R`, `02-clean_data.R`, `03-exploratory_analysis.R` etc. It'll save you a lot of headache when trying to find things back in the future!
 
 The working directory also contains a file named `2020_example.Rproj`. This is a file that is created by RStudio and when you open that it automatically opens RStudio in a new session and sets the working directory to where this `Rproj` file is located. Useful! To create your own R project, go to `File -> New Project`.
 
@@ -90,26 +91,42 @@ The working directory also contains a file named `2020_example.Rproj`. This is a
 
 ## Data availability
 
-## Getting help
+Making your data reproducible also involves thinking about where to store your data. We will look more closely into [GitHub](https://github.com) later, but for now it's suffice to say that you can use GitHub to easily share your analyses, which can also include the data itself.
 
-R has a built-in Help function. There is a tab in the lower-right pane with a search bar. You would use this, for example, if you want to find out more about a specific function (more on them later).
+Below is an example of a data set that is available on the GitHub repository for this course.
 
-Below shows an example where we're looking at the help page of the `select` function:
-
-```{r, results='markup', echo=FALSE, purl=FALSE, out.width='50%', fig.align='center'}
-knitr::include_graphics("img/help_example.png")
+```{r, results='markup', echo=FALSE, purl=FALSE, out.width='100%', fig.align='center'}
+knitr::include_graphics("img/data_availability_github.png")
 ```
 
-Although the information might not always make sense, especially when you're just starting to use R, it can help point you in the right direction. The first line here states `select{dplyr}`, which means we are looking at the help for the `select` function from the `dplyr` package.
+This works well if your data sets are not too large, but depending on your research you might soon find it becomes limiting. There are online repositories for all kinds of data, such as [GenBank](https://www.ncbi.nlm.nih.gov/genbank/) for genetic sequences, [ENA](https://www.ebi.ac.uk/ena) for various sequencing information etc.
 
-There is usually a description, usage and arguments section which help you decide what to input into the function. Most help pages have a working example at the bottom of the page and this can be extremely useful to decode how something works!
+These repositories keep your data available and provide a fixed, unique URL to your data that you can use within your scripts.
 
-Another way of accessing the help is typing it into the console. Let's say we want to know more about the `round()` function, then we can type:
+When publishing your research journals will usually require a link to all the data. If you're a researcher at Cambridge University you can use [Apollo](https://www.repository.cam.ac.uk). This is the University's online repository and takes all kind of types of data, enabling you to keep all your data in one place.
 
-```{r eval=FALSE}
-?round
+```{r, results='markup', echo=FALSE, purl=FALSE, out.width='75%', fig.align='center'}
+knitr::include_graphics("img/data_availability_apollo.png")
 ```
 
-Finally, one of the most effective ways to find help is to use a Google search. For example, search for "how to use round function in R" will give you lots of relevant information. The same strategy works really well if you get an error message. Just copy it into a Google search and usually something useful comes up!
+## Data exploration workflow
 
+Some might have completed the [Introduction to R for Biologists](https://www.training.cam.ac.uk/bioinformatics/event/3338957) course at the University. If so, you will have come across the concept of data exploration workflow.
 
+When you are working on a project that requires data analysis, you will normally need to perform the following steps:
+
+```{r, results='markup', echo=FALSE, purl=FALSE, out.width='75%', fig.align='center'}
+knitr::include_graphics("img/data_science_explore.png")
+```
+
+More information on this workflow can be found in the [R for Data Science](https://r4ds.had.co.nz/) book.  Let's briefly go over each step:
+
+1.  The first step in working with data is to first **import** your data into R.  This connects the external file/database to your project in R.
+2.  **Cleaning** or **tidying** the data will follow, which involves making sure that the data is consistent and that each row in the dataset is an observation and each column is a variable.  
+_e.g._ In the `gapminder` data set the `country` column specifies the country, using a capital letter at the start. A common problem in data sets is inconsistent capitalisation. For example, here _Austria_ would be different to _austria_, since R is case-sensitive. During the _tidying_ stage it is important to make the dataset consistent and much as possible so that you can focus on the questions you are trying to solve in your analysis.  
+3.  Once the dataset is tidy, we move to the transformation stage.  To be able to **transform** your data you need to plan in advance what analyses you would like to perform on the dataset and what plots you would like to create.  In this way, you are able to plan ahead what variables/columns you will be using from the dataset, what additional variables you will need to create and what variables you will not be using so that you can keep only the columns in the dataset that are relevant for your analyses.  By the end of the transformation process you will have a dataset that is focused for your analyses and you can move on to the main exploratory mechanisms of this workflow which are visualisation and modelling.  These two stages complement each other and when exploring your data you normally repeat these two stages several times.    
+4.  **Visualising** data is a powerful way to explore your data.  Furthermore it helps you understand if there is any pattern in the data.   
+5.  **Modelling** the data involves applying statistics or other mathematical or computational models on your data to explore if there are correlations or patterns in the dataset to help you answer the scientific question you are trying to solve.  
+6.  The last step in the data exploration workflow is to **communicate** your results.  This is very important as you will need to be able to communicate your results to others to have a successful project.
+
+All these stages in the data exploration workflow can be achieved by programming in R.  In this course we will focus on the **communicate** aspect of the workflow. And for that we need to turn to [RMarkdown](https://rmarkdown.rstudio.com).

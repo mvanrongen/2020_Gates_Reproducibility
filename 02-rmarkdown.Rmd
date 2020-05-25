@@ -1,0 +1,440 @@
+---
+title: RMarkdown
+author: Martin van Rongen & Alexia Cardona
+bibliography: references.bib
+link-citations: yes
+output:
+  html_document: 
+    toc: true
+    toc_float:
+      collapsed: false
+    toc_depth: 6
+---
+
+
+```{r, echo = FALSE, purl = FALSE, message = FALSE}
+source("setup.R")
+```
+
+<br/>
+
+# R Markdown
+
+An R Markdown file is made up of 3 basic components:
+
+  - header
+  - markdown
+  - R code chunks
+  
+Here we will assume that the output of our report is an `.html` file. HTML files are files for web pages.  This means that the report that we will generate can be easily deployed on the web.
+
+R Markdown can also be used to generate PDFs, Microsoft Word or Latex documents, among other things.
+
+## Rmarkdown header
+
+The markdown document starts with an optional header in YAML (_YAML Ain't Markup Language_) format known as the YAML metadata.  In the example below the `title`, `author` and `date` are specified in the header. Other options can be specified in the header such as table of content which we will look at later on in the course.  
+
+```
+---
+title: "Reproducible Research in R"
+author:  "Martin van Rongen"
+date: 26 May 2020
+---
+```
+
+To create a new R Markdown file go to `File -> New File -> R Markdown`. To generate the output file (in this case an html document), press the `knit` button:
+```{r, results='markup', echo=FALSE, purl=FALSE}
+knitr::include_graphics("img/knit_button.png")
+```
+
+## Markdown {#markdown-header}
+
+The text following the header in an Rmarkdown file is in Markdown syntax.  This is the syntax that gets converted to HTML format once we click on the Knit button or the Build website button.  The philosophy behind Markdown is that it should be easy to write and easy to read.  
+
+The full documentation of the Markdown syntax can be found at https://pandoc.org/MANUAL.html.  However this might be a bit of information overload when you're starting. Therefore below is a simplified version of the Markdown syntax.
+
+\  
+
+### Headings
+
+Below is the `Markdown code` you need to use to specify headings at different levels and the rendered output respectively below the code:
+
+`# Heading 1`
+
+<p style="font-weight:500; font-size:34px">Heading 1</p>
+
+`## Heading 2`
+
+<p style="font-weight:500; font-size:30px">Heading 2</p>
+
+
+`### Heading 3`
+
+<p style="font-weight:500; font-size:24px">Heading 3</p>
+
+`#### Heading 4`
+
+<p style="font-weight:500; font-size:18px">Heading 4</p>
+
+\  
+
+### Inline text formatting
+
+To make text **bold** use `**double asterisks**` or `__double underscores__`.  
+To make text *italic* use `*asterisks*` or `_underscores_`.  
+To make text ^superscript^ use `^caret^`.  
+To make text ~subscript~ use `~tilde~`.  
+To mark text as `inline code` use `` `backticks` ``.   
+To  ~~strikethrough~~ text use `~~double tilde~~`.
+
+\  
+
+### Line breaks
+To create a line break, put more than 2 spaces at the end of a sentence or place `\` in a new line followed by a new line <img src="img/enter.png" width="20"/>.  
+
+\  
+
+### Links
+
+#### Linking text to Headers
+
+To link text to a header you would need to specify an identification tag next to a header as follows:
+
+`# Markdown {#markdown-header}`
+
+Then to link text to this header use `[link to header](#markdown-header)`.  This will be rendered as [link to header](#markdown-header).
+
+\ 
+
+
+#### Linking text to a webpage
+
+To create a link to a webpage use `[text of link](https://www.gapminder.org)`.  This is rendered as [text of link](https://www.gapminder.org). 
+
+\  
+
+#### Footnotes
+
+To indicate a footnote use`[^1]` and, for example, indicate another one as`[^2]` and then specify the wordings of the footnotes as:
+
+`[^1]: This is the first footnote.`  
+`[^2]: This is the second footnote.`
+
+You do not need to put footnotes at the end of the document for them to be rendered there.  This example is rendered as follows:  
+
+To indicate a footnote use[^1] and, for example, indicate another one as[^2] and then specify the wordings of the footnotes as:
+
+[^1]: This is the first footnote.  
+[^2]: This is the second footnote.
+
+\  
+
+> ### Challenge: create a R Markdown document
+>
+>Do the following:
+>
+>1. Create an `R Project` if you haven't done so already
+>2. Start a new `R Markdown` file and save it in the appropriate subfolder (e.g. `notebooks`)
+>3. Think about one of your own projects and use that to come up with a title.
+>4. Create three levels of headings, sub-dividing your project and try out some of the inline text formatting.
+>5. Add a link to the [https://www.gapminder.org](https://www.gapminder.org) website (or any other website).
+>
+
+
+### Lists
+
+#### Ordered lists
+
+To create an ordered list use the following syntax:
+
+```
+1. Item 1
+2. Item 2
+3. Item 3
+```
+
+This is rendered as:
+
+1. Item 1
+2. Item 2
+3. Item 3
+
+Use 4 spaces to indent an item if you would like to have sub-lists:
+```
+1. Item 1
+2. Item 2
+3. Item 3
+    a. Item 3a
+        i.  Item 3ai
+        ii. Item 3aii
+    b. Item 3b
+    c. Item 3c
+4. Item 4
+```
+
+1. Item 1
+2. Item 2
+3. Item 3
+    a. Item 3a
+        i.  Item 3ai
+        ii. Item 3aii
+    b. Item 3b
+    c. Item 3c
+4. Item 4
+
+\  
+
+#### Unordered lists
+
+In an unordered bulletted list, each item begins with `*`, `+` or `-`.  Example:
+
+```
+* Item 1
+* Item 2
+* Item 3
+    * Item 3a
+        *  Item 3ai
+        * Item 3aii
+    * Item 3b
+    * Item 3c
+* Item 4
+```
+Will be rendered as:
+
+* Item 1
+* Item 2
+* Item 3
+    * Item 3a
+        *  Item 3ai
+        * Item 3aii
+    * Item 3b
+    * Item 3c
+* Item 4
+
+\  
+
+#### Tasks list
+
+Tasks list can be done using the following syntax:
+
+```
+- [ ] an unchecked task list item
+- [x] checked item
+```
+
+This will be rendered as:
+
+- [ ] an unchecked task list item
+- [x] checked item
+
+\  
+
+### Inserting images
+To insert an image use the following syntax: `![Figure caption](path to image)`.  Example:
+
+`![R Logo](img/Rlogo.png)`
+
+Will be rendered as:
+
+![R Logo](img/Rlogo.png)
+
+\  
+
+### Tables {#tables}
+
+Use `|`and `-` to create a table as follows:
+
+```
+| Column 1    | Column 2    |
+| ----------- | ----------- |
+| Item 1,1    | Item 1,2    |
+| Item 2,1    | Item 2,2    |
+```
+This is rendered as:
+
+| Column 1    | Column 2    |
+| ----------- | ----------- |
+| Item 1,1    | Item 1,2    |
+| Item 2,1    | Item 2,2    |
+
+Table alignments can be done using the following syntax:
+
+```
+| Left align  | Center align | Right align  |
+| :---        |    :----:    |         ---: |
+| Item 1,1    | Item 1,2     | Item 1,3     | 
+| Item 2,1    | Item 2,2     | Item 2,3     |
+```
+This is rendered as:
+
+| Left align  | Center align | Right align  |
+| :---        |    :----:    |         ---: |
+| Item 1,1    | Item 1,2     | Item 1,3     | 
+| Item 2,1    | Item 2,2     | Item 2,3     |
+
+\  
+
+### Blocks
+Blocks in the notebook can be created by using the `>` sign as follows:
+`> Example of a block`
+
+This is rendered as:
+
+> Example of a block
+
+
+If you would like to add **code blocks**, use ` ``` ` before and after the code as follows:
+
+
+~~~
+```
+print("Hello world")
+x <- 1+2
+print(x)
+```
+~~~
+
+
+This will be rendered as:
+```
+print("Hello world")
+x <- 1+2
+print(x)
+```
+\  
+
+### Adding a table of contents
+
+To add a table of contents to your report add the following to the YAML header:
+
+```
+output:
+  html_document:
+    toc: true
+```
+
+By default all headings up to level 3 headings are displayed in the table of contents.  You can adjust this by specifying `toc_depth` as following:
+
+```
+output:
+  html_document:
+    toc: true
+    toc_depth: 4
+```
+\  
+
+### Adding references
+
+Adding references and citations in Markdown is not as easy as reference manager software such as Mendeley. To be able to create citations you will need to create a bibliography file with all the references in it.  Here is an [example of a bibliography file](references.bib).  The bibligraphy file has to be placed in the same folder as the one where the `.Rmd` file is.  Next, add the following to the YAML header:
+
+```
+bibliography: references.bib
+link-citations: yes
+```
+Your YAML header should now look like:
+```
+---
+title: "My first notebook"
+author:  Alexia Cardona
+date: 18 February 2020
+bibliography: references.bib
+link-citations: yes
+---
+```
+
+To cite a reference use the `@` together with the ID of the reference.  Example:
+
+`Citation to my paper @cardona2014 and @cardona2019`
+
+Will be rendered as:
+
+Citation to my paper @cardona2014 and @cardona2019
+
+To add the bibliography at the end of the report add a References heading at the end of the report:
+
+`# References`
+
+See [references](#refs) at the end of the report.
+
+
+See https://rmarkdown.rstudio.com/authoring_bibliographies_and_citations.html for more information.  
+
+\  
+
+## R code chunks
+
+So far we have not used any R code and all the code we used so far is in Markdown.  As the name suggests, Rmarkdown files contain markdown and R.  Rmarkdown files have a `.Rmd` extention.  Using R in a markdown document makes sense if we integrate our analysis in our report. Some operations that we might need to do are; loading our dataset, performing some operations on the dataset and displaying results, either in a table or in a plot.  We will be doing all this in the following sections.
+
+If you would like to insert R code inside the notebook you will have to insert it inside an R code chunk to be able to execute it.  To do this either click on the `Insert` button at the top of the Source panel in RStudio:
+
+<img src="img/insert-r-chunk.png" width=150/>
+
+This creates an **R code chunk** as follows:
+![](img/r-chunk.png)
+
+Alternatively, you can type the r code chunk.  The R code should be placed in between the triple backticks.  Note that on the right hand side of the R code chunk there is a green "play" button that will run the R code chunk if pressed.  By default, when the Rmarkdown document is knitted, the R code will be executed and the R code chunk is displayed before the executed code.  
+
+[Click here](RNotebookExample.Rmd) for an example of an R Notebook.  The sections below will go over the differet parts of the R Notebook.  Add RNotebookExample.Rmd to your existing R project.  
+
+\  
+
+### The dataset
+
+[RNotebookExample.Rmd](RNotebookExample.Rmd) uses data from [gapminder](https://www.gapminder.org/).  Let us download the `gapminder_data.csv` dataset into our project.  Create a `data` folder in your working directory.  Download the dataset into the `data` folder as follows:
+
+```
+download.file(url="https://raw.githubusercontent.com/cambiotraining/reproducibility-training/master/data/gapminder_data.csv", destfile="data/gapminder_data.csv")
+```
+
+The `gapminder_data.csv` dataset that is loaded into the notebook contains the life expectancy and GDP per capita  data for each country per year from 1952 to 2007.  The dataset has the following columns:  
+
+| Column           | Description                                               |
+|------------------|-----------------------------------------------------------|
+| country          | Country                                                   |
+| year             | Year the life expectency and GDP per capita index applies |
+| pop              | Population size                                           |
+| continent        | Continent                                                 |
+| lifeExp          | Life expectancy                                           |
+| gdpPercap        | GDP per capita index                                      |
+
+The dataset contains data for different countries in the world.  For our analysis we would like to look at only the European countries in the dataset.  This means that we would need to manipulate the dataset before we can display the results.  
+
+\  
+
+### Chunk options
+
+As mentioned, by default the chunk output will be displayed exactly after the R code chunk and the R code chunk is also displayed in the rendered page.  If you would like to have different settings, you can specify these as arguments in the `{}` part of the R code chunk.
+
+These chunk options include:
+
+* `include = FALSE` do not display the code and results in the page after it is knitted.  The R code however still runs and therefore the variables or results in this code chunk can be used by the other chunks.  
+* `echo = FALSE` does not display the code, but it displays the results in the rendered file.  
+* `message = FALSE` does not display any messages that are generated by the code chunk in the rendered file.  
+* `warning = FALSE` does not display warnings that are generated by code chunk in the rendered file.
+
+A full list of options that can be used in the R code chunks is found [here](https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf).
+
+\  
+
+### Tables in Rmarkdown
+
+When you have a large dataset, creating a table manually in rmarkdown as we did [here](#tables) is not really feasible.  Also if you are really trying to make your research reproducible, then, you will need to generate most of the tables dynamically and therefore you will not be able to manually type them in markdown.  This is where Rmarkdown comes in as there is a way to display tables dynamically.  In [RNotebookExample.Rmd](RNotebookExample.Rmd), the data was first loaded and then after some manipulation, the table was displayed by using the `kable` function and passing in the table variable as its argument. More information about `kable` can be found in its [documentation](https://cran.r-project.org/web/packages/kableExtra/vignettes/awesome_table_in_html.html).
+
+If you have a very long table to display, the best way would be to use pagination where the contents of the table are split into multiple tabs.  The function `paged_table` in the `rmarkdown` library can be used to do this (see example in [RNotebookExample.Rmd](RNotebookExample.Rmd)).
+
+\  
+
+# Summary
+
+Through R notebooks we can now integrate our R code and our results in one readable document that we can share with our collaborators.  In this way the code and the results have become one item. For inspiration, examples of R notebooks can be found at https://rpubs.com/
+
+**Limitations:**
+
+Some limitations that Rmarkdown has:
+
+* Figure and table numbering is not supported.  There is still a way around this, by using third-party packages *e.g.,* [captioner](https://cran.r-project.org/web/packages/captioner/vignettes/using_captioner.html).
+*  If you are looking at specific customisations that are different from the default Markdown format, *e.g.,* headings using different font specifications, then this gets tricky and markdown might not be the best approach.  
+
+\  
+
+# References {#refs}
