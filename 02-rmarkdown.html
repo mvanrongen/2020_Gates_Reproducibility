@@ -457,7 +457,7 @@ div.tocify {
 <h2>Rmarkdown header</h2>
 <p>The markdown document starts with an optional header in YAML (<em>YAML Ain’t Markup Language</em>) format known as the YAML metadata. In the example below the <code>title</code>, <code>author</code> and <code>date</code> are specified in the header. Other options can be specified in the header such as table of content which we will look at later on in the course.</p>
 <pre><code>---
-title: &quot;Reproducible Research in R&quot;
+title: &quot;Reproducible Research using R&quot;
 author:  &quot;Martin van Rongen&quot;
 date: 26 May 2020
 ---</code></pre>
@@ -535,6 +535,7 @@ To <del>strikethrough</del> text use <code>~~double tilde~~</code>.</p>
 <li>Think about one of your own projects and use that to come up with a title.</li>
 <li>Create three levels of headings, sub-dividing your project and try out some of the inline text formatting.</li>
 <li>Add a link to the <a href="https://www.gapminder.org">https://www.gapminder.org</a> website (or any other website).</li>
+<li>Use <code>knit</code> to render an html document and see if it looks like you expected.</li>
 </ol>
 </blockquote>
 </div>
@@ -637,53 +638,53 @@ To <del>strikethrough</del> text use <code>~~double tilde~~</code>.</p>
 <div id="tables" class="section level3">
 <h3>Tables</h3>
 <p>Use <code>|</code>and <code>-</code> to create a table as follows:</p>
-<pre><code>| Column 1    | Column 2    |
+<pre><code>| country_id  | country     |
 | ----------- | ----------- |
-| Item 1,1    | Item 1,2    |
-| Item 2,1    | Item 2,2    |</code></pre>
+| afg         | Afghanistan |
+| ago         | Angola      |</code></pre>
 <p>This is rendered as:</p>
 <table>
 <thead>
 <tr class="header">
-<th>Column 1</th>
-<th>Column 2</th>
+<th>country_id</th>
+<th>country</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>Item 1,1</td>
-<td>Item 1,2</td>
+<td>afg</td>
+<td>Afghanistan</td>
 </tr>
 <tr class="even">
-<td>Item 2,1</td>
-<td>Item 2,2</td>
+<td>ago</td>
+<td>Angola</td>
 </tr>
 </tbody>
 </table>
 <p>Table alignments can be done using the following syntax:</p>
-<pre><code>| Left align  | Center align | Right align  |
-| :---        |    :----:    |         ---: |
-| Item 1,1    | Item 1,2     | Item 1,3     | 
-| Item 2,1    | Item 2,2     | Item 2,3     |</code></pre>
+<pre><code>| country_id (left) | country (centre) | world_region (right) |
+| :---              | :----:           | ---:                 |
+| afg               | Afghanistan      | south_asia           |
+| ago               | Angola           | sub_saharan_africa   |</code></pre>
 <p>This is rendered as:</p>
 <table>
 <thead>
 <tr class="header">
-<th align="left">Left align</th>
-<th align="center">Center align</th>
-<th align="right">Right align</th>
+<th align="left">country_id (left)</th>
+<th align="center">country (centre)</th>
+<th align="right">world_region (right)</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">Item 1,1</td>
-<td align="center">Item 1,2</td>
-<td align="right">Item 1,3</td>
+<td align="left">afg</td>
+<td align="center">Afghanistan</td>
+<td align="right">south_asia</td>
 </tr>
 <tr class="even">
-<td align="left">Item 2,1</td>
-<td align="center">Item 2,2</td>
-<td align="right">Item 2,3</td>
+<td align="left">ago</td>
+<td align="center">Angola</td>
+<td align="right">sub_saharan_africa</td>
 </tr>
 </tbody>
 </table>
@@ -691,29 +692,34 @@ To <del>strikethrough</del> text use <code>~~double tilde~~</code>.</p>
 </div>
 <div id="blocks" class="section level3">
 <h3>Blocks</h3>
-<p>Blocks in the notebook can be created by using the <code>&gt;</code> sign as follows: <code>&gt; Example of a block</code></p>
+<p>Blocks or quotes in the notebook can be created by using the <code>&gt;</code> sign as follows:</p>
+<pre><code>&gt; &quot;Life can be great, when you try something new.&quot;
+&gt;
+&gt; _Kevin the koala_</code></pre>
 <p>This is rendered as:</p>
 <blockquote>
-<p>Example of a block</p>
+<p>“Life can be great, when you try something new.”</p>
+<p><em>Kevin the koala</em></p>
 </blockquote>
 <p>If you would like to add <strong>code blocks</strong>, use <code>```</code> before and after the code as follows:</p>
 <pre><code>```
 print(&quot;Hello world&quot;)
-x &lt;- 1+2
+x &lt;- 1 + 2
 print(x)
 ```</code></pre>
 <p>This will be rendered as:</p>
 <pre><code>print(&quot;Hello world&quot;)
-x &lt;- 1+2
+x &lt;- 1 + 2
 print(x)</code></pre>
 <p> </p>
 </div>
 <div id="adding-a-table-of-contents" class="section level3">
 <h3>Adding a table of contents</h3>
-<p>To add a table of contents to your report add the following to the YAML header:</p>
+<p>To add a table of contents to your report add the following to the YAML header you need to specify the output (in this case a <code>html_document</code>) and set <code>toc</code> to <code>true</code>. If you want to make sure your table of contents stays visible even whilst scrolling, then you need to float it, using <code>toc_float: true</code>.</p>
 <pre><code>output:
   html_document:
-    toc: true</code></pre>
+    toc: true
+    toc_float: true</code></pre>
 <p>By default all headings up to level 3 headings are displayed in the table of contents. You can adjust this by specifying <code>toc_depth</code> as following:</p>
 <pre><code>output:
   html_document:
@@ -728,9 +734,9 @@ print(x)</code></pre>
 link-citations: yes</code></pre>
 <p>Your YAML header should now look like:</p>
 <pre><code>---
-title: &quot;My first notebook&quot;
-author:  Alexia Cardona
-date: 18 February 2020
+title: &quot;Reproducible research using R&quot;
+author:  Martin van Rongen
+date: 26 May 2020
 bibliography: references.bib
 link-citations: yes
 ---</code></pre>
@@ -749,8 +755,9 @@ link-citations: yes
 <h2>R code chunks</h2>
 <p>So far we have not used any R code and all the code we used so far is in Markdown. As the name suggests, Rmarkdown files contain markdown and R. Rmarkdown files have a <code>.Rmd</code> extention. Using R in a markdown document makes sense if we integrate our analysis in our report. Some operations that we might need to do are; loading our dataset, performing some operations on the dataset and displaying results, either in a table or in a plot. We will be doing all this in the following sections.</p>
 <p>If you would like to insert R code inside the notebook you will have to insert it inside an R code chunk to be able to execute it. To do this either click on the <code>Insert</code> button at the top of the Source panel in RStudio:</p>
-<p><img src="img/insert-r-chunk.png" width=150/></p>
-<p>This creates an <strong>R code chunk</strong> as follows: <img src="img/r-chunk.png" /></p>
+<p><img src="img/insert_r_chunk.png" width="150px" style="display: block; margin: auto;" /></p>
+<p>This creates an <strong>R code chunk</strong> as follows:</p>
+<p><img src="img/r_chunk.png" width="749" style="display: block; margin: auto;" /></p>
 <p>Alternatively, you can type the r code chunk. The R code should be placed in between the triple backticks. Note that on the right hand side of the R code chunk there is a green “play” button that will run the R code chunk if pressed. By default, when the Rmarkdown document is knitted, the R code will be executed and the R code chunk is displayed before the executed code.</p>
 <p><a href="RNotebookExample.Rmd">Click here</a> for an example of an R Notebook. The sections below will go over the differet parts of the R Notebook. Add RNotebookExample.Rmd to your existing R project.</p>
 <p> </p>
@@ -896,7 +903,7 @@ $(document).ready(function ()  {
 
     // establish options
     var options = {
-      selectors: "h1,h2,h3,h4,h5,h6",
+      selectors: "h1,h2,h3",
       theme: "bootstrap3",
       context: '.toc-content',
       hashGenerator: function (text) {

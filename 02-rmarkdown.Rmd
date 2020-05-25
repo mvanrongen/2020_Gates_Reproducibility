@@ -8,9 +8,8 @@ output:
     toc: true
     toc_float:
       collapsed: false
-    toc_depth: 6
+    toc_depth: 3
 ---
-
 
 ```{r, echo = FALSE, purl = FALSE, message = FALSE}
 source("setup.R")
@@ -36,7 +35,7 @@ The markdown document starts with an optional header in YAML (_YAML Ain't Markup
 
 ```
 ---
-title: "Reproducible Research in R"
+title: "Reproducible Research using R"
 author:  "Martin van Rongen"
 date: 26 May 2020
 ---
@@ -138,6 +137,7 @@ To indicate a footnote use[^1] and, for example, indicate another one as[^2] and
 >3. Think about one of your own projects and use that to come up with a title.
 >4. Create three levels of headings, sub-dividing your project and try out some of the inline text formatting.
 >5. Add a link to the [https://www.gapminder.org](https://www.gapminder.org) website (or any other website).
+>6. Use `knit` to render an html document and see if it looks like you expected.
 >
 
 
@@ -245,51 +245,59 @@ Will be rendered as:
 Use `|`and `-` to create a table as follows:
 
 ```
-| Column 1    | Column 2    |
+| country_id  | country     |
 | ----------- | ----------- |
-| Item 1,1    | Item 1,2    |
-| Item 2,1    | Item 2,2    |
+| afg         | Afghanistan |
+| ago         | Angola      |
 ```
 This is rendered as:
 
-| Column 1    | Column 2    |
+| country_id  | country     |
 | ----------- | ----------- |
-| Item 1,1    | Item 1,2    |
-| Item 2,1    | Item 2,2    |
+| afg         | Afghanistan |
+| ago         | Angola      |
 
 Table alignments can be done using the following syntax:
 
 ```
-| Left align  | Center align | Right align  |
-| :---        |    :----:    |         ---: |
-| Item 1,1    | Item 1,2     | Item 1,3     | 
-| Item 2,1    | Item 2,2     | Item 2,3     |
+| country_id (left) | country (centre) | world_region (right) |
+| :---              | :----:           | ---:                 |
+| afg               | Afghanistan      | south_asia           |
+| ago               | Angola           | sub_saharan_africa   |
 ```
 This is rendered as:
 
-| Left align  | Center align | Right align  |
-| :---        |    :----:    |         ---: |
-| Item 1,1    | Item 1,2     | Item 1,3     | 
-| Item 2,1    | Item 2,2     | Item 2,3     |
+| country_id (left) | country (centre) | world_region (right) |
+| :---              | :----:           | ---:                 |
+| afg               | Afghanistan      | south_asia           |
+| ago               | Angola           | sub_saharan_africa   |
 
 \  
 
 ### Blocks
-Blocks in the notebook can be created by using the `>` sign as follows:
-`> Example of a block`
+
+Blocks or quotes in the notebook can be created by using the `>` sign as follows:
+
+```
+> "Life can be great, when you try something new."
+>
+> _Kevin the koala_
+```
 
 This is rendered as:
 
-> Example of a block
+> "Life can be great, when you try something new."
+>
+> _Kevin the koala_
+
 
 
 If you would like to add **code blocks**, use ` ``` ` before and after the code as follows:
 
-
 ~~~
 ```
 print("Hello world")
-x <- 1+2
+x <- 1 + 2
 print(x)
 ```
 ~~~
@@ -298,19 +306,20 @@ print(x)
 This will be rendered as:
 ```
 print("Hello world")
-x <- 1+2
+x <- 1 + 2
 print(x)
 ```
 \  
 
 ### Adding a table of contents
 
-To add a table of contents to your report add the following to the YAML header:
+To add a table of contents to your report add the following to the YAML header you need to specify the output (in this case a `html_document`) and set `toc` to `true`. If you want to make sure your table of contents stays visible even whilst scrolling, then you need to float it, using `toc_float: true`.
 
 ```
 output:
   html_document:
     toc: true
+    toc_float: true
 ```
 
 By default all headings up to level 3 headings are displayed in the table of contents.  You can adjust this by specifying `toc_depth` as following:
@@ -334,9 +343,9 @@ link-citations: yes
 Your YAML header should now look like:
 ```
 ---
-title: "My first notebook"
-author:  Alexia Cardona
-date: 18 February 2020
+title: "Reproducible research using R"
+author:  Martin van Rongen
+date: 26 May 2020
 bibliography: references.bib
 link-citations: yes
 ---
@@ -367,10 +376,15 @@ So far we have not used any R code and all the code we used so far is in Markdow
 
 If you would like to insert R code inside the notebook you will have to insert it inside an R code chunk to be able to execute it.  To do this either click on the `Insert` button at the top of the Source panel in RStudio:
 
-<img src="img/insert-r-chunk.png" width=150/>
+```{r, results='markup', echo=FALSE, purl=FALSE, out.width='150px', fig.align='center'}
+knitr::include_graphics("img/insert_r_chunk.png")
+```
 
 This creates an **R code chunk** as follows:
-![](img/r-chunk.png)
+
+```{r, results='markup', echo=FALSE, purl=FALSE, fig.align='center'}
+knitr::include_graphics("img/r_chunk.png")
+```
 
 Alternatively, you can type the r code chunk.  The R code should be placed in between the triple backticks.  Note that on the right hand side of the R code chunk there is a green "play" button that will run the R code chunk if pressed.  By default, when the Rmarkdown document is knitted, the R code will be executed and the R code chunk is displayed before the executed code.  
 
