@@ -55,7 +55,7 @@ Your new screen will look something like this, with a new panel appearing in the
 knitr::include_graphics("img/rstudio_all_panels.png")
 ```
 
-## Directories
+## Data organisation
 
 ### Working directory
 
@@ -87,6 +87,8 @@ The working directory also contains a file named `2020_example.Rproj`. This is a
 > It is good practice to **avoid any spaces** in your directory names because these names can create issues when used in code. Instead, you can use the underscore.
 >
 > R is also case-sensitive, so **be consistent in your use of uppercase and lowercase**. I personally use lowercase exclusively because it's one less thing to think about!
+
+## Data availability
 
 ## Getting help
 
