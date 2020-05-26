@@ -50,9 +50,11 @@ To create a new R Markdown file go to `File -> New File -> R Markdown`. To gener
 knitr::include_graphics("img/knit_button.png")
 ```
 
+Alternatively, use the corresponding keyboard shortcut (Mac `Cmd + Shift + K`, Windows `Ctrl + Shift + K`).
+
 ## Markdown {#markdown-header}
 
-The text following the header in an Rmarkdown file is in Markdown syntax.  This is the syntax that gets converted to HTML format once we click on the Knit button or the Build website button.  The philosophy behind Markdown is that it should be easy to write and easy to read.  
+The text following the header in an Rmarkdown file is in Markdown syntax.  This is the syntax that gets converted to HTML format once we click on the Knit button or the Build website button (yes, you can deploy whole websites using R Markdown).  The philosophy behind Markdown is that it should be easy to write and easy to read.  
 
 The full documentation of the Markdown syntax can be found at https://pandoc.org/MANUAL.html.  However this might be a bit of information overload when you're starting. Therefore below is a simplified version of the Markdown syntax.
 
@@ -234,13 +236,21 @@ This will be rendered as:
 
 ### Inserting images
 
-To insert an image use the following syntax: `![Figure caption](path/to/image)`.  Example:
+To insert an image use the following syntax: `![Figure caption](path/to/image)`. Example:
 
 `![R Logo](img/Rlogo.png)`
 
 Will be rendered as:
 
 ![R Logo](img/Rlogo.png)
+
+You can adjust the size of the image by adding a `width` and `height` in pixels in between curly brackets, like this:
+
+`![R Logo](img/Rlogo.png){width=100px height=100px}`
+
+will plot like
+
+![R Logo](img/Rlogo.png){width=100px height=100px}
 
 \  
 
@@ -392,7 +402,9 @@ knitr::include_graphics("img/r_chunk.png")
 
 Alternatively, you can type the r code chunk.  The R code should be placed in between the triple backticks.  Note that on the right hand side of the R code chunk there is a green "play" button that will run the R code chunk if pressed.  By default, when the Rmarkdown document is knitted, the R code will be executed and the R code chunk is displayed before the executed code.  
 
-[Click here](RNotebookExample.Rmd) for an example of an R Notebook.  The sections below will go over the differet parts of the R Notebook.  Add RNotebookExample.Rmd to your existing R project.  
+To run a chunk you can use the `Run` button or the shortcut (Mac `Cmd + Shift + Enter`, Windows `Ctrl + Shift + Enter`).
+
+[Click here](RNotebookExample.Rmd) for an example of an R Notebook.  The sections below will go over the different parts of the R Notebook. Add RNotebookExample.Rmd to your existing R project.  
 
 \  
 

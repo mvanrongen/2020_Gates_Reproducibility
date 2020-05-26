@@ -463,10 +463,11 @@ author:  &quot;Martin van Rongen&quot;
 date: 26 May 2020
 ---</code></pre>
 <p>To create a new R Markdown file go to <code>File -&gt; New File -&gt; R Markdown</code>. To generate the output file (in this case an html document), press the <code>knit</code> button: <img src="img/knit_button.png" width="67" /></p>
+<p>Alternatively, use the corresponding keyboard shortcut (Mac <code>Cmd + Shift + K</code>, Windows <code>Ctrl + Shift + K</code>).</p>
 </div>
 <div id="markdown-header" class="section level2">
 <h2>Markdown</h2>
-<p>The text following the header in an Rmarkdown file is in Markdown syntax. This is the syntax that gets converted to HTML format once we click on the Knit button or the Build website button. The philosophy behind Markdown is that it should be easy to write and easy to read.</p>
+<p>The text following the header in an Rmarkdown file is in Markdown syntax. This is the syntax that gets converted to HTML format once we click on the Knit button or the Build website button (yes, you can deploy whole websites using R Markdown). The philosophy behind Markdown is that it should be easy to write and easy to read.</p>
 <p>The full documentation of the Markdown syntax can be found at <a href="https://pandoc.org/MANUAL.html" class="uri">https://pandoc.org/MANUAL.html</a>. However this might be a bit of information overload when you’re starting. Therefore below is a simplified version of the Markdown syntax.</p>
 <p> </p>
 <div id="headings" class="section level3">
@@ -634,6 +635,13 @@ To <del>strikethrough</del> text use <code>~~double tilde~~</code>.</p>
 <img src="img/Rlogo.png" alt="R Logo" />
 <p class="caption">R Logo</p>
 </div>
+<p>You can adjust the size of the image by adding a <code>width</code> and <code>height</code> in pixels in between curly brackets, like this:</p>
+<p><code>![R Logo](img/Rlogo.png){width=100px height=100px}</code></p>
+<p>will plot like</p>
+<div class="figure">
+<img src="img/Rlogo.png" alt="R Logo" width="100" height="100" />
+<p class="caption">R Logo</p>
+</div>
 <p> </p>
 </div>
 <div id="tables" class="section level3">
@@ -761,7 +769,8 @@ link-citations: yes
 <p>This creates an <strong>R code chunk</strong> as follows:</p>
 <p><img src="img/r_chunk.png" width="749" style="display: block; margin: auto;" /></p>
 <p>Alternatively, you can type the r code chunk. The R code should be placed in between the triple backticks. Note that on the right hand side of the R code chunk there is a green “play” button that will run the R code chunk if pressed. By default, when the Rmarkdown document is knitted, the R code will be executed and the R code chunk is displayed before the executed code.</p>
-<p><a href="RNotebookExample.Rmd">Click here</a> for an example of an R Notebook. The sections below will go over the differet parts of the R Notebook. Add RNotebookExample.Rmd to your existing R project.</p>
+<p>To run a chunk you can use the <code>Run</code> button or the shortcut (Mac <code>Cmd + Shift + Enter</code>, Windows <code>Ctrl + Shift + Enter</code>).</p>
+<p><a href="RNotebookExample.Rmd">Click here</a> for an example of an R Notebook. The sections below will go over the different parts of the R Notebook. Add RNotebookExample.Rmd to your existing R project.</p>
 <p> </p>
 <div id="the-dataset" class="section level3">
 <h3>The dataset</h3>
