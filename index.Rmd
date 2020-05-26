@@ -17,10 +17,10 @@ toc: hide
 
 ### Sessions
 
-1. [Session 1](01-session.html)
-2. [Session 2](02-session.html)
-3. [Session 3](03-session.html)
-4. [Session 4](04-session.html)
+1. [Data organisation and availability](01-organisation_and_availability.html)
+2. [R Markdown](02-rmarkdown.html)
+3. [Version control and GitHub](03-version_control_github.html)
+4. [GitHub](04-github.html)
 
 <br/>
 
