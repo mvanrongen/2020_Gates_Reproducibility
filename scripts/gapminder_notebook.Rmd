@@ -1,7 +1,66 @@
 ---
 title: "Gapminder Notebook"
-output: html_notebook
+output:
+  html_document:
+    df_print: paged
 ---
 
-A note on R Markdown vs R Notebooks.
+If needed, install the `kableExtra` package using:
+
+```{r, eval = FALSE}
+install.packages("kableExtra")
+```
+
+```{r, message = FALSE, warning = FALSE}
+library(tidyverse)
+library(kableExtra)
+library(rmarkdown)
+```
+
+Make sure you have a `data` folder in your working directory.
+
+If required, download the data by running the following in the console:
+
+```
+download.file(url="https://raw.githubusercontent.com/mvanrongen/2020_Gates_Reproducibility/master/data/processed/gapminder_1950_2018.csv", destfile="data/gapminder_1950_2018.csv"
+```
+
+## Loading the data
+Change the location depending on where your file is located. Here the `gapminder_notebook.Rmd` file is located within a `scripts` folder, so we have to navigate up one level `(../)` to be able to access the `data` folder.
+
+```{r load_data}
+gapminder <- read_csv("../data/gapminder_1950_2018.csv")
+```
+
+### Dynamic tables using `rmarkdown`
+
+```{r}
+gapminder %>% 
+  paged_table()
+```
+
+### Dynamic tables using `kableExtra`
+
+```{r}
+gapminder %>% 
+  filter(world_region == "america",
+         year == 2018) %>%
+  select(country, life_expectancy) %>%
+  arrange(desc(life_expectancy)) %>% 
+  kable(caption = "Life expectancy in the Americas in 2018, descending") %>% 
+  kable_styling(bootstrap_options = c("striped", "hover"), 
+                full_width = FALSE) %>% 
+  scroll_box(width = "100%", height = "400px")
+```
+
+
+
+
+
+
+
+
+
+
+
 

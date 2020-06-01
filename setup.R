@@ -9,8 +9,11 @@
 ## knitr options
 library(knitr)
 library(methods)
+library(tidyverse)
+library(kableExtra)
+library(rmarkdown)
 suppressPackageStartupMessages(library(tidyverse))
-knitr::opts_chunk$set(results='hide', fig.path='img/reproducibility-',
+knitr::opts_chunk$set(fig.path='img/reproducibility-',
                       comment = "#>", purl = FALSE, fig.keep='last')
 
 ### Custom hooks

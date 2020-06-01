@@ -15,6 +15,7 @@ output:
 
 ```{r, echo = FALSE, purl = FALSE, message = FALSE}
 source("setup.R")
+gapminder <- read_csv("data/gapminder_1950_2018.csv")
 ```
 
 <br/>
@@ -366,9 +367,41 @@ This creates an **R code chunk** as follows:
 knitr::include_graphics("img/r_chunk.png")
 ```
 
-Alternatively, you can type the r code chunk.  The R code should be placed in between the triple backticks.  Note that on the right hand side of the R code chunk there is a green "play" button that will run the R code chunk if pressed.  By default, when the Rmarkdown document is knitted, the R code will be executed and the R code chunk is displayed before the executed code.  
+Alternatively, you can type the r code chunk (although I recommended using the keyboard shortcut).  The R code should be placed in between the triple backticks.  Note that on the right hand side of the R code chunk there is a green "play" button that will run the R code chunk if pressed.  By default, when the Rmarkdown document is knitted, the R code will be executed and the R code chunk is displayed before the executed code.  
 
 To run a chunk you can use the `Run` button or the shortcut (Mac `Cmd + Shift + Enter`, Windows `Ctrl + Shift + Enter`).
+
+### Chunk names
+
+It is possible to give names to chunks using ` ```{r chunk_name} `. This has several advantages:
+
+* You can navigate more easily through your R Notebook using the drop-down code navigator:
+
+```{r, results='markup', echo=FALSE, purl=FALSE, fig.align='center'}
+knitr::include_graphics("img/code_navigator.png")
+```
+
+* Graphics produced by the chunks will have meaningful names based on the chunk name, which is a big improvement over `Untitled1.png`.
+
+* One chunk name has special meaning: `setup`. In R Notebooks the chunk named `setup` will automatically run only once, before any other chunks are run.
+
+### Chunk options
+
+You can control the output of chunks with different *options* in the chunk header (e.g. `{r, include = FALSE}`).
+
+These chunk options include:
+
+* `eval = FALSE` prevents code from being evaluated. No code is run and no output displayed. Useful to display example code or avoiding commenting out many lines.
+
+* `include = FALSE` do not display the code and results in the page after it is knitted.  The R code however still runs and therefore the variables or results in this code chunk can be used by the other chunks.  
+
+* `echo = FALSE` does not display the code, but it displays the results in the rendered file.  
+
+* `message = FALSE` or `warning = FALSE`  prevents messages or warnings from being displayed in the rendered file.
+
+There are almost 60 options by Knitr that you can use to customise your code blocks. A full list of options can be found [here](https://yihui.org/knitr/options/).
+
+\  
 
 ## Gapminder data set
 
@@ -386,14 +419,38 @@ Save your R Notebook as `gapminder_notebook.Rmd` to your existing R project (pre
 
 ### The dataset
 
-This dataset uses data from the [Gapminder Foundation](https://www.gapminder.org/). We're downloading the `gapminder_1950_2018.csv` dataset into our project, which contains a small fraction of the available data and has been cleaned up make it easy to work with for the purposes of this course.
+This dataset uses data from the [Gapminder Foundation](https://www.gapminder.org/). We're downloading the `gapminder_1950_2018.csv` dataset into our project. The data set contains a small fraction of the available data and has been cleaned up make it easy to work with for the purposes of this course.
 
 1. Create a `data` folder in your working directory.
-2. Download the dataset into the `data` folder by copying and running in the `Console` (no need to run it in your R Notebook, otherwise the data get downloaded every time):
+2. Download the dataset into the `data` folder by copying and running in the `Console` (no need to run it in your R Notebook, otherwise the data are downloaded every time):
 
 ```
 download.file(url="https://raw.githubusercontent.com/mvanrongen/2020_Gates_Reproducibility/master/data/processed/gapminder_1950_2018.csv", destfile="data/gapminder_1950_2018.csv")
 ```
+
+Next, perform the following steps:
+
+1. Create an R chunk and load the `tidyverse`, `kableExtra` and `rmarkdown` packages. We'll be using the `kableExtra` package for some fancy table displays, so if you haven't got it installed then install it using `install.packages("kableExtra")`.
+
+```{r, eval = FALSE}
+library(tidyverse)
+library(kableExtra)
+library(rmarkdown)
+```
+
+
+2. Read in the data using
+
+```{r, eval = FALSE}
+gapminder <- read_csv("data/gapminder_1950_2018.csv")
+```
+
+or if your `gapminder_notebook.Rmd` is in a subfolder, then navigate to it using
+
+```{r, eval = FALSE}
+gapminder <- read_csv("../data/gapminder_1950_2018.csv")
+```
+
 
 The `gapminder_1950_2018.csv` dataset that is loaded into the notebook contains several life statistics, amongst which life expectancy and income per person for each country per year from 1950 to 2018.  The dataset has the following columns:  
 
@@ -407,11 +464,17 @@ The `gapminder_1950_2018.csv` dataset that is loaded into the notebook contains 
 | income_per_person | Average income per person (GDP / population size)         |
 | life_expectancy   | Life expectancy (years)                                   |
 
-The dataset contains data for various countries across the world. We will be doing some data wrangling, so that we can focus on a subset of these.
+The dataset contains data for various countries across the world. Later we will be doing some data wrangling, so that we can focus on a subset of these.
+
+Now we're all set we can start looking at how to display some data using tables.
 
 \  
 
-### Tables {#tables}
+## Tables {#tables}
+
+Tables can be created manually or dynamically.
+
+### Manually creating tables
 
 Although probably only useful for small tables, you can manually create tables, using `|`and `-` as follows:
 
@@ -445,26 +508,48 @@ This is rendered as:
 
 \  
 
+### Dynamic tables using `rmarkdown`
 
+R Markdown has some basic functionality to create tables in HTML. The `paged_table()` function creates a table that supports paging rows and columns. When we use this on our data set it looks like this:
 
-### Chunk options
+```{r}
+gapminder %>% 
+  paged_table()
+```
 
-As mentioned, by default the chunk output will be displayed exactly after the R code chunk and the R code chunk is also displayed in the rendered page.  If you would like to have different settings, you can specify these as arguments in the `{}` part of the R code chunk.
+Note that I'm using pipes here, but `paged_table(gapminder)` would also work.
 
-These chunk options include:
+\
 
-* `include = FALSE` do not display the code and results in the page after it is knitted.  The R code however still runs and therefore the variables or results in this code chunk can be used by the other chunks.  
-* `echo = FALSE` does not display the code, but it displays the results in the rendered file.  
-* `message = FALSE` does not display any messages that are generated by the code chunk in the rendered file.  
-* `warning = FALSE` does not display warnings that are generated by code chunk in the rendered file.
+### Dynamic tables using `kableExtra`
 
-A full list of options that can be used in the R code chunks is found [here](https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf).
+Clearly creating a large table this way is not very efficient or often even feasible when dealing with larger data sets. Furthermore, it goes against the principle of trying to make your research reproducible because the data are not generated through code.
 
-\  
+Apart from the basic functionalities available in `rmarkdown`, we can also use the `kableExtra` package, which uses the `knitr::kable()` function to generate tables. It allows you to build complex tables and adjust the table styles easily.
 
-### Tables in Rmarkdown
+More information can be found [here](https://cran.r-project.org/web/packages/kableExtra/vignettes/awesome_table_in_html.html).
 
-When you have a large dataset, creating a table manually in rmarkdown as we did [here](#tables) is not really feasible.  Also if you are really trying to make your research reproducible, then, you will need to generate most of the tables dynamically and therefore you will not be able to manually type them in markdown.  This is where Rmarkdown comes in as there is a way to display tables dynamically.  In [RNotebookExample.Rmd](RNotebookExample.Rmd), the data was first loaded and then after some manipulation, the table was displayed by using the `kable` function and passing in the table variable as its argument. More information about `kable` can be found in its [documentation](https://cran.r-project.org/web/packages/kableExtra/vignettes/awesome_table_in_html.html).
+Let's explore that a bit more by generating a table that displays the life expectancy per country in the Americas in 2018, in descending order.
+
+The table is styled in twitter-fashion using `kable_styling()`, with striped rows that highlight when you hover over them.
+
+The table is embedded in a scroll box of a fixed dimension using `scroll_box`.
+
+```{r}
+gapminder %>% 
+  filter(world_region == "america",
+         year == 2018) %>%
+  select(country, life_expectancy) %>%
+  arrange(desc(life_expectancy)) %>% 
+  kable(caption = "Life expectancy in the Americas in 2018, descending") %>% 
+  kable_styling(bootstrap_options = c("striped", "hover"), 
+                full_width = FALSE) %>% 
+  scroll_box(width = "100%", height = "400px")
+```
+
+\
+
+In the [gapminder_notebook.Rmd](scripts/gapminder_notebook.Rmd), the data was first loaded and then after some manipulation, the table was displayed by using the `kable` function and passing in the table variable as its argument. More information about `kable` can be found in its [documentation](https://cran.r-project.org/web/packages/kableExtra/vignettes/awesome_table_in_html.html).
 
 If you have a very long table to display, the best way would be to use pagination where the contents of the table are split into multiple tabs.  The function `paged_table` in the `rmarkdown` library can be used to do this (see example in [RNotebookExample.Rmd](RNotebookExample.Rmd)).
 
