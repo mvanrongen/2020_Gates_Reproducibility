@@ -254,40 +254,6 @@ will plot like
 
 \  
 
-### Tables {#tables}
-
-Use `|`and `-` to create a table as follows:
-
-```
-| country_id  | country     |
-| ----------- | ----------- |
-| afg         | Afghanistan |
-| ago         | Angola      |
-```
-This is rendered as:
-
-| country_id  | country     |
-| ----------- | ----------- |
-| afg         | Afghanistan |
-| ago         | Angola      |
-
-Table alignments can be done using the following syntax:
-
-```
-| country_id (left) | country (centre) | world_region (right) |
-| :---              | :----:           | ---:                 |
-| afg               | Afghanistan      | south_asia           |
-| ago               | Angola           | sub_saharan_africa   |
-```
-This is rendered as:
-
-| country_id (left) | country (centre) | world_region (right) |
-| :---              | :----:           | ---:                 |
-| afg               | Afghanistan      | south_asia           |
-| ago               | Angola           | sub_saharan_africa   |
-
-\  
-
 ### Blocks
 
 Blocks or quotes in the notebook can be created by using the `>` sign as follows:
@@ -404,32 +370,82 @@ Alternatively, you can type the r code chunk.  The R code should be placed in be
 
 To run a chunk you can use the `Run` button or the shortcut (Mac `Cmd + Shift + Enter`, Windows `Ctrl + Shift + Enter`).
 
-[Click here](RNotebookExample.Rmd) for an example of an R Notebook.  The sections below will go over the different parts of the R Notebook. Add RNotebookExample.Rmd to your existing R project.  
+## Gapminder data set
 
+So far we have not really played around with data. To help us understand better what we can do using R Markdown, we are going to import some data.
+
+To do the analysis, we will first create an R Notebook by going to `File -> New File -> R Notebook`. Note that this is different to `R Markdown` (which is further down the list). A detailed explanation of the differences between R Notebooks and R Markdown files can be found [here](http://uc-r.github.io/r_notebook), but practically for us it means you have a `Preview` button:
+```{r, results='markup', echo=FALSE, purl=FALSE}
+knitr::include_graphics("img/preview_button.png")
+```
+
+This makes it faster to see changes than constantly using the `Knit` function.
+
+Save your R Notebook as `gapminder_notebook.Rmd` to your existing R project (preferably in a logical place, such as a `scripts` or `notebooks` folder).
 \  
 
 ### The dataset
 
-[RNotebookExample.Rmd](RNotebookExample.Rmd) uses data from [gapminder](https://www.gapminder.org/).  Let us download the `gapminder_data.csv` dataset into our project.  Create a `data` folder in your working directory.  Download the dataset into the `data` folder as follows:
+This dataset uses data from the [Gapminder Foundation](https://www.gapminder.org/). We're downloading the `gapminder_1950_2018.csv` dataset into our project, which contains a small fraction of the available data and has been cleaned up make it easy to work with for the purposes of this course.
+
+1. Create a `data` folder in your working directory.
+2. Download the dataset into the `data` folder by copying and running in the `Console` (no need to run it in your R Notebook, otherwise the data get downloaded every time):
 
 ```
-download.file(url="https://raw.githubusercontent.com/cambiotraining/reproducibility-training/master/data/gapminder_data.csv", destfile="data/gapminder_data.csv")
+download.file(url="https://raw.githubusercontent.com/mvanrongen/2020_Gates_Reproducibility/master/data/processed/gapminder_1950_2018.csv", destfile="data/gapminder_1950_2018.csv")
 ```
 
-The `gapminder_data.csv` dataset that is loaded into the notebook contains the life expectancy and GDP per capita  data for each country per year from 1952 to 2007.  The dataset has the following columns:  
+The `gapminder_1950_2018.csv` dataset that is loaded into the notebook contains several life statistics, amongst which life expectancy and income per person for each country per year from 1950 to 2018.  The dataset has the following columns:  
 
-| Column           | Description                                               |
-|------------------|-----------------------------------------------------------|
-| country          | Country                                                   |
-| year             | Year the life expectency and GDP per capita index applies |
-| pop              | Population size                                           |
-| continent        | Continent                                                 |
-| lifeExp          | Life expectancy                                           |
-| gdpPercap        | GDP per capita index                                      |
+| Column            | Description                                               |
+|-------------------|-----------------------------------------------------------|
+| country_id        | Country ID                                                |
+| country           | Country                                                   |
+| world_region      | Region of the world the country is located in             |
+| year              | Year the life expectency and GDP per capita index applies |
+| income_groups     | Category of income                                        |
+| income_per_person | Average income per person (GDP / population size)         |
+| life_expectancy   | Life expectancy (years)                                   |
 
-The dataset contains data for different countries in the world.  For our analysis we would like to look at only the European countries in the dataset.  This means that we would need to manipulate the dataset before we can display the results.  
+The dataset contains data for various countries across the world. We will be doing some data wrangling, so that we can focus on a subset of these.
 
 \  
+
+### Tables {#tables}
+
+Although probably only useful for small tables, you can manually create tables, using `|`and `-` as follows:
+
+```
+| country_id  | country     |
+| ----------- | ----------- |
+| afg         | Afghanistan |
+| ago         | Angola      |
+```
+This is rendered as:
+
+| country_id  | country     |
+| ----------- | ----------- |
+| afg         | Afghanistan |
+| ago         | Angola      |
+
+Table alignments can be done using the following syntax:
+
+```
+| country_id (left) | country (centre) | world_region (right) |
+| :---              | :----:           | ---:                 |
+| afg               | Afghanistan      | south_asia           |
+| ago               | Angola           | sub_saharan_africa   |
+```
+This is rendered as:
+
+| country_id (left) | country (centre) | world_region (right) |
+| :---              | :----:           | ---:                 |
+| afg               | Afghanistan      | south_asia           |
+| ago               | Angola           | sub_saharan_africa   |
+
+\  
+
+
 
 ### Chunk options
 

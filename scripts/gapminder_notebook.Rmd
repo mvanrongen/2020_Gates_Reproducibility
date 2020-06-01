@@ -1,0 +1,7 @@
+---
+title: "Gapminder Notebook"
+output: html_notebook
+---
+
+A note on R Markdown vs R Notebooks.
+

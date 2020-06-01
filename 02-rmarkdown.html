@@ -644,61 +644,6 @@ To <del>strikethrough</del> text use <code>~~double tilde~~</code>.</p>
 </div>
 <p> </p>
 </div>
-<div id="tables" class="section level3">
-<h3>Tables</h3>
-<p>Use <code>|</code>and <code>-</code> to create a table as follows:</p>
-<pre><code>| country_id  | country     |
-| ----------- | ----------- |
-| afg         | Afghanistan |
-| ago         | Angola      |</code></pre>
-<p>This is rendered as:</p>
-<table>
-<thead>
-<tr class="header">
-<th>country_id</th>
-<th>country</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>afg</td>
-<td>Afghanistan</td>
-</tr>
-<tr class="even">
-<td>ago</td>
-<td>Angola</td>
-</tr>
-</tbody>
-</table>
-<p>Table alignments can be done using the following syntax:</p>
-<pre><code>| country_id (left) | country (centre) | world_region (right) |
-| :---              | :----:           | ---:                 |
-| afg               | Afghanistan      | south_asia           |
-| ago               | Angola           | sub_saharan_africa   |</code></pre>
-<p>This is rendered as:</p>
-<table>
-<thead>
-<tr class="header">
-<th align="left">country_id (left)</th>
-<th align="center">country (centre)</th>
-<th align="right">world_region (right)</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">afg</td>
-<td align="center">Afghanistan</td>
-<td align="right">south_asia</td>
-</tr>
-<tr class="even">
-<td align="left">ago</td>
-<td align="center">Angola</td>
-<td align="right">sub_saharan_africa</td>
-</tr>
-</tbody>
-</table>
-<p> </p>
-</div>
 <div id="blocks" class="section level3">
 <h3>Blocks</h3>
 <p>Blocks or quotes in the notebook can be created by using the <code>&gt;</code> sign as follows:</p>
@@ -770,13 +715,77 @@ link-citations: yes
 <p><img src="img/r_chunk.png" width="749" style="display: block; margin: auto;" /></p>
 <p>Alternatively, you can type the r code chunk. The R code should be placed in between the triple backticks. Note that on the right hand side of the R code chunk there is a green “play” button that will run the R code chunk if pressed. By default, when the Rmarkdown document is knitted, the R code will be executed and the R code chunk is displayed before the executed code.</p>
 <p>To run a chunk you can use the <code>Run</code> button or the shortcut (Mac <code>Cmd + Shift + Enter</code>, Windows <code>Ctrl + Shift + Enter</code>).</p>
-<p><a href="RNotebookExample.Rmd">Click here</a> for an example of an R Notebook. The sections below will go over the different parts of the R Notebook. Add RNotebookExample.Rmd to your existing R project.</p>
+</div>
+<div id="gapminder-data-set" class="section level2">
+<h2>Gapminder data set</h2>
+<p>So far we have not really played around with data. To help us understand better what we can do using R Markdown, we are going to import some data.</p>
+<p>To do the analysis, we will first create an R Notebook[^4] by going to <code>File -&gt; New File -&gt; R Notebook</code>. Note that this is different to <code>R Markdown</code> (which is further down the list). A detailed explanation of the differences between R Notebooks and R Markdown files can be found <a href="http://uc-r.github.io/r_notebook">here</a>, but practically for us it means you have a <code>Preview</code> button: <img src="img/preview_button.png" width="90" /></p>
+<p>This makes it faster to see changes than constantly using the <code>Knit</code> function.</p>
+<p>Save your R Notebook as <code>gapminder_notebook.Rmd</code> to your existing R project (preferably in a logical place, such as a <code>scripts</code> or <code>notebooks</code> folder).  </p>
+<div id="tables" class="section level3">
+<h3>Tables</h3>
+<p>Although probably only useful for small tables, you can manually create tables, using <code>|</code>and <code>-</code> as follows:</p>
+<pre><code>| country_id  | country     |
+| ----------- | ----------- |
+| afg         | Afghanistan |
+| ago         | Angola      |</code></pre>
+<p>This is rendered as:</p>
+<table>
+<thead>
+<tr class="header">
+<th>country_id</th>
+<th>country</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>afg</td>
+<td>Afghanistan</td>
+</tr>
+<tr class="even">
+<td>ago</td>
+<td>Angola</td>
+</tr>
+</tbody>
+</table>
+<p>Table alignments can be done using the following syntax:</p>
+<pre><code>| country_id (left) | country (centre) | world_region (right) |
+| :---              | :----:           | ---:                 |
+| afg               | Afghanistan      | south_asia           |
+| ago               | Angola           | sub_saharan_africa   |</code></pre>
+<p>This is rendered as:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">country_id (left)</th>
+<th align="center">country (centre)</th>
+<th align="right">world_region (right)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">afg</td>
+<td align="center">Afghanistan</td>
+<td align="right">south_asia</td>
+</tr>
+<tr class="even">
+<td align="left">ago</td>
+<td align="center">Angola</td>
+<td align="right">sub_saharan_africa</td>
+</tr>
+</tbody>
+</table>
 <p> </p>
+</div>
 <div id="the-dataset" class="section level3">
 <h3>The dataset</h3>
-<p><a href="RNotebookExample.Rmd">RNotebookExample.Rmd</a> uses data from <a href="https://www.gapminder.org/">gapminder</a>. Let us download the <code>gapminder_data.csv</code> dataset into our project. Create a <code>data</code> folder in your working directory. Download the dataset into the <code>data</code> folder as follows:</p>
-<pre><code>download.file(url=&quot;https://raw.githubusercontent.com/cambiotraining/reproducibility-training/master/data/gapminder_data.csv&quot;, destfile=&quot;data/gapminder_data.csv&quot;)</code></pre>
-<p>The <code>gapminder_data.csv</code> dataset that is loaded into the notebook contains the life expectancy and GDP per capita data for each country per year from 1952 to 2007. The dataset has the following columns:</p>
+<p>To incorporate a more dynamic use of tables we will be importing some data. It uses data from <a href="https://www.gapminder.org/">gapminder</a>. We’re downloading the <code>gapminder_1950_2018.csv</code> dataset into our project.</p>
+<ol style="list-style-type: decimal">
+<li>Create a <code>data</code> folder in your working directory.</li>
+<li>Download the dataset into the <code>data</code> folder by copying and running:</li>
+</ol>
+<pre><code>download.file(url=&quot;https://raw.githubusercontent.com/mvanrongen/2020_Gates_Reproducibility/master/data/processed/gapminder_1950_2018.csv&quot;, destfile=&quot;data/gapminder_1950_2018.csv&quot;)</code></pre>
+<p>The <code>gapminder_1950_2018.csv</code> dataset that is loaded into the notebook contains several life statistics, amongst which life expectancy and income per person for each country per year from 1950 to 2018. The dataset has the following columns:</p>
 <table>
 <thead>
 <tr class="header">
@@ -786,32 +795,36 @@ link-citations: yes
 </thead>
 <tbody>
 <tr class="odd">
+<td>country_id</td>
+<td>Country ID</td>
+</tr>
+<tr class="even">
 <td>country</td>
 <td>Country</td>
+</tr>
+<tr class="odd">
+<td>world_region</td>
+<td>Region of the world the country is located in</td>
 </tr>
 <tr class="even">
 <td>year</td>
 <td>Year the life expectency and GDP per capita index applies</td>
 </tr>
 <tr class="odd">
-<td>pop</td>
-<td>Population size</td>
+<td>income_groups</td>
+<td>Category of income</td>
 </tr>
 <tr class="even">
-<td>continent</td>
-<td>Continent</td>
+<td>income_per_person</td>
+<td>Average income per person (GDP / population size)</td>
 </tr>
 <tr class="odd">
-<td>lifeExp</td>
-<td>Life expectancy</td>
-</tr>
-<tr class="even">
-<td>gdpPercap</td>
-<td>GDP per capita index</td>
+<td>life_expectancy</td>
+<td>Life expectancy (years)</td>
 </tr>
 </tbody>
 </table>
-<p>The dataset contains data for different countries in the world. For our analysis we would like to look at only the European countries in the dataset. This means that we would need to manipulate the dataset before we can display the results.</p>
+<p>The dataset contains data for various countries across the world. We will be doing some data wrangling, so that we can focus on a subset of these.</p>
 <p> </p>
 </div>
 <div id="chunk-options" class="section level3">
