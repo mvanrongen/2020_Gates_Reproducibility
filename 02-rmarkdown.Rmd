@@ -510,6 +510,8 @@ This is rendered as:
 
 ### Dynamic tables using `rmarkdown`
 
+Clearly creating a large table this way is not very efficient or often even feasible when dealing with larger data sets. Furthermore, it goes against the principle of trying to make your research reproducible because the data are not generated through code.
+
 R Markdown has some basic functionality to create tables in HTML. The `paged_table()` function creates a table that supports paging rows and columns. When we use this on our data set it looks like this:
 
 ```{r}
@@ -522,8 +524,6 @@ Note that I'm using pipes here, but `paged_table(gapminder)` would also work.
 \
 
 ### Dynamic tables using `kableExtra`
-
-Clearly creating a large table this way is not very efficient or often even feasible when dealing with larger data sets. Furthermore, it goes against the principle of trying to make your research reproducible because the data are not generated through code.
 
 Apart from the basic functionalities available in `rmarkdown`, we can also use the `kableExtra` package, which uses the `knitr::kable()` function to generate tables. It allows you to build complex tables and adjust the table styles easily.
 
@@ -541,7 +541,7 @@ gapminder %>%
          year == 2018) %>%
   select(country, life_expectancy) %>%
   arrange(desc(life_expectancy)) %>% 
-  kable(caption = "Life expectancy in the Americas in 2018, descending") %>% 
+  kable(caption = "Life expectancy in the Americas in 2018 (descending order)") %>% 
   kable_styling(bootstrap_options = c("striped", "hover"), 
                 full_width = FALSE) %>% 
   scroll_box(width = "100%", height = "400px")
@@ -549,11 +549,33 @@ gapminder %>%
 
 \
 
-In the [gapminder_notebook.Rmd](scripts/gapminder_notebook.Rmd), the data was first loaded and then after some manipulation, the table was displayed by using the `kable` function and passing in the table variable as its argument. More information about `kable` can be found in its [documentation](https://cran.r-project.org/web/packages/kableExtra/vignettes/awesome_table_in_html.html).
-
-If you have a very long table to display, the best way would be to use pagination where the contents of the table are split into multiple tabs.  The function `paged_table` in the `rmarkdown` library can be used to do this (see example in [RNotebookExample.Rmd](RNotebookExample.Rmd)).
+Somewhat frustratingly, pagination is not possible with `kable` (yet). So if you have a long table, you're best off using the `paged_table()` function from the `rmarkdown` package.
 
 \  
+
+> ### Challenge 1
+> 
+> We are interested in the possible relationship between income and longevity. To investigate this, we can use the `income_per_person` and `life_expectancy` variables.
+> 
+> Use your `gapminder_notebook.Rmd` R Notebook file to explore this further. First, we are going to do some plotting to get an idea of what the data look like. When doing this, remember to do the following:
+> 
+> * use clear headings (`# Heading 1`, `## Heading 2` etc. to break up your code/explanations).
+> * name your ` ``` {r} ` chunks to help you navigate through your code
+> 
+> Try the following (preferably use pipes (`%>%` symbol) to get one data flow):
+> 
+> 1. Filter the dataset for data from 2018 only (hint: use `filter`)
+> 2. Plot using `ggplot()` a scatterplot of `income_per_person` vs `life_expectancy`
+> 3. Colour the points by `income_group`
+> 4. Facet the data by `world_region` (hint: use `facet_wrap`, see [documentation](https://ggplot2.tidyverse.org/reference/facet_wrap.html))
+> 
+> ```{r, answer=TRUE, eval=TRUE}
+> gapminder %>% 
+>   filter(year == 2018) %>% 
+>   ggplot(aes(income_per_person, life_expectancy)) +
+>   geom_point(aes(colour = income_groups)) +
+>   facet_wrap(facets = vars(world_region))
+> ```
 
 # Summary
 

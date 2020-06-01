@@ -26,6 +26,7 @@ download.file(url="https://raw.githubusercontent.com/mvanrongen/2020_Gates_Repro
 ```
 
 ## Loading the data
+
 Change the location depending on where your file is located. Here the `gapminder_notebook.Rmd` file is located within a `scripts` folder, so we have to navigate up one level `(../)` to be able to access the `data` folder.
 
 ```{r load_data}
@@ -53,6 +54,46 @@ gapminder %>%
   scroll_box(width = "100%", height = "400px")
 ```
 
+### Challenge 1
+
+We are interested in the possible relationship between income and longevity. To investigate this, we can use the `income_per_person` and `life_expectancy` variables.
+
+Use your `gapminder_notebook.Rmd` R Notebook file to explore this further. First, we are going to do some plotting to get an idea of what the data look like. When doing this, remember to do the following:
+
+* use clear headings (`# Heading 1`, `## Heading 2` etc. to break up your code/explanations).
+* name your ` ``` {r} ` chunks to help you navigate through your code
+
+Try the following (preferably use pipes (`%>%` symbol) to get one data flow):
+
+1. Filter the dataset for data from 2018 only (hint: use `filter`)
+2. Plot using `ggplot()` a scatterplot of `income_per_person` vs `life_expectancy`
+3. Colour the points by `income_group`
+4. Facet the data by `world_region` (hint: use `facet_wrap`, see [documentation](https://ggplot2.tidyverse.org/reference/facet_wrap.html))
+
+```{r, answer=TRUE, eval=TRUE}
+gapminder %>% 
+  filter(year == 2018) %>% 
+  ggplot(aes(income_per_person, life_expectancy)) +
+  geom_point(aes(colour = income_groups)) +
+  facet_wrap(facets = vars(world_region))
+```
+
+Once you've managed to get this far, continue to Challenge 2.
+
+### Challenge 2
+
+
+```{r}
+gapminder %>% 
+  filter(year == 2018,
+         world_region == "america",
+         income_groups == "low_income")
+
+gapminder %>% 
+  filter(country_id == "hti") %>% 
+  ggplot(aes(year, income_per_person)) +
+  geom_point()
+```
 
 
 
