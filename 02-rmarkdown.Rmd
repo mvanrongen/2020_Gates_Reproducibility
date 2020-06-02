@@ -709,8 +709,8 @@ p1 | (p2 / p3)
 
 We can then further customise the plot. We can add annotations using `plot_annotation`:
 
-* add a title using `title = `
-* add panel labels using `tag_levels = ` (it takes different arguments, e.g. `A` for capital letters, `a` for lower case letters, `I` for Roman numerals etc.)
+* add a **title** using `title = `
+* add **panel labels** using `tag_levels = ` (it takes different arguments, e.g. `A` for capital letters, `a` for lower case letters, `I` for Roman numerals etc.)
 
 
 ```{r}
@@ -735,5 +735,9 @@ Some limitations that R Markdown has:
 *  If you are looking at specific customisations that are different from the default Markdown format, *e.g.,* headings using different font specifications, then this gets tricky and markdown might not be the best approach.  
 
 \  
+
+You have now learned how to create clear and reproducible reports to communicate your research. You probably noticed that in the process you have made many changes to your code and to your comments. In the next two sessions we will learn about how to keep track of these changes using **version control**.
+
+We will learn specifically about [Git](https://git-scm.com), a free and open source distributed version control system. We will also learn how to use [GitHub](https://github.com), a hosting platform for the distributed version control and source code management functionality of Git.
 
 # References {#refs}
