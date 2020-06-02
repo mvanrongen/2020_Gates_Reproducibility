@@ -885,7 +885,7 @@ link-citations: yes
 </tr>
 <tr class="even">
 <td>year</td>
-<td>Year the life expectency and GDP per capita index applies</td>
+<td>Year the life expectancy and GDP per capita index applies to</td>
 </tr>
 <tr class="odd">
 <td>income_groups</td>
@@ -1280,10 +1280,10 @@ Haiti
 </div>
 <p><br />
 </p>
-<p>Somewhat frustratingly, pagination is not possible with <code>kable</code> (yet). So if you have a long table, you’re best off using the <code>paged_table()</code> function from the <code>rmarkdown</code> package.</p>
+<p>Somewhat frustratingly, pagination is not possible with <code>kable</code>. So if you have a long table, you are best off using the <code>paged_table()</code> function from the <code>rmarkdown</code> package.</p>
 <p> </p>
 <blockquote>
-<h3 id="challenge-1">Challenge 1</h3>
+<h3 id="challenge_1">Challenge 1</h3>
 <p>We are interested in the relationship between income and longevity. To investigate this, we can use the <code>income_per_person</code> and <code>life_expectancy</code> variables.</p>
 <p>Use your <code>gapminder_notebook.Rmd</code> R Notebook file to explore this further. First, we are going to do some plotting to get an idea of what the data look like. When doing this, remember to do the following:</p>
 <ul>
@@ -1312,8 +1312,10 @@ Answer
 <img src="img/reproducibility-unnamed-chunk-12-1.png" width="672" />
 </div>
 </div>
+</blockquote>
 <p><br />
 </p>
+<blockquote>
 <h3 id="challenge-2">Challenge 2</h3>
 <p>From the 2018 data it is clear that there are some strong differences in income per country, even per world region.</p>
 <p>It would be interesting to know which countries showed the highest income and in which year. Again, when doing this exercise, think about how you’re going to communicate to others what you are doing.</p>
@@ -1508,14 +1510,16 @@ high_income
 </table>
 </div>
 </div>
+</blockquote>
 <p><br />
 </p>
+<blockquote>
 <h3 id="challenge-3">Challenge 3</h3>
-<p>When looking at the 2018 data from Challenge 1 it appears that there is at least one country in the Americas that is classified as <em>low_income</em>.</p>
+<p>When looking at the 2018 data from <a href="#challenge_1">Challenge 1</a> it appears that there is at least one country in the Americas that is classified as <em>low_income</em>.</p>
 <p>Try the following:</p>
 <ol style="list-style-type: decimal">
-<li>Find out which country is classified as low income in the Americas (use <code>filter</code>).</li>
-<li>Using <code>ggplot()</code> create a scatterplot the <code>income_per_person</code> for that country over the years.</li>
+<li>Find which country is classified as “low_income” in the Americas (use <code>filter</code>).</li>
+<li>Using <code>ggplot()</code>, create a scatterplot of the <code>income_per_person</code> for that country over the years.</li>
 <li>Write some comments/observations. Is there anything unusual about the data? How would you interpret that?</li>
 </ol>
 <div class="accordion">
@@ -1547,7 +1551,7 @@ Answer
 <div id="composing-figures-with-patchwork" class="section level2">
 <h2>Composing figures with <code>patchwork</code></h2>
 <p>One thing you would often want is to compose figures into different panels. There is a fantastic package in R that helps you do that for <code>ggplot()</code> output: <a href="https://cran.r-project.org/web/packages/patchwork/vignettes/patchwork.html">`patchwork’</a>.</p>
-<p>First, we need to install it. Run the following code in your console:</p>
+<p>First, we need to install it. Run the following code in your <strong>console</strong>:</p>
 <div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" data-line-number="1"><span class="kw">install.packages</span>(<span class="st">&quot;patchwork&quot;</span>)</a></code></pre></div>
 <p>Then load the library:</p>
 <div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" data-line-number="1"><span class="kw">library</span>(patchwork)</a></code></pre></div>

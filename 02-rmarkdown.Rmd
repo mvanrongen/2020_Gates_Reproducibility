@@ -454,15 +454,15 @@ gapminder <- read_csv("../data/gapminder_1950_2018.csv")
 
 The `gapminder_1950_2018.csv` dataset that is loaded into the notebook contains several life statistics, amongst which life expectancy and income per person for each country per year from 1950 to 2018.  The dataset has the following columns:  
 
-| Column            | Description                                               |
-|-------------------|-----------------------------------------------------------|
-| country_id        | Country ID                                                |
-| country           | Country                                                   |
-| world_region      | Region of the world the country is located in             |
-| year              | Year the life expectency and GDP per capita index applies |
-| income_groups     | Category of income                                        |
-| income_per_person | Average income per person (GDP / population size)         |
-| life_expectancy   | Life expectancy (years)                                   |
+| Column            | Description                                                  |
+|-------------------|--------------------------------------------------------------|
+| country_id        | Country ID                                                   |
+| country           | Country                                                      |
+| world_region      | Region of the world the country is located in                |
+| year              | Year the life expectancy and GDP per capita index applies to |
+| income_groups     | Category of income                                           |
+| income_per_person | Average income per person (GDP / population size)            |
+| life_expectancy   | Life expectancy (years)                                      |
 
 The dataset contains data for various countries across the world. Later we will be doing some data wrangling, so that we can focus on a subset of these.
 
@@ -549,11 +549,11 @@ gapminder %>%
 
 \
 
-Somewhat frustratingly, pagination is not possible with `kable` (yet). So if you have a long table, you're best off using the `paged_table()` function from the `rmarkdown` package.
+Somewhat frustratingly, pagination is not possible with `kable`. So if you have a long table, you are best off using the `paged_table()` function from the `rmarkdown` package.
 
 \  
 
-> ### Challenge 1
+> ### Challenge 1 {#challenge_1}
 > 
 We are interested in the relationship between income and longevity. To investigate this, we can use the `income_per_person` and `life_expectancy` variables.
 > 
@@ -578,9 +578,9 @@ gapminder %>%
   geom_point(mapping = aes(colour = income_groups)) +
   facet_wrap(facets = vars(world_region))
 > ```
-> 
-> \
-> 
+ 
+\
+ 
 > ### Challenge 2
 > 
 > From the 2018 data it is clear that there are some strong differences in income per country, even per world region.
@@ -603,17 +603,17 @@ gapminder %>%
                 full_width = TRUE)
   
 > ```
-> 
-> \
-> 
+
+\
+ 
 > ### Challenge 3
 > 
-> When looking at the 2018 data from Challenge 1 it appears that there is at least one country in the Americas that is classified as *low_income*.
+> When looking at the 2018 data from [Challenge 1](#challenge_1) it appears that there is at least one country in the Americas that is classified as *low_income*.
 > 
 Try the following:
 > 
-1. Find out which country is classified as low income in the Americas (use `filter`).
-2. Using `ggplot()` create a scatterplot the `income_per_person` for that country over the years.
+1. Find which country is classified as "low_income" in the Americas (use `filter`).
+2. Using `ggplot()`, create a scatterplot of the `income_per_person` for that country over the years.
 3. Write some comments/observations. Is there anything unusual about the data? How would you interpret that?
 > 
 > ```{r, answer=TRUE, eval=TRUE}
@@ -635,7 +635,7 @@ gapminder %>%
 
 One thing you would often want is to compose figures into different panels. There is a fantastic package in R that helps you do that for `ggplot()` output: [`patchwork'](https://cran.r-project.org/web/packages/patchwork/vignettes/patchwork.html).
 
-First, we need to install it. Run the following code in your console:
+First, we need to install it. Run the following code in your **console**:
 
 ```{r, eval = FALSE}
 install.packages("patchwork")
