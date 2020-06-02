@@ -1284,11 +1284,11 @@ Haiti
 <p> </p>
 <blockquote>
 <h3 id="challenge-1">Challenge 1</h3>
-<p>We are interested in the possible relationship between income and longevity. To investigate this, we can use the <code>income_per_person</code> and <code>life_expectancy</code> variables.</p>
+<p>We are interested in the relationship between income and longevity. &gt; To investigate this, we can use the <code>income_per_person</code> and <code>life_expectancy</code> variables.</p>
 <p>Use your <code>gapminder_notebook.Rmd</code> R Notebook file to explore this further. First, we are going to do some plotting to get an idea of what the data look like. When doing this, remember to do the following:</p>
 <ul>
-<li>use clear headings (<code># Heading 1, ## Heading 2</code> etc. to break up your code/explanations).</li>
-<li>name your <code>``` {r}</code> chunks to help you navigate through your code</li>
+<li>use clear headings (e.g. <code># Exploratory analysis</code>, <code>## Investigating income vs life expectancy</code> etc. to break up your code/explanations).</li>
+<li>name your <code>``` {r}</code> chunks to help you navigate through your code.</li>
 </ul>
 <p>Try the following (preferably use pipes (<code>%&gt;%</code> symbol) to get one data flow):</p>
 <ol style="list-style-type: decimal">
@@ -1296,6 +1296,8 @@ Haiti
 <li>Plot using <code>ggplot()</code> a scatterplot of <code>income_per_person</code> vs <code>life_expectancy</code></li>
 <li>Colour the points by <code>income_group</code></li>
 <li>Facet the data by <code>world_region</code> (hint: use <code>facet_wrap</code>, see <a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">documentation</a>)</li>
+<li>Look at the data and add some comments/observations.</li>
+<li>Knit the document and see if the report looks like how you expected it to be.</li>
 </ol>
 <div class="accordion">
 <h3 class="toc-ignore">
@@ -1304,13 +1306,300 @@ Answer
 <div style="background: #fff;">
 <div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1">gapminder <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb21-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(year <span class="op">==</span><span class="st"> </span><span class="dv">2018</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb21-3" data-line-number="3"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(income_per_person, life_expectancy)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb21-4" data-line-number="4"><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">colour =</span> income_groups)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb21-3" data-line-number="3"><span class="st">  </span><span class="kw">ggplot</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> income_per_person, <span class="dt">y =</span> life_expectancy)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb21-4" data-line-number="4"><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">colour =</span> income_groups)) <span class="op">+</span></a>
 <a class="sourceLine" id="cb21-5" data-line-number="5"><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="dt">facets =</span> <span class="kw">vars</span>(world_region))</a></code></pre></div>
 <img src="img/reproducibility-unnamed-chunk-12-1.png" width="672" />
 </div>
 </div>
+<p><br />
+</p>
+<h3 id="challenge-2">Challenge 2</h3>
+<p>From the 2018 data it is clear that there are some strong differences in income per country, even per world region.</p>
+<p>It would be interesting to know which countries showed the highest income and in which year. Again, when doing this exercise, think about how you’re going to communicate to others what you are doing.</p>
+<p>Try the following:</p>
+<ol style="list-style-type: decimal">
+<li>Find the highest income per <code>world_region</code> (hint: you’ll have to group and arrange the data).</li>
+<li>Display only the highest income countr (hint: <code>slice()</code>)</li>
+<li>Create a table using <code>kable()</code> in twitter-style with stripes and hover to display the data.</li>
+</ol>
+<div class="accordion">
+<h3 class="toc-ignore">
+Answer
+</h3>
+<div style="background: #fff;">
+
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" data-line-number="1">gapminder <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb22-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(world_region) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb22-3" data-line-number="3"><span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(income_per_person)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb22-4" data-line-number="4"><span class="st">  </span><span class="kw">slice</span>(<span class="dv">1</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb22-5" data-line-number="5"><span class="st">  </span><span class="kw">kable</span>(<span class="dt">caption =</span> <span class="st">&quot;Highest income per person, per world region&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb22-6" data-line-number="6"><span class="st">  </span><span class="kw">kable_styling</span>(<span class="dt">bootstrap_options =</span> <span class="kw">c</span>(<span class="st">&quot;striped&quot;</span>, <span class="st">&quot;hover&quot;</span>), </a>
+<a class="sourceLine" id="cb22-7" data-line-number="7">                <span class="dt">full_width =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;">
+<caption>
+Highest income per person, per world region
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+country_id
+</th>
+<th style="text-align:left;">
+country
+</th>
+<th style="text-align:left;">
+world_region
+</th>
+<th style="text-align:right;">
+year
+</th>
+<th style="text-align:left;">
+income_groups
+</th>
+<th style="text-align:right;">
+income_per_person
+</th>
+<th style="text-align:right;">
+life_expectancy
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+usa
+</td>
+<td style="text-align:left;">
+United States
+</td>
+<td style="text-align:left;">
+america
+</td>
+<td style="text-align:right;">
+2018
+</td>
+<td style="text-align:left;">
+high_income
+</td>
+<td style="text-align:right;">
+54900
+</td>
+<td style="text-align:right;">
+79.1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+brn
+</td>
+<td style="text-align:left;">
+Brunei
+</td>
+<td style="text-align:left;">
+east_asia_pacific
+</td>
+<td style="text-align:right;">
+1979
+</td>
+<td style="text-align:left;">
+high_income
+</td>
+<td style="text-align:right;">
+146000
+</td>
+<td style="text-align:right;">
+69.5
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+lux
+</td>
+<td style="text-align:left;">
+Luxembourg
+</td>
+<td style="text-align:left;">
+europe_central_asia
+</td>
+<td style="text-align:right;">
+2018
+</td>
+<td style="text-align:left;">
+high_income
+</td>
+<td style="text-align:right;">
+99000
+</td>
+<td style="text-align:right;">
+82.4
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+are
+</td>
+<td style="text-align:left;">
+United Arab Emirates
+</td>
+<td style="text-align:left;">
+middle_east_north_africa
+</td>
+<td style="text-align:right;">
+1980
+</td>
+<td style="text-align:left;">
+high_income
+</td>
+<td style="text-align:right;">
+178000
+</td>
+<td style="text-align:right;">
+70.8
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+mdv
+</td>
+<td style="text-align:left;">
+Maldives
+</td>
+<td style="text-align:left;">
+south_asia
+</td>
+<td style="text-align:right;">
+2018
+</td>
+<td style="text-align:left;">
+upper_middle_income
+</td>
+<td style="text-align:right;">
+13000
+</td>
+<td style="text-align:right;">
+80.1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+gnq
+</td>
+<td style="text-align:left;">
+Equatorial Guinea
+</td>
+<td style="text-align:left;">
+sub_saharan_africa
+</td>
+<td style="text-align:right;">
+2008
+</td>
+<td style="text-align:left;">
+high_income
+</td>
+<td style="text-align:right;">
+40000
+</td>
+<td style="text-align:right;">
+59.8
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><br />
+</p>
+<h3 id="challenge-3">Challenge 3</h3>
+<p>When looking at the 2018 data from Challenge 1 it appears that there is at least one country in the Americas that is classified as <em>low_income</em>.</p>
+<p>Try the following:</p>
+<ol style="list-style-type: decimal">
+<li>Find out which country is classified as low income in the Americas (use <code>filter</code>).</li>
+<li>Using <code>ggplot()</code> create a scatterplot the <code>income_per_person</code> for that country over the years.</li>
+<li>Write some comments/observations. Is there anything unusual about the data? How would you interpret that?</li>
+</ol>
+<div class="accordion">
+<h3 class="toc-ignore">
+Answer
+</h3>
+<div style="background: #fff;">
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" data-line-number="1">gapminder <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb23-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(year <span class="op">==</span><span class="st"> </span><span class="dv">2018</span>,</a>
+<a class="sourceLine" id="cb23-3" data-line-number="3">         world_region <span class="op">==</span><span class="st"> &quot;america&quot;</span>,</a>
+<a class="sourceLine" id="cb23-4" data-line-number="4">         income_groups <span class="op">==</span><span class="st"> &quot;low_income&quot;</span>)</a></code></pre></div>
+<pre><code>#&gt; # A tibble: 1 x 7
+#&gt;   country_id country world_region  year income_groups income_per_pers…
+#&gt;   &lt;chr&gt;      &lt;chr&gt;   &lt;chr&gt;        &lt;dbl&gt; &lt;chr&gt;                    &lt;dbl&gt;
+#&gt; 1 hti        Haiti   america       2018 low_income                1710
+#&gt; # … with 1 more variable: life_expectancy &lt;dbl&gt;</code></pre>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" data-line-number="1">gapminder <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb25-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(country_id <span class="op">==</span><span class="st"> &quot;hti&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb25-3" data-line-number="3"><span class="st">  </span><span class="kw">ggplot</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> income_per_person)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb25-4" data-line-number="4"><span class="st">  </span><span class="kw">geom_point</span>()</a></code></pre></div>
+<img src="img/reproducibility-unnamed-chunk-14-1.png" width="672" />
+</div>
+</div>
 </blockquote>
+<p><br />
+</p>
+</div>
+</div>
+<div id="composing-figures-with-patchwork" class="section level2">
+<h2>Composing figures with <code>patchwork</code></h2>
+<p>One thing you would often want is to compose figures into different panels. There is a fantastic package in R that helps you do that for <code>ggplot()</code> output: <a href="https://cran.r-project.org/web/packages/patchwork/vignettes/patchwork.html">`patchwork’</a>.</p>
+<p>First, we need to install it. Run the following code in your console:</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" data-line-number="1"><span class="kw">install.packages</span>(<span class="st">&quot;patchwork&quot;</span>)</a></code></pre></div>
+<p>Then load the library:</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" data-line-number="1"><span class="kw">library</span>(patchwork)</a></code></pre></div>
+<p>Patchwork requires you to assign plots to an object and then you can use mathematical operators such as <code>+</code>, <code>|</code>, <code>/</code> to organise your figures.</p>
+<p>Let’s create a couple of figures using the <code>gapminder</code> data set and go through the options.</p>
+<p>Create a plot for <code>income_per_person</code> vs <code>life_expectancy</code> in the year 2000 for the Americas. Assign this to an object <code>p1</code> (plot 1).</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" data-line-number="1">p1 &lt;-<span class="st"> </span>gapminder <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb28-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(year <span class="op">==</span><span class="st"> </span><span class="dv">2000</span>,</a>
+<a class="sourceLine" id="cb28-3" data-line-number="3">         world_region <span class="op">==</span><span class="st"> &quot;america&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb28-4" data-line-number="4"><span class="st">  </span><span class="kw">ggplot</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> income_per_person, <span class="dt">y =</span> life_expectancy)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb28-5" data-line-number="5"><span class="st">  </span><span class="kw">geom_point</span>()</a>
+<a class="sourceLine" id="cb28-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb28-7" data-line-number="7">p1</a></code></pre></div>
+<p><img src="img/reproducibility-unnamed-chunk-17-1.png" width="672" /></p>
+<p>Let’s also plot <code>life_expectancy</code> in the United Kingdom over time:</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" data-line-number="1">p2 &lt;-<span class="st"> </span>gapminder <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb29-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(country_id <span class="op">==</span><span class="st"> &quot;gbr&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb29-3" data-line-number="3"><span class="st">  </span><span class="kw">ggplot</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> life_expectancy)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb29-4" data-line-number="4"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb29-5" data-line-number="5"><span class="st">  </span><span class="kw">geom_line</span>()</a>
+<a class="sourceLine" id="cb29-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb29-7" data-line-number="7">p2</a></code></pre></div>
+<p><img src="img/reproducibility-unnamed-chunk-18-1.png" width="672" /></p>
+<p>Finally, let’s create a plot that shows the number of countries per world region.</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" data-line-number="1">p3 &lt;-<span class="st"> </span>gapminder <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb30-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(world_region) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb30-3" data-line-number="3"><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">n_countries =</span> <span class="kw">n_distinct</span>(country)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb30-4" data-line-number="4"><span class="st">  </span><span class="kw">ggplot</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> world_region, <span class="dt">y =</span> n_countries)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb30-5" data-line-number="5"><span class="st">  </span><span class="kw">geom_col</span>()</a>
+<a class="sourceLine" id="cb30-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb30-7" data-line-number="7">p3</a></code></pre></div>
+<p><img src="img/reproducibility-unnamed-chunk-19-1.png" width="672" /></p>
+<div id="adding-plots-together" class="section level3">
+<h3>Adding plots together</h3>
+<p>The simplest way to add plots together using <code>patchwork</code> is to use the <code>+</code> operator:</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" data-line-number="1">p1 <span class="op">+</span><span class="st"> </span>p2 <span class="op">+</span><span class="st"> </span>p3</a></code></pre></div>
+<p><img src="img/reproducibility-unnamed-chunk-20-1.png" width="672" /></p>
+<p>You can control how the plots are displayed. For example, we can put the third plot (<code>p3</code> below the others):</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" data-line-number="1">(p1 <span class="op">+</span><span class="st"> </span>p2) <span class="op">/</span><span class="st"> </span>p3</a></code></pre></div>
+<p><img src="img/reproducibility-unnamed-chunk-21-1.png" width="672" /></p>
+<p>Or we can stretch out the first plot over two rows:</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" data-line-number="1">p1 <span class="op">|</span><span class="st"> </span>(p2 <span class="op">/</span><span class="st"> </span>p3)</a></code></pre></div>
+<p><img src="img/reproducibility-unnamed-chunk-22-1.png" width="672" /></p>
+<p>We can then further customise the plot. We can add annotations using <code>plot_annotation</code>:</p>
+<ul>
+<li>add a title using <code>title =</code></li>
+<li>add panel labels using <code>tag_levels =</code> (it takes different arguments, e.g. <code>A</code> for capital letters, <code>a</code> for lower case letters, <code>I</code> for Roman numerals etc.)</li>
+</ul>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" data-line-number="1">(p1 <span class="op">|</span><span class="st"> </span>(p2 <span class="op">/</span><span class="st"> </span>p3)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb34-2" data-line-number="2"><span class="st">  </span><span class="kw">plot_annotation</span>(<span class="dt">title =</span> <span class="st">&quot;Summary of gapminder data&quot;</span>,</a>
+<a class="sourceLine" id="cb34-3" data-line-number="3">                  <span class="dt">tag_levels =</span> <span class="st">&quot;A&quot;</span>)</a></code></pre></div>
+<p><img src="img/reproducibility-unnamed-chunk-23-1.png" width="672" /></p>
 </div>
 </div>
 </div>
@@ -1318,9 +1607,9 @@ Answer
 <h1>Summary</h1>
 <p>Through R notebooks we can now integrate our R code and our results in one readable document that we can share with our collaborators. In this way the code and the results have become one item. For inspiration, examples of R notebooks can be found at <a href="https://rpubs.com/" class="uri">https://rpubs.com/</a></p>
 <p><strong>Limitations:</strong></p>
-<p>Some limitations that Rmarkdown has:</p>
+<p>Some limitations that R Markdown has:</p>
 <ul>
-<li>Figure and table numbering is not supported. There is still a way around this, by using third-party packages <em>e.g.,</em> <a href="https://cran.r-project.org/web/packages/captioner/vignettes/using_captioner.html">captioner</a>.</li>
+<li>Figure and table numbering is not supported. There is still a way around this, by using third-party packages <em>e.g.,</em> <a href="https://cran.r-project.org/web/packages/captioner/vignettes/using_captioner.html">captioner</a> or <a href="https://bookdown.org/yihui/rmarkdown-cookbook/figure-number.html">bookdown</a>.</li>
 <li>If you are looking at specific customisations that are different from the default Markdown format, <em>e.g.,</em> headings using different font specifications, then this gets tricky and markdown might not be the best approach.</li>
 </ul>
 <p> </p>

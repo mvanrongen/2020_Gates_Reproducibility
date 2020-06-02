@@ -12,6 +12,7 @@ library(methods)
 library(tidyverse)
 library(kableExtra)
 library(rmarkdown)
+library(patchwork)
 suppressPackageStartupMessages(library(tidyverse))
 knitr::opts_chunk$set(fig.path='img/reproducibility-',
                       comment = "#>", purl = FALSE, fig.keep='last')

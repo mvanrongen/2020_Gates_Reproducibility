@@ -555,27 +555,173 @@ Somewhat frustratingly, pagination is not possible with `kable` (yet). So if you
 
 > ### Challenge 1
 > 
-> We are interested in the possible relationship between income and longevity. To investigate this, we can use the `income_per_person` and `life_expectancy` variables.
+We are interested in the relationship between income and longevity. To investigate this, we can use the `income_per_person` and `life_expectancy` variables.
 > 
-> Use your `gapminder_notebook.Rmd` R Notebook file to explore this further. First, we are going to do some plotting to get an idea of what the data look like. When doing this, remember to do the following:
+Use your `gapminder_notebook.Rmd` R Notebook file to explore this further. First, we are going to do some plotting to get an idea of what the data look like. When doing this, remember to do the following:
 > 
-> * use clear headings (`# Heading 1`, `## Heading 2` etc. to break up your code/explanations).
-> * name your ` ``` {r} ` chunks to help you navigate through your code
+* use clear headings (e.g. `# Exploratory analysis`, `## Investigating income vs life expectancy` etc. to break up your code/explanations).
+* name your ` ``` {r} ` chunks to help you navigate through your code.
 > 
-> Try the following (preferably use pipes (`%>%` symbol) to get one data flow):
+Try the following (preferably use pipes (`%>%` symbol) to get one data flow):
 > 
-> 1. Filter the dataset for data from 2018 only (hint: use `filter`)
-> 2. Plot using `ggplot()` a scatterplot of `income_per_person` vs `life_expectancy`
-> 3. Colour the points by `income_group`
-> 4. Facet the data by `world_region` (hint: use `facet_wrap`, see [documentation](https://ggplot2.tidyverse.org/reference/facet_wrap.html))
+1. Filter the dataset for data from 2018 only (hint: use `filter`)
+2. Plot using `ggplot()` a scatterplot of `income_per_person` vs `life_expectancy`
+3. Colour the points by `income_group`
+4. Facet the data by `world_region` (hint: use `facet_wrap`, see [documentation](https://ggplot2.tidyverse.org/reference/facet_wrap.html))
+5. Look at the data and add some comments/observations.
+6. Knit the document and see if the report looks like how you expected it to be.
 > 
 > ```{r, answer=TRUE, eval=TRUE}
-> gapminder %>% 
->   filter(year == 2018) %>% 
->   ggplot(aes(income_per_person, life_expectancy)) +
->   geom_point(aes(colour = income_groups)) +
->   facet_wrap(facets = vars(world_region))
+gapminder %>% 
+  filter(year == 2018) %>% 
+  ggplot(mapping = aes(x = income_per_person, y = life_expectancy)) +
+  geom_point(mapping = aes(colour = income_groups)) +
+  facet_wrap(facets = vars(world_region))
 > ```
+> 
+> \
+> 
+> ### Challenge 2
+> 
+> From the 2018 data it is clear that there are some strong differences in income per country, even per world region.
+> 
+It would be interesting to know which countries showed the highest income and in which year. Again, when doing this exercise, think about how you're going to communicate to others what you are doing.
+> 
+> Try the following:
+> 
+1. Find the highest income per `world_region` (hint: you'll have to group and arrange the data).
+2. Display only the highest income countr (hint: `slice()`)
+3. Create a table using `kable()` in twitter-style with stripes and hover to display the data.
+> 
+> ```{r, answer=TRUE, eval=TRUE}
+gapminder %>% 
+  group_by(world_region) %>% 
+  arrange(desc(income_per_person)) %>% 
+  slice(1) %>%
+  kable(caption = "Highest income per person, per world region") %>% 
+  kable_styling(bootstrap_options = c("striped", "hover"), 
+                full_width = TRUE)
+  
+> ```
+> 
+> \
+> 
+> ### Challenge 3
+> 
+> When looking at the 2018 data from Challenge 1 it appears that there is at least one country in the Americas that is classified as *low_income*.
+> 
+Try the following:
+> 
+1. Find out which country is classified as low income in the Americas (use `filter`).
+2. Using `ggplot()` create a scatterplot the `income_per_person` for that country over the years.
+3. Write some comments/observations. Is there anything unusual about the data? How would you interpret that?
+> 
+> ```{r, answer=TRUE, eval=TRUE}
+gapminder %>% 
+  filter(year == 2018,
+         world_region == "america",
+         income_groups == "low_income")
+> 
+gapminder %>% 
+  filter(country_id == "hti") %>% 
+  ggplot(mapping = aes(x = year, y = income_per_person)) +
+  geom_point()
+> ```
+> 
+
+\
+
+## Composing figures with `patchwork`
+
+One thing you would often want is to compose figures into different panels. There is a fantastic package in R that helps you do that for `ggplot()` output: [`patchwork'](https://cran.r-project.org/web/packages/patchwork/vignettes/patchwork.html).
+
+First, we need to install it. Run the following code in your console:
+
+```{r, eval = FALSE}
+install.packages("patchwork")
+```
+
+Then load the library:
+
+```{r, eval = FALSE}
+library(patchwork)
+```
+
+Patchwork requires you to assign plots to an object and then you can use mathematical operators such as `+`, `|`, `/` to organise your figures.
+
+Let's create a couple of figures using the `gapminder` data set and go through the options.
+
+Create a plot for `income_per_person` vs `life_expectancy` in the year 2000 for the Americas. Assign this to an object `p1` (plot 1).
+
+```{r}
+p1 <- gapminder %>% 
+  filter(year == 2000,
+         world_region == "america") %>%
+  ggplot(mapping = aes(x = income_per_person, y = life_expectancy)) +
+  geom_point()
+
+p1
+```
+
+Let's also plot `life_expectancy` in the United Kingdom over time:
+
+```{r}
+p2 <- gapminder %>% 
+  filter(country_id == "gbr") %>% 
+  ggplot(mapping = aes(x = year, y = life_expectancy)) +
+  geom_point() +
+  geom_line()
+
+p2
+```
+
+Finally, let's create a plot that shows the number of countries per world region.
+
+```{r}
+p3 <- gapminder %>% 
+  group_by(world_region) %>% 
+  summarise(n_countries = n_distinct(country)) %>% 
+  ggplot(mapping = aes(x = world_region, y = n_countries)) +
+  geom_col()
+
+p3
+```
+
+### Adding plots together
+
+The simplest way to add plots together using `patchwork` is to use the `+` operator:
+
+```{r}
+p1 + p2 + p3
+```
+
+You can control how the plots are displayed. For example, we can put the third plot (`p3` below the others):
+
+```{r}
+(p1 + p2) / p3
+```
+
+Or we can stretch out the first plot over two rows:
+
+```{r}
+p1 | (p2 / p3)
+```
+
+We can then further customise the plot. We can add annotations using `plot_annotation`:
+
+* add a title using `title = `
+* add panel labels using `tag_levels = ` (it takes different arguments, e.g. `A` for capital letters, `a` for lower case letters, `I` for Roman numerals etc.)
+
+
+```{r}
+(p1 | (p2 / p3)) +
+  plot_annotation(title = "Summary of gapminder data",
+                  tag_levels = "A")
+```
+
+There are more options available, which you can find on the [patchwork website](https://patchwork.data-imaginist.com/index.html).
+
+\
 
 # Summary
 
@@ -583,9 +729,9 @@ Through R notebooks we can now integrate our R code and our results in one reada
 
 **Limitations:**
 
-Some limitations that Rmarkdown has:
+Some limitations that R Markdown has:
 
-* Figure and table numbering is not supported.  There is still a way around this, by using third-party packages *e.g.,* [captioner](https://cran.r-project.org/web/packages/captioner/vignettes/using_captioner.html).
+* Figure and table numbering is not supported.  There is still a way around this, by using third-party packages *e.g.,* [captioner](https://cran.r-project.org/web/packages/captioner/vignettes/using_captioner.html) or [bookdown](https://bookdown.org/yihui/rmarkdown-cookbook/figure-number.html) (which is a great package to use when you want to group your analysis together in a book format!).
 *  If you are looking at specific customisations that are different from the default Markdown format, *e.g.,* headings using different font specifications, then this gets tricky and markdown might not be the best approach.  
 
 \  
