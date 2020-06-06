@@ -442,7 +442,72 @@ div.tocify {
 </div>
 
 
-<p><br/></p>
+<p><br />
+</p>
+<div id="version-control" class="section level1">
+<h1>Version control</h1>
+<p>I would imagine that most people here will have found themselves in this situation before:</p>
+<p><img src="img/phdcomic.png" width="300" /></p>
+<p>I certainly have! And over the years I’ve tried different ways of organising revisions. For documents it works quite well to start your document title with a date, for example <code>2020-04-05_Project_analysis.docx</code> so that a new version would have a more recent data, such as <code>2020-05-08_Project_analysis.docx</code>. That way your revisions are organised in chronological order.</p>
+<p>If you are working with multiple people on the same document you can add initials to the end, e.g. <code>2020-04-05_Project_analysis_JD.docx</code>, so you know who has reviewed/commented on the document. You can then merge documents within MS Word, if you’re using that.</p>
+<p>More recently, I’ve become a fan of <a href="https://www.google.co.uk/docs/about/">Google Docs</a>, which provides much of the functionality of MS Office, but allows you to work remotely on a document with other people. Changes are registered in its <strong>History</strong> and you can go back through time.</p>
+<p>All this works reasonably well for documents, but this is less suitable for code, where changes are made often and have clear consequences on the workings of the code further down. This gets us to the topic of <strong>version control systems</strong>, of which <a href="https://git-scm.com">Git</a> is one.</p>
+<p>Git allows you to keep track of changes to your code <em>and</em> share those changes with others. It works particularly well when used in conjunction with <a href="https://github.com">GitHub</a>, a website that enables sharing your code with others.</p>
+<p>In general, there are two different types of version control systems: <strong>centralised</strong> and <strong>distributed</strong>. Both types of version control systems their changes in a database, called a <strong>repository</strong>. All work is done on a personal copy, called a <strong>working copy</strong>. We’ll briefly go through the differences between how these two systems function in this context.</p>
+<p><br />
+</p>
+<div id="centralised-version-control-systems" class="section level2">
+<h2>Centralised version control systems</h2>
+<p>The centralised version control system has just one centralised repository. Each user has its own working copy to which changes are made. These changes are then communicated with the central server that holds the (centralised) repository. You commit your changes to the server, other users update and can directly see your changes.</p>
+<p><img src="img/centralised-vcs.png" width="260" /></p>
+<p>Image by Michael Ernst<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>.</p>
+</div>
+<div id="distributed-version-control-systems" class="section level2">
+<h2>Distributed version control systems</h2>
+<p>The distributed version control system works a little different, where each user not only has their own working copy, but also their own repository. You commit your changes to your repository but other people cannot see those changes yet. For that to happen you need to push your changes to the central repository. You do not get other people’s changes, unless you specifically pull those changes into your own repository.</p>
+<p><img src="img/distributed-vcs.png" width="296" /></p>
+<p>Image by Michael Ernst<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a>.</p>
+<p>Here we will be using <strong>Git</strong>, which is a distributed version control system. Version control with Git works differently to all other version control systems in the way that it views the data. Whereas other version control systems store information as <strong>changes to a base version</strong> of a file (thus tracking how a file changes over time), Git stores data <strong>as a snapshot of the project</strong> over time. If a file has changed then Git stores the file again and if a file is unchanged then it links to the original, unchanged file.</p>
+<p>As such, Git can be thought of as a mini file system<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a>.</p>
+</div>
+<div id="git-workflow" class="section level2">
+<h2>Git workflow</h2>
+<p>Although Git can work entirely local, it is usually used in conjunction with a remote storage - in our case GitHub.</p>
+<p>You have a <strong>working directory</strong> on your computer that contains all the files that you are working on. There is also a <strong>local repository</strong> inside your working directory that contains an object database with all the versions of the files, changes, commits etc. associated with your files. Lastly, there usually is a <strong>remote repository</strong> that contains a copy of your local files and local repository. In our case, this remote repository is on GitHub.</p>
+<p>GitHub needs to know which files to track, which are added to the <strong>index</strong>. These files are staged for a <strong>commit</strong>, which creates a snapshot of your files in time. The commit is always accompanied by a message that explains what the changes are that are being committed.</p>
+<p>When you are happy with the commit you’ve made on your (local) computer, then you can <strong>push</strong> these changes to your remote repository on GitHub and it will be updated.</p>
+<p><img src="img/git_workflow.png" width="1082" /></p>
+<p>The image was adapted from the <a href="https://i.redd.it/8341g68g1v7y.png">RebelLabs Git Cheat Sheet</a>.</p>
+</div>
+<div id="glossary" class="section level2">
+<h2>Glossary</h2>
+<p>The variety of phrases used in both types of version control systems can be a little overwhelming at times. Below is a non-exhaustive list of phrases you might come across. The glossary is an adapted version from <a href="https://linuxacademy.com/blog/linux/git-terms-explained/">here</a>.</p>
+<ul>
+<li><strong>branch</strong> a version of the repository that diverges from the main working project. Used to explore/test new features or make changes.</li>
+<li><strong>clone</strong> a copy of a repository.</li>
+<li><strong>commit</strong> stores the contents of the index (the staging area of Git) in a new commit. Needs to be provided with a commit message that explains what the changes are.</li>
+<li><strong>fetch</strong> downloading and copying the files of a particular branch to your computer.</li>
+<li><strong>fork</strong> creates a copy of a repository.</li>
+<li><strong>index</strong> working or staging area of Git. This is where files that have been changed/added/deleted are kept until you are ready to commit the files.</li>
+<li><strong>master</strong> the primary branch of all repositories.</li>
+<li><strong>merge</strong> takes the changes from one branch and adds them to another (usually the <code>master</code> branch). These commits are normally first requested via a pull request.</li>
+<li><strong>origin</strong> is the conventional name for the primary version of a repository. Git uses <code>origin</code> as a system alias for pushing and fetching data to and from the primary branch.</li>
+<li><strong>pull</strong> or <strong>pull request</strong> a term used in GitHub to let people know you’ve pushed changes into a branch of the repository. These changes can then be reviewed by the repository maintainer and can be merged.</li>
+<li><strong>push</strong> updates a remote branch with the commits made to the current branch. You are <em>pushing</em> your changes onto the remote.</li>
+<li><strong>remote</strong> a copy of the original branch. When you clone a branch, that new branch is a remote, or <em>clone</em>.</li>
+<li><strong>repository</strong> In many ways, you can think of a Git repository as a directory that stores all the files, folders, and content needed for your project. What it actually is, is the object database of the project, storing everything from the files themselves, to the versions of those files, commits, deletions, et cetera. Repositories are not limited by user, and can be shared and copied.</li>
+<li><strong>upstream</strong> While there is not necessarily a default “upstream” or “downstream” for Git projects, upstream can be considered where you push your Git changes — this is often the master branch of the project within the origin</li>
+</ul>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>(<a href="https://homes.cs.washington.edu/~mernst/advice/version-control.html" class="uri">https://homes.cs.washington.edu/~mernst/advice/version-control.html</a>)<a href="#fnref1" class="footnote-back">↩</a></p></li>
+<li id="fn2"><p>(<a href="https://homes.cs.washington.edu/~mernst/advice/version-control.html" class="uri">https://homes.cs.washington.edu/~mernst/advice/version-control.html</a>)<a href="#fnref2" class="footnote-back">↩</a></p></li>
+<li id="fn3"><p><a href="https://git-scm.com/book/en/v2/Getting-Started-What-is-Git%3F" class="uri">https://git-scm.com/book/en/v2/Getting-Started-What-is-Git%3F</a><a href="#fnref3" class="footnote-back">↩</a></p></li>
+</ol>
+</div>
 
 
 
