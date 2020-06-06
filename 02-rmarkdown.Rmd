@@ -590,7 +590,7 @@ It would be interesting to know which countries showed the highest income and in
 > Try the following:
 > 
 1. Find the highest income per `world_region` (hint: you'll have to group and arrange the data).
-2. Display only the highest income countr (hint: `slice()`)
+2. Display only the highest income country (hint: `slice()`)
 3. Create a table using `kable()` in twitter-style with stripes and hover to display the data.
 > 
 > ```{r, answer=TRUE, eval=TRUE}
