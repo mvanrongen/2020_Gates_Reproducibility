@@ -425,7 +425,7 @@ div.tocify {
           <a href="03-version_control_github.html">Version control and GitHub</a>
         </li>
         <li>
-          <a href="04-github.html">GitHub</a>
+          <a href="04-github.html">GitHub and RStudio</a>
         </li>
       </ul>
     </div><!--/.nav-collapse -->
@@ -461,6 +461,8 @@ div.tocify {
 <p>The centralised version control system has just one centralised repository. Each user has its own working copy to which changes are made. These changes are then communicated with the central server that holds the (centralised) repository. You commit your changes to the server, other users update and can directly see your changes.</p>
 <p><img src="img/centralised-vcs.png" width="260" /></p>
 <p>Image by Michael Ernst<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>.</p>
+<p><br />
+</p>
 </div>
 <div id="distributed-version-control-systems" class="section level2">
 <h2>Distributed version control systems</h2>
@@ -469,6 +471,8 @@ div.tocify {
 <p>Image by Michael Ernst<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a>.</p>
 <p>Here we will be using <strong>Git</strong>, which is a distributed version control system. Version control with Git works differently to all other version control systems in the way that it views the data. Whereas other version control systems store information as <strong>changes to a base version</strong> of a file (thus tracking how a file changes over time), Git stores data <strong>as a snapshot of the project</strong> over time. If a file has changed then Git stores the file again and if a file is unchanged then it links to the original, unchanged file.</p>
 <p>As such, Git can be thought of as a mini file system<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a>.</p>
+<p><br />
+</p>
 </div>
 <div id="git-workflow" class="section level2">
 <h2>Git workflow</h2>
@@ -478,6 +482,113 @@ div.tocify {
 <p>When you are happy with the commit you’ve made on your (local) computer, then you can <strong>push</strong> these changes to your remote repository on GitHub and it will be updated.</p>
 <p><img src="img/git_workflow.png" width="1082" /></p>
 <p>The image was adapted from the <a href="https://i.redd.it/8341g68g1v7y.png">RebelLabs Git Cheat Sheet</a>.</p>
+<p><br />
+</p>
+<div id="branches" class="section level3">
+<h3>Branches</h3>
+<p>If you are working on something by yourself then you’re able to judge whether or not you want to push any changes to your remote repository. Things get a bit more complicated when you are working in a team, because multiple people could work on the same file and the changes you push could affect others. The way GitHub deals with this is through the use of <strong>branches</strong>.</p>
+<p>Simply put, a branch is a copy of your repository where you can safely make changes/experiment without worrying how these changes might affect others.</p>
+<p>There can be many different branches in your repository, but only one can be deployed: the <code>master</code> branch. So if you are making changes and push them to the <code>master</code> branch then they are immediately implemented.</p>
+<p>We will learn how to <a href="#create-branch">create branches</a> later.</p>
+<p><br />
+</p>
+</div>
+</div>
+<div id="starting-on-github" class="section level2">
+<h2>Starting on GitHub</h2>
+<div id="creating-a-new-repository" class="section level3">
+<h3>Creating a new repository</h3>
+<p>Start a new repository by navigation to the top right corner on GitHub:</p>
+<p><img src="img/new_repo_01.png" width="200" /></p>
+<p>This brings up a screen with the following options:</p>
+<ol style="list-style-type: decimal">
+<li>Name of repository you want to create</li>
+<li>A short description of what the repository contains</li>
+<li>Make the repository Public or Private</li>
+<li>Check the <code>Initialize this repository with a README</code> to create a README file (recommended)</li>
+<li>Create the repository</li>
+</ol>
+<p><img src="img/new_repo_02.png" width="1414" /></p>
+<p><br />
+</p>
+</div>
+<div id="creating-a-new-file" class="section level3">
+<h3>Creating a new file</h3>
+<p>To create a new file, click on the <code>Create new file</code> button:</p>
+<p><img src="img/new_file_01.png" width="819" /></p>
+<p>You then have the possibility to create a new file, in this case we are calling it <code>new_file.txt</code>. Note the use of file extensions.</p>
+<p><img src="img/new_file_02.png" width="813" /></p>
+<p>To add the file you need to add a <strong>commit message</strong>. A commit message should be a brief description of what you’ve done. You can add more information on <em>how</em> you have done things in the commit description.</p>
+<p>Here we are adding it directly to the <code>master</code> branch. We will learn how to create branches next.</p>
+<p><img src="img/new_file_03.png" width="816" /></p>
+<p><br />
+</p>
+</div>
+<div id="create-branch" class="section level3">
+<h3>Creating a new branch</h3>
+<p>You usually create a new branch if you want to add change something in the <code>master</code> branch, but you’re not entirely sure if it will work or affect others working on the same files. Creating a branch makes a copy of your repository that you can freely edit, without having to worry about these things.</p>
+<p>To create a new branch, click on the <code>Branch: master</code> button on the main repository page. This will display a list of branches (if there are any). To add a new branch simply type in the name you want and press <code>Enter</code>.</p>
+<p><img src="img/new_branch_01.png" width="803" /></p>
+<p>This <code>new_branch</code> will be the same as the <code>master</code> branch (because it is an exact copy). To generate some changes, we add a new file called <code>file_in_new_branch.txt</code>. Once committed, we are taken back to the main repository page (note that you are now in <code>Branch: new_branch</code> if you have created a branch called <code>new_branch</code>). Because you have made a copy of your repository and you have made some changes, GitHub now gives you the opportunity to compare your <code>new_branch</code> with the <code>master</code> branch.</p>
+<p>Comparing the branches enables you to generate a <strong>pull request</strong>, which enables you to let people know that you have made changes. This means that people can review the changes and implement them. We will do that next.</p>
+<p><img src="img/new_branch_02.png" width="809" /></p>
+<p><br />
+</p>
+</div>
+<div id="pull-requests" class="section level3">
+<h3>Pull requests</h3>
+<p>To start a pull request, press the <code>Compare &amp; pull request</code> button. This takes you to a screen where you can add a message to whoever is maintaining the <code>master</code> branch, explaining what you have done in your <code>new_branch</code> and requesting to implement the changes.</p>
+<p><img src="img/pull_request_01.png" width="812" /></p>
+<p>After you press the <code>Create pull request</code> button you have the opportunity to merge the two branches. At the bottom of the screen you can write a message to the person who generated the pull request.</p>
+<p><img src="img/pull_request_02.png" width="811" /></p>
+<p><img src="img/pull_request_03.png" width="75%" /></p>
+<p>After you have merged the branches your <code>new_branch</code> becomes obsolete, so you can decide to delete it. Unless you want to make more changes, but it would be best to start a new branch for that again.</p>
+<p><img src="img/pull_request_04.png" width="75%" /></p>
+<p>You are taken back to the main repository page once the pull request is merged with the <code>master</code> branch. You can see the changes have been implemented, because you now have a <code>file_in_new_branch.txt</code> in your <code>master</code> branch.</p>
+<p><img src="img/pull_request_05.png" width="810" /></p>
+<p><br />
+</p>
+</div>
+</div>
+<div id="challenges" class="section level2">
+<h2>Challenges</h2>
+<blockquote>
+<h3 id="challenge-1---new-repository">Challenge 1 - New repository</h3>
+<ol style="list-style-type: decimal">
+<li>Create a new repository on your GitHub account</li>
+<li>Add a new file to the repository</li>
+</ol>
+<p>Remember the following:</p>
+<ul>
+<li>Use a meaningful name for your repository</li>
+<li>Initialise the repository with a README file</li>
+<li>Add an extension to the file name when creating a new file</li>
+</ul>
+</blockquote>
+<p><br />
+</p>
+<blockquote>
+<h3 id="challenge-2---branches">Challenge 2 - Branches</h3>
+<ol style="list-style-type: decimal">
+<li>Create a new branch</li>
+<li>Make some changes to the branch by editting or adding a file</li>
+<li>Commit the changes to the branch</li>
+</ol>
+</blockquote>
+<p><br />
+</p>
+<blockquote>
+<h3 id="challenge-3---pull-requests">Challenge 3 - Pull requests</h3>
+<ol style="list-style-type: decimal">
+<li>Open a pull request</li>
+<li>Review the changes</li>
+<li>Make more changes and push them</li>
+<li>Review the new changes and commit them</li>
+<li>Merge the branch with the <code>master</code> branch</li>
+</ol>
+</blockquote>
+<p><br />
+</p>
 </div>
 <div id="glossary" class="section level2">
 <h2>Glossary</h2>

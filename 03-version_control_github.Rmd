@@ -42,6 +42,8 @@ knitr::include_graphics("img/centralised-vcs.png")
 
 Image by Michael Ernst[^1].
 
+\
+
 ## Distributed version control systems
 
 The distributed version control system works a little different, where each user not only has their own working copy, but also their own repository. You commit your changes to your repository but other people cannot see those changes yet. For that to happen you need to push your changes to the central repository. You do not get other people's changes, unless you specifically pull those changes into your own repository.
@@ -60,6 +62,8 @@ As such, Git can be thought of as a mini file system[^2].
 
 [^2]: https://git-scm.com/book/en/v2/Getting-Started-What-is-Git%3F
 
+\
+
 ## Git workflow
 
 Although Git can work entirely local, it is usually used in conjunction with a remote storage - in our case GitHub.
@@ -75,6 +79,153 @@ knitr::include_graphics("img/git_workflow.png")
 ```
 
 The image was adapted from the [RebelLabs Git Cheat Sheet](https://i.redd.it/8341g68g1v7y.png).
+
+\
+
+### Branches
+
+If you are working on something by yourself then you're able to judge whether or not you want to push any changes to your remote repository. Things get a bit more complicated when you are working in a team, because multiple people could work on the same file and the changes you push could affect others. The way GitHub deals with this is through the use of **branches**.
+
+Simply put, a branch is a copy of your repository where you can safely make changes/experiment without worrying how these changes might affect others.
+
+There can be many different branches in your repository, but only one can be deployed: the `master` branch. So if you are making changes and push them to the `master` branch then they are immediately implemented.
+
+We will learn how to [create branches](#create-branch) later.
+
+\
+
+## Starting on GitHub
+
+### Creating a new repository
+
+Start a new repository by navigation to the top right corner on GitHub:
+
+```{r new_repo_01, results='markup', echo=FALSE, purl=FALSE}
+knitr::include_graphics("img/new_repo_01.png")
+```
+
+This brings up a screen with the following options:
+
+1. Name of repository you want to create
+2. A short description of what the repository contains
+3. Make the repository Public or Private
+4. Check the `Initialize this repository with a README` to create a README file (recommended)
+5. Create the repository
+
+```{r new_repo_02, results='markup', echo=FALSE, purl=FALSE}
+knitr::include_graphics("img/new_repo_02.png")
+```
+
+\
+
+### Creating a new file
+
+To create a new file, click on the `Create new file` button:
+
+```{r new_file_01, results='markup', echo=FALSE, purl=FALSE}
+knitr::include_graphics("img/new_file_01.png")
+```
+
+You then have the possibility to create a new file, in this case we are calling it `new_file.txt`. Note the use of file extensions.
+
+```{r new_file_02, results='markup', echo=FALSE, purl=FALSE}
+knitr::include_graphics("img/new_file_02.png")
+```
+
+To add the file you need to add a **commit message**. A commit message should be a brief description of what you've done. You can add more information on _how_ you have done things in the commit description.
+
+Here we are adding it directly to the `master` branch. We will learn how to create branches next.
+
+```{r new_file_03, results='markup', echo=FALSE, purl=FALSE}
+knitr::include_graphics("img/new_file_03.png")
+```
+
+\
+
+### Creating a new branch {#create-branch}
+
+You usually create a new branch if you want to add change something in the `master` branch, but you're not entirely sure if it will work or affect others working on the same files. Creating a branch makes a copy of your repository that you can freely edit, without having to worry about these things.
+
+To create a new branch, click on the `Branch: master` button on the main repository page. This will display a list of branches (if there are any). To add a new branch simply type in the name you want and press `Enter`.
+
+```{r new_branch_01, results='markup', echo=FALSE, purl=FALSE}
+knitr::include_graphics("img/new_branch_01.png")
+```
+
+This `new_branch` will be the same as the `master` branch (because it is an exact copy). To generate some changes, we add a new file called `file_in_new_branch.txt`. Once committed, we are taken back to the main repository page (note that you are now in `Branch: new_branch` if you have created a branch called `new_branch`). Because you have made a copy of your repository and you have made some changes, GitHub now gives you the opportunity to compare your `new_branch` with the `master` branch.
+
+Comparing the branches enables you to generate a **pull request**, which enables you to let people know that you have made changes. This means that people can review the changes and implement them. We will do that next.
+
+```{r new_branch_02, results='markup', echo=FALSE, purl=FALSE}
+knitr::include_graphics("img/new_branch_02.png")
+```
+
+\
+
+### Pull requests
+
+To start a pull request, press the `Compare & pull request` button. This takes you to a screen where you can add a message to whoever is maintaining the `master` branch, explaining what you have done in your `new_branch` and requesting to implement the changes.
+
+```{r pull_request_01, results='markup', echo=FALSE, purl=FALSE}
+knitr::include_graphics("img/pull_request_01.png")
+```
+
+After you press the `Create pull request` button you have the opportunity to merge the two branches. At the bottom of the screen you can write a message to the person who generated the pull request.
+
+```{r pull_request_02, results='markup', echo=FALSE, purl=FALSE}
+knitr::include_graphics("img/pull_request_02.png")
+```
+
+```{r pull_request_03, out.width="75%", results='markup', echo=FALSE, purl=FALSE}
+knitr::include_graphics("img/pull_request_03.png")
+```
+
+After you have merged the branches your `new_branch` becomes obsolete, so you can decide to delete it. Unless you want to make more changes, but it would be best to start a new branch for that again.
+
+```{r pull_request_04, out.width="75%", results='markup', echo=FALSE, purl=FALSE}
+knitr::include_graphics("img/pull_request_04.png")
+```
+
+You are taken back to the main repository page once the pull request is merged with the `master` branch. You can see the changes have been implemented, because you now have a `file_in_new_branch.txt` in your `master` branch.
+
+```{r pull_request_05, results='markup', echo=FALSE, purl=FALSE}
+knitr::include_graphics("img/pull_request_05.png")
+```
+
+\
+
+## Challenges
+
+> ### Challenge 1 - New repository
+>
+1. Create a new repository on your GitHub account
+2. Add a new file to the repository
+>
+> Remember the following:
+> 
+* Use a meaningful name for your repository
+* Initialise the repository with a README file
+* Add an extension to the file name when creating a new file
+
+\
+
+> ### Challenge 2 - Branches
+>
+1. Create a new branch
+2. Make some changes to the branch by editting or adding a file
+3. Commit the changes to the branch
+
+\
+
+> ### Challenge 3 - Pull requests
+>
+1. Open a pull request
+2. Review the changes
+3. Make more changes and push them
+4. Review the new changes and commit them
+5. Merge the branch with the `master` branch
+
+\
 
 ## Glossary
 
