@@ -447,7 +447,7 @@ div.tocify {
 <div id="version-control" class="section level1">
 <h1>Version control</h1>
 <p>I would imagine that most people here will have found themselves in this situation before:</p>
-<p><img src="img/phdcomic.png" width="300" /></p>
+<p><img src="img/phdcomic.png" width="75%" style="display: block; margin: auto;" /></p>
 <p>I certainly have! And over the years I’ve tried different ways of organising revisions. For documents it works quite well to start your document title with a date, for example <code>2020-04-05_Project_analysis.docx</code> so that a new version would have a more recent data, such as <code>2020-05-08_Project_analysis.docx</code>. That way your revisions are organised in chronological order.</p>
 <p>If you are working with multiple people on the same document you can add initials to the end, e.g. <code>2020-04-05_Project_analysis_JD.docx</code>, so you know who has reviewed/commented on the document. You can then merge documents within MS Word, if you’re using that.</p>
 <p>More recently, I’ve become a fan of <a href="https://www.google.co.uk/docs/about/">Google Docs</a>, which provides much of the functionality of MS Office, but allows you to work remotely on a document with other people. Changes are registered in its <strong>History</strong> and you can go back through time.</p>
@@ -529,8 +529,8 @@ div.tocify {
 </div>
 <div id="create-branch" class="section level3">
 <h3>Creating a new branch</h3>
-<p>You usually create a new branch if you want to add change something in the <code>master</code> branch, but you’re not entirely sure if it will work or affect others working on the same files. Creating a branch makes a copy of your repository that you can freely edit, without having to worry about these things.</p>
-<p>To create a new branch, click on the <code>Branch: master</code> button on the main repository page. This will display a list of branches (if there are any). To add a new branch simply type in the name you want and press <code>Enter</code>.</p>
+<p>You usually create a new branch if you want to add or change something in the <code>master</code> branch, but you’re not entirely sure if it will work or affect others working on the same files. Creating a branch makes a copy of your repository that you can freely edit, without having to worry about these things. We will call this a <code>feature</code> branch.</p>
+<p>To create a feature branch, click on the <code>Branch: master</code> button on the main repository page. This will display a list of branches (if there are any). To add a new branch simply type in the name you want and press <code>Enter</code>.</p>
 <p><img src="img/new_branch_01.png" width="803" /></p>
 <p>This <code>new_branch</code> will be the same as the <code>master</code> branch (because it is an exact copy). To generate some changes, we add a new file called <code>file_in_new_branch.txt</code>. Once committed, we are taken back to the main repository page (note that you are now in <code>Branch: new_branch</code> if you have created a branch called <code>new_branch</code>). Because you have made a copy of your repository and you have made some changes, GitHub now gives you the opportunity to compare your <code>new_branch</code> with the <code>master</code> branch.</p>
 <p>Comparing the branches enables you to generate a <strong>pull request</strong>, which enables you to let people know that you have made changes. This means that people can review the changes and implement them. We will do that next.</p>
@@ -545,7 +545,7 @@ div.tocify {
 <p>After you press the <code>Create pull request</code> button you have the opportunity to merge the two branches. At the bottom of the screen you can write a message to the person who generated the pull request.</p>
 <p><img src="img/pull_request_02.png" width="811" /></p>
 <p><img src="img/pull_request_03.png" width="75%" /></p>
-<p>After you have merged the branches your <code>new_branch</code> becomes obsolete, so you can decide to delete it. Unless you want to make more changes, but it would be best to start a new branch for that again.</p>
+<p>After you have merged the branches your feature branch becomes obsolete, so you can decide to delete it. Unless you want to make more changes, but it would be best to start a new branch for that again.</p>
 <p><img src="img/pull_request_04.png" width="75%" /></p>
 <p>You are taken back to the main repository page once the pull request is merged with the <code>master</code> branch. You can see the changes have been implemented, because you now have a <code>file_in_new_branch.txt</code> in your <code>master</code> branch.</p>
 <p><img src="img/pull_request_05.png" width="810" /></p>
@@ -601,7 +601,7 @@ div.tocify {
 <li><strong>clone</strong> a copy of a repository.</li>
 <li><strong>commit</strong> stores the contents of the index (the staging area of Git) in a new commit. Needs to be provided with a commit message that explains what the changes are.</li>
 <li><strong>fetch</strong> downloading and copying the files of a particular branch to your computer.</li>
-<li><strong>fork</strong> creates a copy of a repository.</li>
+<li><strong>fork</strong> creates a personal copy of somebody else’s repository.</li>
 <li><strong>index</strong> working or staging area of Git. This is where files that have been changed/added/deleted are kept until you are ready to commit the files.</li>
 <li><strong>master</strong> the primary branch of all repositories.</li>
 <li><strong>merge</strong> takes the changes from one branch and adds them to another (usually the <code>master</code> branch). These commits are normally first requested via a pull request.</li>

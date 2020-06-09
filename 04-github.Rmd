@@ -74,7 +74,7 @@ knitr::include_graphics("img/git_rstudio_05.png")
 
 \
 
-### Making changes and your remote repository
+### Changes and your remote repository
 
 Let's make some changes to our local repository, which is now under Git control. Here we are first creating a folder called `notebooks` and adding an R Markdown file named `01_import_and_clean_data.Rmd`.
 
@@ -106,7 +106,9 @@ To ensure that the changes end up on your remote repository you need to **push**
 knitr::include_graphics("img/git_rstudio_push.png")
 ```
 
-> ### Challenge 1
+\
+
+> ### Challenge 1 - Version control in RStudio
 >
 1. Create a new repository on GitHub
 2. Create a new R Project under version control
@@ -115,7 +117,7 @@ knitr::include_graphics("img/git_rstudio_push.png")
 
 \
 
-> ### Challenge 2
+> ### Challenge 2 - Branching and changes
 >
 1. Create a new branch from within R Studio. To do this, use the following button:
 ```{r new_branch_button, results='markup', echo=FALSE, purl=FALSE}
@@ -125,3 +127,15 @@ knitr::include_graphics("img/new_branch_button.png")
 3. Ensure that changes to the new file are tracked.
 4. Make some changes to the file and commit them.
 5. Push the changes to the remote repository.
+
+\
+
+## Forking projects
+
+So far we have used repositories that we created ourselves. But you might find that you want to add to somebody else's project. Or you like their project and want to adapt it to your needs. In that case you need to make a personal copy of that project. This is called **forking**.
+
+Once you have forked a repository to your GitHub account you can make changes to it. Good practice is to create a **new branch** in your copy of the repository, so that you do not run the risk of confusing the `master` branch of your copy with the `master` branch of the original repository.
+
+After you have created a new branch on your forked copy you can start editing/adding as you like. You do this as you have done before, by **staging** and **committing** changes to your repository.
+
+When you want to suggest incorporating some of these changes into the original repository you will have to open a **pull request**. This works in the same way is described in the [pull requests](#pull-requests) section, but instead of comparing two branches on the same repository, you are comparing the branch on your forked copy with the `master` branch of the original repository.

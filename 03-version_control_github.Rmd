@@ -14,7 +14,7 @@ source("setup.R")
 
 I would imagine that most people here will have found themselves in this situation before:
 
-```{r phdcomics, results='markup', echo=FALSE, purl=FALSE}
+```{r phdcomics, out.width="75%", fig.align='center', results='markup', echo=FALSE, purl=FALSE}
 knitr::include_graphics("img/phdcomic.png")
 ```
 
@@ -170,7 +170,7 @@ knitr::include_graphics("img/new_branch_02.png")
 
 \
 
-### Pull requests
+### Pull requests {#pull-requests}
 
 To start a pull request, press the `Compare & pull request` button. This takes you to a screen where you can add a message to whoever is maintaining the `master` branch, explaining what you have done in your `new_branch` and requesting to implement the changes.
 
@@ -243,7 +243,7 @@ The variety of phrases used in both types of version control systems can be a li
 * **clone** a copy of a repository.
 * **commit** stores the contents of the index (the staging area of Git) in a new commit. Needs to be provided with a commit message that explains what the changes are.
 * **fetch** downloading and copying the files of a particular branch to your computer.
-* **fork** creates a copy of a repository.
+* **fork** creates a personal copy of somebody else's repository.
 * **index** working or staging area of Git. This is where files that have been changed/added/deleted are kept until you are ready to commit the files.
 * **master** the primary branch of all repositories.
 * **merge** takes the changes from one branch and adds them to another (usually the `master` branch). These commits are normally first requested via a pull request.

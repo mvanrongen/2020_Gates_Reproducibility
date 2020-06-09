@@ -477,8 +477,8 @@ git config --global user.email &quot;name@provider.com&quot;</code></pre>
 <p><br />
 </p>
 </div>
-<div id="making-changes-and-your-remote-repository" class="section level3">
-<h3>Making changes and your remote repository</h3>
+<div id="changes-and-your-remote-repository" class="section level3">
+<h3>Changes and your remote repository</h3>
 <p>Let’s make some changes to our local repository, which is now under Git control. Here we are first creating a folder called <code>notebooks</code> and adding an R Markdown file named <code>01_import_and_clean_data.Rmd</code>.</p>
 <p>Once you have created the file you’ll see the folder appearing in the <code>Git</code> tab. When you tick the <code>Staged</code> box, the <code>Status</code> changes to Added. This means that Git is tracking your file and will include it in the next commit.</p>
 <p><img src="img/git_rstudio_untracked_changes.png" width="425" /></p>
@@ -489,8 +489,10 @@ git config --global user.email &quot;name@provider.com&quot;</code></pre>
 <p><img src="img/git_rstudio_commit.png" width="637" /></p>
 <p>To ensure that the changes end up on your remote repository you need to <strong>push</strong> the changes. To do this, press the <code>Push</code> button in the top right corner. RStudio will give you a message that the changes are pushed:</p>
 <p><img src="img/git_rstudio_push.png" width="635" /></p>
+<p><br />
+</p>
 <blockquote>
-<h3 id="challenge-1">Challenge 1</h3>
+<h3 id="challenge-1---version-control-in-rstudio">Challenge 1 - Version control in RStudio</h3>
 <ol style="list-style-type: decimal">
 <li>Create a new repository on GitHub</li>
 <li>Create a new R Project under version control</li>
@@ -500,7 +502,7 @@ git config --global user.email &quot;name@provider.com&quot;</code></pre>
 <p><br />
 </p>
 <blockquote>
-<h3 id="challenge-2">Challenge 2</h3>
+<h3 id="challenge-2---branching-and-changes">Challenge 2 - Branching and changes</h3>
 <ol style="list-style-type: decimal">
 <li>Create a new branch from within R Studio. To do this, use the following button: <img src="img/new_branch_button.png" width="95" /></li>
 <li>Create a <code>notebooks</code> folder and save a new R Markdown file in it.</li>
@@ -509,7 +511,16 @@ git config --global user.email &quot;name@provider.com&quot;</code></pre>
 <li>Push the changes to the remote repository.</li>
 </ol>
 </blockquote>
+<p><br />
+</p>
 </div>
+</div>
+<div id="forking-projects" class="section level2">
+<h2>Forking projects</h2>
+<p>So far we have used repositories that we created ourselves. But you might find that you want to add to somebody else’s project. Or you like their project and want to adapt it to your needs. In that case you need to make a personal copy of that project. This is called <strong>forking</strong>.</p>
+<p>Once you have forked a repository to your GitHub account you can make changes to it. Good practice is to create a <strong>new branch</strong> in your copy of the repository, so that you do not run the risk of confusing the <code>master</code> branch of your copy with the <code>master</code> branch of the original repository.</p>
+<p>After you have created a new branch on your forked copy you can start editing/adding as you like. You do this as you have done before, by <strong>staging</strong> and <strong>committing</strong> changes to your repository.</p>
+<p>When you want to suggest incorporating some of these changes into the original repository you will have to open a <strong>pull request</strong>. This works in the same way is described in the <a href="#pull-requests">pull requests</a> section, but instead of comparing two branches on the same repository, you are comparing the branch on your forked copy with the <code>master</code> branch of the original repository.</p>
 </div>
 
 
