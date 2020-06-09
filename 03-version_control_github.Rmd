@@ -92,6 +92,14 @@ There can be many different branches in your repository, but only one can be dep
 
 We will learn how to [create branches](#create-branch) later.
 
+Below is a schematic overview of the process you go through on GitHub.
+
+```{r github_workflow, results='markup', echo=FALSE, purl=FALSE}
+knitr::include_graphics("img/github_workflow.png")
+```
+
+Image adapted from [the GitHub guide](https://guides.github.com/introduction/flow/).
+
 \
 
 ## Starting on GitHub
@@ -144,9 +152,9 @@ knitr::include_graphics("img/new_file_03.png")
 
 ### Creating a new branch {#create-branch}
 
-You usually create a new branch if you want to add change something in the `master` branch, but you're not entirely sure if it will work or affect others working on the same files. Creating a branch makes a copy of your repository that you can freely edit, without having to worry about these things.
+You usually create a new branch if you want to add or change something in the `master` branch, but you're not entirely sure if it will work or affect others working on the same files. Creating a branch makes a copy of your repository that you can freely edit, without having to worry about these things. We will call this a `feature` branch.
 
-To create a new branch, click on the `Branch: master` button on the main repository page. This will display a list of branches (if there are any). To add a new branch simply type in the name you want and press `Enter`.
+To create a feature branch, click on the `Branch: master` button on the main repository page. This will display a list of branches (if there are any). To add a new branch simply type in the name you want and press `Enter`.
 
 ```{r new_branch_01, results='markup', echo=FALSE, purl=FALSE}
 knitr::include_graphics("img/new_branch_01.png")
@@ -180,7 +188,7 @@ knitr::include_graphics("img/pull_request_02.png")
 knitr::include_graphics("img/pull_request_03.png")
 ```
 
-After you have merged the branches your `new_branch` becomes obsolete, so you can decide to delete it. Unless you want to make more changes, but it would be best to start a new branch for that again.
+After you have merged the branches your feature branch becomes obsolete, so you can decide to delete it. Unless you want to make more changes, but it would be best to start a new branch for that again.
 
 ```{r pull_request_04, out.width="75%", results='markup', echo=FALSE, purl=FALSE}
 knitr::include_graphics("img/pull_request_04.png")

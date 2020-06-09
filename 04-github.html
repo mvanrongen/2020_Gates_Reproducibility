@@ -442,7 +442,38 @@ div.tocify {
 </div>
 
 
-
+<p><br />
+</p>
+<div id="using-github-from-rstudio" class="section level2">
+<h2>Using GitHub from RStudio</h2>
+<p>Although you can do more or less all the version control aspects via the GitHub website, this is not very convenient when you are working on your R projects. Now you have an idea of how the the GitHub workflow works, we can start to integrate these version control concepts with RStudio.</p>
+<div id="linking-git-and-rstudio" class="section level3">
+<h3>Linking Git and RStudio</h3>
+<p>To use Git from within RStudio you need to make sure that Git can be found by RStudio.</p>
+<p>If you haven’t done so already, make sure to go to: <code>Tools</code> &gt; <code>Global Options</code> &gt; <code>Git/SVN</code> and check that ’Enable version control interface for RStudio projects` is enabled. Also, check that the path to Git is present and correct.</p>
+<p><img src="img/git_options_rstudio.png" width="592" /></p>
+<p>You also need to inform Git of your name and e-mail address so that it can label the commits with these details. To do this, go to <code>Tools</code> &gt; <code>Shell</code> and provide the following details:</p>
+<pre><code>git config --global user.name &quot;yourGitHubUsername&quot;
+git config --global user.email &quot;name@provider.com&quot;</code></pre>
+<p>You can verify that these are set up properly by running <code>git config --global --list</code> in the shell.</p>
+<p><br />
+</p>
+</div>
+<div id="starting-a-new-project-under-git-control" class="section level3">
+<h3>Starting a new project under Git control</h3>
+<p>If you want version control of your R project, you need to make sure that the project is under control of Git.</p>
+<p>The easiest way to start this is by creating a <strong>new project</strong> that is <strong>linked to an existing GitHub repository</strong>.</p>
+<p>We can link a new project to the GitHub repository that we generated previously. To do this, we need to copy the URL for this repository:</p>
+<p><img src="img/git_rstudio_01.png" width="794" /></p>
+<p>Next, we need to create a new project. Go to <code>File</code> &gt; <code>New Project</code> &gt; <code>Version Control</code> &gt; <code>Git</code>.</p>
+<p><img src="img/git_rstudio_02.png" width="564" /></p>
+<p><img src="img/git_rstudio_03.png" width="567" /></p>
+<p>In <code>Repository URL</code> copy the link to your GitHub repository. Give the project a name and tell RStudio where to save it. It is useful to tick the <code>Open in a new session</code> box, so that your project opens in a new RStudio session.</p>
+<p><img src="img/git_rstudio_04.png" width="564" /></p>
+<p>Your project will open (you might be asked to provide your login details) and your RStudio session should now have an extra tab in the top right corner (where your Environment is), named Git. This is where all the changes will show up as you work on your project.</p>
+<p><img src="img/git_rstudio_05.png" width="1392" /></p>
+</div>
+</div>
 
 
 

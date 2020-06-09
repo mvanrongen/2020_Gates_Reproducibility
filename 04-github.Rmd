@@ -7,3 +7,65 @@ author: Martin van Rongen
 source("setup.R")
 ```
 
+\
+
+## Using GitHub from RStudio
+
+Although you can do more or less all the version control aspects via the GitHub website, this is not very convenient when you are working on your R projects. Now you have an idea of how the the GitHub workflow works, we can start to integrate these version control concepts with RStudio.
+
+### Linking Git and RStudio
+
+To use Git from within RStudio you need to make sure that Git can be found by RStudio.
+
+If you haven't done so already, make sure to go to: `Tools` > `Global Options` > `Git/SVN` and check that 'Enable version control interface for RStudio projects` is enabled. Also, check that the path to Git is present and correct.
+
+```{r git_options, results='markup', echo=FALSE, purl=FALSE}
+knitr::include_graphics("img/git_options_rstudio.png")
+```
+
+You also need to inform Git of your name and e-mail address so that it can label the commits with these details. To do this, go to `Tools` > `Shell` and provide the following details:
+
+```
+git config --global user.name "yourGitHubUsername"
+git config --global user.email "name@provider.com"
+```
+
+You can verify that these are set up properly by running `git config --global --list` in the shell.
+
+\
+
+### Starting a new project under Git control
+
+If you want version control of your R project, you need to make sure that the project is under control of Git.
+
+The easiest way to start this is by creating a **new project** that is **linked to an existing GitHub repository**.
+
+We can link a new project to the GitHub repository that we generated previously. To do this, we need to copy the URL for this repository:
+
+```{r git_rstudio_01, results='markup', echo=FALSE, purl=FALSE}
+knitr::include_graphics("img/git_rstudio_01.png")
+```
+
+Next, we need to create a new project. Go to `File` > `New Project` > `Version Control` > `Git`.
+
+```{r git_rstudio_02, results='markup', echo=FALSE, purl=FALSE}
+knitr::include_graphics("img/git_rstudio_02.png")
+```
+
+```{r git_rstudio_03, results='markup', echo=FALSE, purl=FALSE}
+knitr::include_graphics("img/git_rstudio_03.png")
+```
+
+In `Repository URL` copy the link to your GitHub repository.
+Give the project a name and tell RStudio where to save it.
+It is useful to tick the `Open in a new session` box, so that your project opens in a new RStudio session.
+
+```{r git_rstudio_04, results='markup', echo=FALSE, purl=FALSE}
+knitr::include_graphics("img/git_rstudio_04.png")
+```
+
+Your project will open (you might be asked to provide your login details) and your RStudio session should now have an extra tab in the top right corner (where your Environment is), named Git. This is where all the changes will show up as you work on your project.
+
+```{r git_rstudio_05, results='markup', echo=FALSE, purl=FALSE}
+knitr::include_graphics("img/git_rstudio_05.png")
+```
