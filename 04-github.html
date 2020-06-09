@@ -474,6 +474,8 @@ git config --global user.email &quot;name@provider.com&quot;</code></pre>
 <p><img src="img/git_rstudio_04.png" width="564" /></p>
 <p>Your project will open and your RStudio session should now have an extra tab in the top right corner (where your Environment is), named <code>Git</code>. This is where all the changes will show up as you work on your project.</p>
 <p><img src="img/git_rstudio_05.png" width="1392" /></p>
+<p>These options can also be found by using the <img src="img/git_toolbar_button.png" width="38" /> button in the toolbar. When you have opened a file and look at the options under this button it also enables you to find differences from the last commit (if there are any) or view the commit history of that file.</p>
+<p><img src="img/git_rstudio_06.png" width="1392" /></p>
 <p><br />
 </p>
 </div>
@@ -483,6 +485,13 @@ git config --global user.email &quot;name@provider.com&quot;</code></pre>
 <p>Once you have created the file you’ll see the folder appearing in the <code>Git</code> tab. When you tick the <code>Staged</code> box, the <code>Status</code> changes to Added. This means that Git is tracking your file and will include it in the next commit.</p>
 <p><img src="img/git_rstudio_untracked_changes.png" width="425" /></p>
 <p><img src="img/git_rstudio_tracked_changes.png" width="428" /></p>
+<p>There are a few other icons that can appear in the Git pane, so here is an overview:</p>
+<ul>
+<li><img src="img/rstudio_untracked_button.png" width="15" /> , <strong>untracked</strong> file. Git has not seen this before and it needs to be added before changes are tracked.</li>
+<li><img src="img/rstudio_added_button.png" width="16" /> , <strong>added</strong> file. The file is now tracked by Git.</li>
+<li><img src="img/rstudio_modified_button.png" width="15" /> , <strong>modified</strong> file. The file has been modified since the last commit.</li>
+<li><img src="img/rstudio_deleted_button.png" width="16" /> , <strong>deleted</strong> file. The file has been deleted since the last commit.</li>
+</ul>
 <p>When we edit the file a bit we can see how it changed by clicking on the <code>Diff</code> button in the <code>Git</code> toolbar.</p>
 <p><img src="img/git_rstudio_diff.png" width="1112" /></p>
 <p>If we are happy with the changes then we can commit them. You can do this by pressing the <code>Commit</code> button in the <code>Git</code> tab and adding a commit message. All the files that are staged will be included in that particular commit. If there are files that you do not want to commit yet then you can untick them before pressing the <code>Commit</code> button.</p>
@@ -504,11 +513,22 @@ git config --global user.email &quot;name@provider.com&quot;</code></pre>
 <blockquote>
 <h3 id="challenge-2---branching-and-changes">Challenge 2 - Branching and changes</h3>
 <ol style="list-style-type: decimal">
-<li>Create a new branch from within R Studio. To do this, use the following button: <img src="img/new_branch_button.png" width="95" /></li>
+<li>Create a new branch (e.g. <code>new_notebook</code>) from within RStudio. To do this, use the following button in the <code>Git</code> pane: <img src="img/new_branch_button.png" width="95" /></li>
 <li>Create a <code>notebooks</code> folder and save a new R Markdown file in it.</li>
 <li>Ensure that changes to the new file are tracked.</li>
 <li>Make some changes to the file and commit them.</li>
 <li>Push the changes to the remote repository.</li>
+</ol>
+</blockquote>
+<p><br />
+</p>
+<blockquote>
+<h3 id="challenge-3---pull-requests">Challenge 3 - Pull requests</h3>
+<ol style="list-style-type: decimal">
+<li>Go to your GitHub repository and navigate to the newly created branch</li>
+<li>Create a pull request</li>
+<li>Merge the pull request with the <code>master</code> branch</li>
+<li>Congratulate yourself on being a version control Pro!</li>
 </ol>
 </blockquote>
 <p><br />

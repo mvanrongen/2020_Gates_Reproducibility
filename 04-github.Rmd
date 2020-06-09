@@ -72,6 +72,16 @@ Your project will open and your RStudio session should now have an extra tab in 
 knitr::include_graphics("img/git_rstudio_05.png")
 ```
 
+These options can also be found by using the
+```{r git_toolbar_button, results='markup', echo=FALSE, purl=FALSE}
+knitr::include_graphics("img/git_toolbar_button.png")
+``` 
+button in the toolbar. When you have opened a file and look at the options under this button it also enables you to find differences from the last commit (if there are any) or view the commit history of that file.
+
+```{r git_rstudio_06, results='markup', echo=FALSE, purl=FALSE}
+knitr::include_graphics("img/git_rstudio_06.png")
+```
+
 \
 
 ### Changes and your remote repository
@@ -87,6 +97,29 @@ knitr::include_graphics("img/git_rstudio_untracked_changes.png")
 ```{r git_rstudio_tracked, results='markup', echo=FALSE, purl=FALSE}
 knitr::include_graphics("img/git_rstudio_tracked_changes.png")
 ```
+
+There are a few other icons that can appear in the Git pane, so here is an overview:
+
+*
+```{r results='markup', echo=FALSE, purl=FALSE}
+knitr::include_graphics("img/rstudio_untracked_button.png")
+```
+, **untracked** file. Git has not seen this before and it needs to be added before changes are tracked.
+*
+```{r results='markup', echo=FALSE, purl=FALSE}
+knitr::include_graphics("img/rstudio_added_button.png")
+```
+, **added** file. The file is now tracked by Git.
+*
+```{r results='markup', echo=FALSE, purl=FALSE}
+knitr::include_graphics("img/rstudio_modified_button.png")
+```
+, **modified** file. The file has been modified since the last commit.
+*
+```{r results='markup', echo=FALSE, purl=FALSE}
+knitr::include_graphics("img/rstudio_deleted_button.png")
+```
+, **deleted** file. The file has been deleted since the last commit.
 
 When we edit the file a bit we can see how it changed by clicking on the `Diff` button in the `Git` toolbar.
 
@@ -119,7 +152,7 @@ knitr::include_graphics("img/git_rstudio_push.png")
 
 > ### Challenge 2 - Branching and changes
 >
-1. Create a new branch from within R Studio. To do this, use the following button:
+1. Create a new branch (e.g. `new_notebook`) from within RStudio. To do this, use the following button in the `Git` pane:
 ```{r new_branch_button, results='markup', echo=FALSE, purl=FALSE}
 knitr::include_graphics("img/new_branch_button.png")
 ```
@@ -129,6 +162,16 @@ knitr::include_graphics("img/new_branch_button.png")
 5. Push the changes to the remote repository.
 
 \
+
+> ### Challenge 3 - Pull requests
+>
+1. Go to your GitHub repository and navigate to the newly created branch
+2. Create a pull request
+3. Merge the pull request with the `master` branch
+4. Congratulate yourself on being a version control Pro!
+
+\
+
 
 ## Forking projects
 
