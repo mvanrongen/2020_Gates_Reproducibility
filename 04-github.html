@@ -446,7 +446,9 @@ div.tocify {
 </p>
 <div id="using-github-from-rstudio" class="section level2">
 <h2>Using GitHub from RStudio</h2>
-<p>Although you can do more or less all the version control aspects via the GitHub website, this is not very convenient when you are working on your R projects. Now you have an idea of how the the GitHub workflow works, we can start to integrate these version control concepts with RStudio.</p>
+<p>Although you can do more or less all the version control aspects via the GitHub website, this is not very convenient when you are working on your R projects. Now you have an idea of how the GitHub workflow works, we can start to integrate these version control concepts with RStudio.</p>
+<p><br />
+</p>
 <div id="linking-git-and-rstudio" class="section level3">
 <h3>Linking Git and RStudio</h3>
 <p>To use Git from within RStudio you need to make sure that Git can be found by RStudio.</p>
@@ -463,15 +465,50 @@ git config --global user.email &quot;name@provider.com&quot;</code></pre>
 <h3>Starting a new project under Git control</h3>
 <p>If you want version control of your R project, you need to make sure that the project is under control of Git.</p>
 <p>The easiest way to start this is by creating a <strong>new project</strong> that is <strong>linked to an existing GitHub repository</strong>.</p>
-<p>We can link a new project to the GitHub repository that we generated previously. To do this, we need to copy the URL for this repository:</p>
+<p>We can link a new project to the GitHub repository that we generated previously. To do this, we need to copy the URL for this repository. To do this, you have to go to the repository page and click on the <code>Clone or download</code> button. You can then copy the URL as shown below:</p>
 <p><img src="img/git_rstudio_01.png" width="794" /></p>
 <p>Next, we need to create a new project. Go to <code>File</code> &gt; <code>New Project</code> &gt; <code>Version Control</code> &gt; <code>Git</code>.</p>
 <p><img src="img/git_rstudio_02.png" width="564" /></p>
 <p><img src="img/git_rstudio_03.png" width="567" /></p>
-<p>In <code>Repository URL</code> copy the link to your GitHub repository. Give the project a name and tell RStudio where to save it. It is useful to tick the <code>Open in a new session</code> box, so that your project opens in a new RStudio session.</p>
+<p>In <code>Repository URL</code> paste the link to your GitHub repository. Give the project a name (avoid spaces and try to use a meaningful name) and tell RStudio where to save it. It is useful to tick the <code>Open in a new session</code> box, so that your project opens in a new RStudio session. That way RStudio opens a session with a clean environment.</p>
 <p><img src="img/git_rstudio_04.png" width="564" /></p>
-<p>Your project will open (you might be asked to provide your login details) and your RStudio session should now have an extra tab in the top right corner (where your Environment is), named Git. This is where all the changes will show up as you work on your project.</p>
+<p>Your project will open and your RStudio session should now have an extra tab in the top right corner (where your Environment is), named <code>Git</code>. This is where all the changes will show up as you work on your project.</p>
 <p><img src="img/git_rstudio_05.png" width="1392" /></p>
+<p><br />
+</p>
+</div>
+<div id="making-changes-and-your-remote-repository" class="section level3">
+<h3>Making changes and your remote repository</h3>
+<p>Let’s make some changes to our local repository, which is now under Git control. Here we are first creating a folder called <code>notebooks</code> and adding an R Markdown file named <code>01_import_and_clean_data.Rmd</code>.</p>
+<p>Once you have created the file you’ll see the folder appearing in the <code>Git</code> tab. When you tick the <code>Staged</code> box, the <code>Status</code> changes to Added. This means that Git is tracking your file and will include it in the next commit.</p>
+<p><img src="img/git_rstudio_untracked_changes.png" width="425" /></p>
+<p><img src="img/git_rstudio_tracked_changes.png" width="428" /></p>
+<p>When we edit the file a bit we can see how it changed by clicking on the <code>Diff</code> button in the <code>Git</code> toolbar.</p>
+<p><img src="img/git_rstudio_diff.png" width="1112" /></p>
+<p>If we are happy with the changes then we can commit them. You can do this by pressing the <code>Commit</code> button in the <code>Git</code> tab and adding a commit message. All the files that are staged will be included in that particular commit. If there are files that you do not want to commit yet then you can untick them before pressing the <code>Commit</code> button.</p>
+<p><img src="img/git_rstudio_commit.png" width="637" /></p>
+<p>To ensure that the changes end up on your remote repository you need to <strong>push</strong> the changes. To do this, press the <code>Push</code> button in the top right corner. RStudio will give you a message that the changes are pushed:</p>
+<p><img src="img/git_rstudio_push.png" width="635" /></p>
+<blockquote>
+<h3 id="challenge-1">Challenge 1</h3>
+<ol style="list-style-type: decimal">
+<li>Create a new repository on GitHub</li>
+<li>Create a new R Project under version control</li>
+<li>Link the R Project with the remote repository</li>
+</ol>
+</blockquote>
+<p><br />
+</p>
+<blockquote>
+<h3 id="challenge-2">Challenge 2</h3>
+<ol style="list-style-type: decimal">
+<li>Create a new branch from within R Studio. To do this, use the following button: <img src="img/new_branch_button.png" width="95" /></li>
+<li>Create a <code>notebooks</code> folder and save a new R Markdown file in it.</li>
+<li>Ensure that changes to the new file are tracked.</li>
+<li>Make some changes to the file and commit them.</li>
+<li>Push the changes to the remote repository.</li>
+</ol>
+</blockquote>
 </div>
 </div>
 

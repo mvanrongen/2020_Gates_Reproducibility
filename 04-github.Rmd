@@ -11,7 +11,9 @@ source("setup.R")
 
 ## Using GitHub from RStudio
 
-Although you can do more or less all the version control aspects via the GitHub website, this is not very convenient when you are working on your R projects. Now you have an idea of how the the GitHub workflow works, we can start to integrate these version control concepts with RStudio.
+Although you can do more or less all the version control aspects via the GitHub website, this is not very convenient when you are working on your R projects. Now you have an idea of how the GitHub workflow works, we can start to integrate these version control concepts with RStudio.
+
+\
 
 ### Linking Git and RStudio
 
@@ -40,7 +42,7 @@ If you want version control of your R project, you need to make sure that the pr
 
 The easiest way to start this is by creating a **new project** that is **linked to an existing GitHub repository**.
 
-We can link a new project to the GitHub repository that we generated previously. To do this, we need to copy the URL for this repository:
+We can link a new project to the GitHub repository that we generated previously. To do this, we need to copy the URL for this repository. To do this, you have to go to the repository page and click on the `Clone or download` button. You can then copy the URL as shown below:
 
 ```{r git_rstudio_01, results='markup', echo=FALSE, purl=FALSE}
 knitr::include_graphics("img/git_rstudio_01.png")
@@ -56,16 +58,70 @@ knitr::include_graphics("img/git_rstudio_02.png")
 knitr::include_graphics("img/git_rstudio_03.png")
 ```
 
-In `Repository URL` copy the link to your GitHub repository.
-Give the project a name and tell RStudio where to save it.
-It is useful to tick the `Open in a new session` box, so that your project opens in a new RStudio session.
+In `Repository URL` paste the link to your GitHub repository.
+Give the project a name (avoid spaces and try to use a meaningful name) and tell RStudio where to save it.
+It is useful to tick the `Open in a new session` box, so that your project opens in a new RStudio session. That way RStudio opens a session with a clean environment.
 
 ```{r git_rstudio_04, results='markup', echo=FALSE, purl=FALSE}
 knitr::include_graphics("img/git_rstudio_04.png")
 ```
 
-Your project will open (you might be asked to provide your login details) and your RStudio session should now have an extra tab in the top right corner (where your Environment is), named Git. This is where all the changes will show up as you work on your project.
+Your project will open and your RStudio session should now have an extra tab in the top right corner (where your Environment is), named `Git`. This is where all the changes will show up as you work on your project.
 
 ```{r git_rstudio_05, results='markup', echo=FALSE, purl=FALSE}
 knitr::include_graphics("img/git_rstudio_05.png")
 ```
+
+\
+
+### Making changes and your remote repository
+
+Let's make some changes to our local repository, which is now under Git control. Here we are first creating a folder called `notebooks` and adding an R Markdown file named `01_import_and_clean_data.Rmd`.
+
+Once you have created the file you'll see the folder appearing in the `Git` tab. When you tick the `Staged` box, the  `Status` changes to Added. This means that Git is tracking your file and will include it in the next commit.
+
+```{r git_rstudio_untracked, results='markup', echo=FALSE, purl=FALSE}
+knitr::include_graphics("img/git_rstudio_untracked_changes.png")
+```
+
+```{r git_rstudio_tracked, results='markup', echo=FALSE, purl=FALSE}
+knitr::include_graphics("img/git_rstudio_tracked_changes.png")
+```
+
+When we edit the file a bit we can see how it changed by clicking on the `Diff` button in the `Git` toolbar.
+
+```{r git_rstudio_differences, results='markup', echo=FALSE, purl=FALSE}
+knitr::include_graphics("img/git_rstudio_diff.png")
+```
+
+If we are happy with the changes then we can commit them. You can do this by pressing the `Commit` button in the `Git` tab and adding a commit message. All the files that are staged will be included in that particular commit. If there are files that you do not want to commit yet then you can untick them before pressing the `Commit` button.
+
+```{r git_rstudio_commit, results='markup', echo=FALSE, purl=FALSE}
+knitr::include_graphics("img/git_rstudio_commit.png")
+```
+
+To ensure that the changes end up on your remote repository you need to **push** the changes. To do this, press the `Push` button in the top right corner. RStudio will give you a message that the changes are pushed:
+
+```{r git_rstudio_push, results='markup', echo=FALSE, purl=FALSE}
+knitr::include_graphics("img/git_rstudio_push.png")
+```
+
+> ### Challenge 1
+>
+1. Create a new repository on GitHub
+2. Create a new R Project under version control
+3. Link the R Project with the remote repository
+>
+
+\
+
+> ### Challenge 2
+>
+1. Create a new branch from within R Studio. To do this, use the following button:
+```{r new_branch_button, results='markup', echo=FALSE, purl=FALSE}
+knitr::include_graphics("img/new_branch_button.png")
+```
+2. Create a `notebooks` folder and save a new R Markdown file in it.
+3. Ensure that changes to the new file are tracked.
+4. Make some changes to the file and commit them.
+5. Push the changes to the remote repository.
