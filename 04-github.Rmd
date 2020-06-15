@@ -172,13 +172,96 @@ knitr::include_graphics("img/new_branch_button.png")
 
 \
 
-
 ## Forking projects
 
 So far we have used repositories that we created ourselves. But you might find that you want to add to somebody else's project. Or you like their project and want to adapt it to your needs. In that case you need to make a personal copy of that project. This is called **forking**.
 
+To fork a repository you need to navigate to the repository page on the maintainer's GitHub account whilst logged into your own account. You then click on the `fork` button. The repository is then copied to your account:
+
+```{r forking_01, results='markup', echo=FALSE, purl=FALSE}
+knitr::include_graphics("img/forking_01.png")
+```
+
+```{r forking_02, results='markup', echo=FALSE, purl=FALSE}
+knitr::include_graphics("img/forking_02.png")
+```
+
+The forked repository will show up in your repository list. It will specify that it is a forked repository:
+
+```{r forking_03, results='markup', echo=FALSE, purl=FALSE}
+knitr::include_graphics("img/forking_03.png")
+```
+
 Once you have forked a repository to your GitHub account you can make changes to it. Good practice is to create a **new branch** in your copy of the repository, so that you do not run the risk of confusing the `master` branch of your copy with the `master` branch of the original repository.
+
+In this case we're adding a new branch called `new_feature`.
 
 After you have created a new branch on your forked copy you can start editing/adding as you like. You do this as you have done before, by **staging** and **committing** changes to your repository.
 
 When you want to suggest incorporating some of these changes into the original repository you will have to open a **pull request**. This works in the same way is described in the [pull requests](#pull-requests) section, but instead of comparing two branches on the same repository, you are comparing the branch on your forked copy with the `master` branch of the original repository.
+
+Your pull request will show up in the original repository. Note that you can also see that the original repository has been forked:
+
+```{r forking_04, results='markup', echo=FALSE, purl=FALSE}
+knitr::include_graphics("img/forking_04.png")
+```
+
+\
+
+## Creating issues
+
+GitHub keeps track of bugs, improvements and tasks through **Issues**. The good thing about issues is that they can be shared and discussed with collaborators, in a similar way as to how the pull request system works.
+
+An issue is created from the `Issues` tab in the repository:
+
+```{r issues_01, results='markup', echo=FALSE, purl=FALSE}
+knitr::include_graphics("img/issues_01.png")
+```
+
+A new issue requires a title and description. It's good to try and be as concise and complete as possible so that the developer knows what it is that you want. You can label the issue - in this case it is an Enhancement, but there is a whole range of labels you can choose from. Labelling can be particularly helpful when there are many issues and it helps you organise and prioritise your work.
+
+```{r issues_02, results='markup', echo=FALSE, purl=FALSE}
+knitr::include_graphics("img/issues_02.png")
+```
+
+Issues are always assigned a unique ID, which you can use to refer to them in comments:
+
+```{r issues_03, results='markup', echo=FALSE, purl=FALSE}
+knitr::include_graphics("img/issues_03.png")
+```
+
+```{r issues_04, results='markup', echo=FALSE, purl=FALSE}
+knitr::include_graphics("img/issues_04.png")
+```
+
+\
+
+## Managing access
+
+When you have a public repository everyone can fork the repository and make changes to that (forked) copy. You can also invite people to collaborate on your project.
+
+In order to do that you need to go to the `Settings` > `Manage access` page:
+
+```{r manage_access, results='markup', echo=FALSE, purl=FALSE}
+knitr::include_graphics("img/manage_access.png")
+```
+
+Here you can invite collaborators and once they have accepted, then can open pull requests and make changes to the repository.
+
+\
+
+## Challenges
+
+Below are several challenges that incorporate some of the topics that we have covered throughout the course.
+
+> ### Challenge 1 - Creating a repository for collaboration
+>
+1. Create a new repository on GitHub. Name it `repo_<GitHubUserName>`, e.g. `repo_martinimus`.
+2. Find a collaborator and add the collaborator to your repository. You should get a verification e-mail on the e-mail address that is registered with your GitHub account.
+3. Put the collaborative repository under version control in RStudio (e.g. `repo_<GitHubUserNameCollaborator>`).
+
+\
+
+> ### Challenge 2 - Making and discussing changes
+>
+1. In RStudio, create a new R Markdown file in the collaborative repository and **stage**, **commit** and **push** the changes.

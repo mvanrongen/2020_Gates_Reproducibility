@@ -538,9 +538,61 @@ git config --global user.email &quot;name@provider.com&quot;</code></pre>
 <div id="forking-projects" class="section level2">
 <h2>Forking projects</h2>
 <p>So far we have used repositories that we created ourselves. But you might find that you want to add to somebody else’s project. Or you like their project and want to adapt it to your needs. In that case you need to make a personal copy of that project. This is called <strong>forking</strong>.</p>
+<p>To fork a repository you need to navigate to the repository page on the maintainer’s GitHub account whilst logged into your own account. You then click on the <code>fork</code> button. The repository is then copied to your account:</p>
+<p><img src="img/forking_01.png" width="818" /></p>
+<p><img src="img/forking_02.png" width="578" /></p>
+<p>The forked repository will show up in your repository list. It will specify that it is a forked repository:</p>
+<p><img src="img/forking_03.png" width="373" /></p>
 <p>Once you have forked a repository to your GitHub account you can make changes to it. Good practice is to create a <strong>new branch</strong> in your copy of the repository, so that you do not run the risk of confusing the <code>master</code> branch of your copy with the <code>master</code> branch of the original repository.</p>
+<p>In this case we’re adding a new branch called <code>new_feature</code>.</p>
 <p>After you have created a new branch on your forked copy you can start editing/adding as you like. You do this as you have done before, by <strong>staging</strong> and <strong>committing</strong> changes to your repository.</p>
 <p>When you want to suggest incorporating some of these changes into the original repository you will have to open a <strong>pull request</strong>. This works in the same way is described in the <a href="#pull-requests">pull requests</a> section, but instead of comparing two branches on the same repository, you are comparing the branch on your forked copy with the <code>master</code> branch of the original repository.</p>
+<p>Your pull request will show up in the original repository. Note that you can also see that the original repository has been forked:</p>
+<p><img src="img/forking_04.png" width="1021" /></p>
+<p><br />
+</p>
+</div>
+<div id="creating-issues" class="section level2">
+<h2>Creating issues</h2>
+<p>GitHub keeps track of bugs, improvements and tasks through <strong>Issues</strong>. The good thing about issues is that they can be shared and discussed with collaborators, in a similar way as to how the pull request system works.</p>
+<p>An issue is created from the <code>Issues</code> tab in the repository:</p>
+<p><img src="img/issues_01.png" width="806" /></p>
+<p>A new issue requires a title and description. It’s good to try and be as concise and complete as possible so that the developer knows what it is that you want. You can label the issue - in this case it is an Enhancement, but there is a whole range of labels you can choose from. Labelling can be particularly helpful when there are many issues and it helps you organise and prioritise your work.</p>
+<p><img src="img/issues_02.png" width="827" /></p>
+<p>Issues are always assigned a unique ID, which you can use to refer to them in comments:</p>
+<p><img src="img/issues_03.png" width="819" /></p>
+<p><img src="img/issues_04.png" width="808" /></p>
+<p><br />
+</p>
+</div>
+<div id="managing-access" class="section level2">
+<h2>Managing access</h2>
+<p>When you have a public repository everyone can fork the repository and make changes to that (forked) copy. You can also invite people to collaborate on your project.</p>
+<p>In order to do that you need to go to the <code>Settings</code> &gt; <code>Manage access</code> page:</p>
+<p><img src="img/manage_access.png" width="814" /></p>
+<p>Here you can invite collaborators and once they have accepted, then can open pull requests and make changes to the repository.</p>
+<p><br />
+</p>
+</div>
+<div id="challenges" class="section level2">
+<h2>Challenges</h2>
+<p>Below are several challenges that incorporate some of the topics that we have covered throughout the course.</p>
+<blockquote>
+<h3 id="challenge-1---creating-a-repository-for-collaboration">Challenge 1 - Creating a repository for collaboration</h3>
+<ol style="list-style-type: decimal">
+<li>Create a new repository on GitHub. Name it <code>repo_&lt;GitHubUserName&gt;</code>, e.g. <code>repo_martinimus</code>.</li>
+<li>Find a collaborator and add the collaborator to your repository. You should get a verification e-mail on the e-mail address that is registered with your GitHub account.</li>
+<li>Put the collaborative repository under version control in RStudio (e.g. <code>repo_&lt;GitHubUserNameCollaborator&gt;</code>).</li>
+</ol>
+</blockquote>
+<p><br />
+</p>
+<blockquote>
+<h3 id="challenge-2---making-and-discussing-changes">Challenge 2 - Making and discussing changes</h3>
+<ol style="list-style-type: decimal">
+<li>In RStudio, create a new R Markdown file in the collaborative repository and <strong>stage</strong>, <strong>commit</strong> and <strong>push</strong> the changes.</li>
+</ol>
+</blockquote>
 </div>
 
 
