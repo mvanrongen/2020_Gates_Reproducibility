@@ -248,20 +248,38 @@ knitr::include_graphics("img/manage_access.png")
 
 Here you can invite collaborators and once they have accepted, then can open pull requests and make changes to the repository.
 
+To find repositories where you are a collaborator on you need to go to `Settings` > `Repositories`. Unfortunately these repositories do not show up on your own Repositories tab.
+
+```{r manage_collaborative_repo, results='markup', echo=FALSE, purl=FALSE}
+knitr::include_graphics("img/manage_collaborative_repo.png")
+```
+
 \
 
 ## Challenges
 
 Below are several challenges that incorporate some of the topics that we have covered throughout the course.
 
+To practice collaboration we are teaming up. For these challenges we will work in pairs. Both people will create a repository which contains their GitHub username in the title (`repo_<GitHubUserName>`, e.g. `repo_martinimus`). Then each person adds the other one as a collaborator.
+
+Once you are added as a collaborator, you link the collaborative repository (i.e. the repository where you were added as a collaborator, _not_ your own) to RStudio and make some changes that you suggest to your collaborator by creating a pull request. Your collaborator will then assess the changes and you can have a bit of back-and-forth before accepting and merging the changes.
+
+\
+
 > ### Challenge 1 - Creating a repository for collaboration
 >
 1. Create a new repository on GitHub. Name it `repo_<GitHubUserName>`, e.g. `repo_martinimus`.
-2. Find a collaborator and add the collaborator to your repository. You should get a verification e-mail on the e-mail address that is registered with your GitHub account.
+2. Find a collaborator and ask to be added as a collaborator to their repository. You should get a verification e-mail on the e-mail address that is registered with your GitHub account. Verify and check that the repository shows up on your GitHub page (remember, these will be in `Settings` > `Repositories`).
 3. Put the collaborative repository under version control in RStudio (e.g. `repo_<GitHubUserNameCollaborator>`).
 
 \
 
 > ### Challenge 2 - Making and discussing changes
 >
-1. In RStudio, create a new R Markdown file in the collaborative repository and **stage**, **commit** and **push** the changes.
+1. Create a new branch on the collaborative repository, either through RStudio or the GitHub website.
+2. In RStudio, create a new R Markdown file in the collaborative repository and **stage**, **commit** and **push** the changes to the branch you have just created.
+3. Go to the repository you are both working on and start a **pull request** for the changes you just pushed.
+4. To practice, let the collaborator **comment** on the changes and ask for more details instead of merging the pull request.
+5. Amend the R Markdown file again with the requested details and commit/change/push again.
+6. The collaborator can now accept the changes and **merge** the branches.
+

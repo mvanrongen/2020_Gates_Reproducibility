@@ -571,17 +571,23 @@ git config --global user.email &quot;name@provider.com&quot;</code></pre>
 <p>In order to do that you need to go to the <code>Settings</code> &gt; <code>Manage access</code> page:</p>
 <p><img src="img/manage_access.png" width="814" /></p>
 <p>Here you can invite collaborators and once they have accepted, then can open pull requests and make changes to the repository.</p>
+<p>To find repositories where you are a collaborator on you need to go to <code>Settings</code> &gt; <code>Repositories</code>. Unfortunately these repositories do not show up on your own Repositories tab.</p>
+<p><img src="img/manage_collaborative_repo.png" width="1276" /></p>
 <p><br />
 </p>
 </div>
 <div id="challenges" class="section level2">
 <h2>Challenges</h2>
 <p>Below are several challenges that incorporate some of the topics that we have covered throughout the course.</p>
+<p>To practice collaboration we are teaming up. For these challenges we will work in pairs. Both people will create a repository which contains their GitHub username in the title (<code>repo_&lt;GitHubUserName&gt;</code>, e.g. <code>repo_martinimus</code>). Then each person adds the other one as a collaborator.</p>
+<p>Once you are added as a collaborator, you link the collaborative repository (i.e. the repository where you were added as a collaborator, <em>not</em> your own) to RStudio and make some changes that you suggest to your collaborator by creating a pull request. Your collaborator will then assess the changes and you can have a bit of back-and-forth before accepting and merging the changes.</p>
+<p><br />
+</p>
 <blockquote>
 <h3 id="challenge-1---creating-a-repository-for-collaboration">Challenge 1 - Creating a repository for collaboration</h3>
 <ol style="list-style-type: decimal">
 <li>Create a new repository on GitHub. Name it <code>repo_&lt;GitHubUserName&gt;</code>, e.g. <code>repo_martinimus</code>.</li>
-<li>Find a collaborator and add the collaborator to your repository. You should get a verification e-mail on the e-mail address that is registered with your GitHub account.</li>
+<li>Find a collaborator and ask to be added as a collaborator to their repository. You should get a verification e-mail on the e-mail address that is registered with your GitHub account. Verify and check that the repository shows up on your GitHub page (remember, these will be in <code>Settings</code> &gt; <code>Repositories</code>).</li>
 <li>Put the collaborative repository under version control in RStudio (e.g. <code>repo_&lt;GitHubUserNameCollaborator&gt;</code>).</li>
 </ol>
 </blockquote>
@@ -590,7 +596,12 @@ git config --global user.email &quot;name@provider.com&quot;</code></pre>
 <blockquote>
 <h3 id="challenge-2---making-and-discussing-changes">Challenge 2 - Making and discussing changes</h3>
 <ol style="list-style-type: decimal">
-<li>In RStudio, create a new R Markdown file in the collaborative repository and <strong>stage</strong>, <strong>commit</strong> and <strong>push</strong> the changes.</li>
+<li>Create a new branch on the collaborative repository, either through RStudio or the GitHub website.</li>
+<li>In RStudio, create a new R Markdown file in the collaborative repository and <strong>stage</strong>, <strong>commit</strong> and <strong>push</strong> the changes to the branch you have just created.</li>
+<li>Go to the repository you are both working on and start a <strong>pull request</strong> for the changes you just pushed.</li>
+<li>To practice, let the collaborator <strong>comment</strong> on the changes and ask for more details instead of merging the pull request.</li>
+<li>Amend the R Markdown file again with the requested details and commit/change/push again.</li>
+<li>The collaborator can now accept the changes and <strong>merge</strong> the branches.</li>
 </ol>
 </blockquote>
 </div>
